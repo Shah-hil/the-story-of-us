@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Story of Us 📖 | Our Keepsake Book</title>
+  <meta name="description" content="A vintage keepsake book celebrating every memory, every gift, and every chapter from our unfinished chess match to forever.">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+
+  <!-- Google Fonts: Playfair Display (Antique Title), Caveat (Handwritten Ink), Outfit (Modern Clean) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Outfit:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+
+  <!-- FontAwesome Icons CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Canvas Confetti CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+  <!-- GSAP & ScrollTrigger (Same scrollytelling engine used by LxL Creative) -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+
+  <!-- Custom Styles with cache-busting -->
+  <link rel="stylesheet" href="styles.css?v=20260920_v18">
+</head>
+<body class="book-theme">
+
+  <!-- DREAMY ATMOSPHERIC BACKDROP WITH TRANSLUCENT VELVET VEIL -->
+  <div class="site-dreamy-backdrop" aria-hidden="true">
+    <div class="dreamy-bg-image" style="background-image: url('images/dreamy_velvet_backdrop.jpg?v=20260920_c3');"></div>
+    <div class="dreamy-velvet-veil"></div>
+    <canvas id="celestial-petals-canvas" class="celestial-petals-canvas"></canvas>
+    <div class="dreamy-firefly-glow glow-1"></div>
+    <div class="dreamy-firefly-glow glow-2"></div>
+    <div class="dreamy-firefly-glow glow-3"></div>
+  </div>
+
+  <!-- PRESENTATION HERO SCROLL-TRACK (Inspired by LxL Creative) -->
+  <div class="hero-presentation-track" id="hero-track">
+    <div class="hero-sticky-viewport">
+      <div class="hero-presentation-card" id="hero-card">
+        
+        <!-- Ambient Candlelight Aura & Shadow Backdrop -->
+        <div class="gate-ambient-glow"></div>
+
+        <!-- Grand Opening Presentation Header -->
+        <div class="hero-header-banner">
+          <span class="hero-kicker">✦ A Birthday Chronicle • September 2026 ✦</span>
+          <h1 class="hero-glamour-title">The Story of Us</h1>
+          <p class="hero-glamour-subtitle">"From an unfinished chess match to forever—every laugh, every wrong bus, and how we became us."</p>
+        </div>
+
+        <!-- 3D Book Container with Realistic Proportions & Drop Shadows -->
+        <div class="fs-book-wrapper" id="storybook-stage">
+          
+          <!-- Deep 3D Contact & Floor Shadows -->
+          <div class="book-depth-casing"></div>
+          
+          <!-- Frontispiece Title Page (revealed when front cover turns open) -->
+          <div class="fs-book-page frontispiece-page">
+            <img src="images/vintage_parchment_page.jpg" alt="Antique Parchment Page" class="parchment-bg">
+            <div class="frontispiece-content">
+              <div class="frontispiece-flourish">❧ ❦ ☙</div>
+              <span class="frontispiece-subtitle">Prologue • Where It Began</span>
+              <h2 class="frontispiece-title">Let's enter this world of ours ✨</h2>
+              <div class="frontispiece-divider"></div>
+              <p class="frontispiece-quote">"Scroll down to turn each page and step into our memories."</p>
+              <div class="frontispiece-prompt">
+                <span class="prompt-candle">🕯️</span>
+                <span>Our story is open...</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Heavy Antique Leather Front Cover (turns open 180deg) -->
+          <div class="fs-book-cover" id="book-cover">
+            <img src="images/antique_leather_cover.jpg" alt="The Story of Us Leather Diary" class="cover-leather-img">
+            <div class="cover-vignette"></div>
+
+            <!-- Stitched Leather Wrap Strap & Brass Key Clasp -->
+            <div class="fs-leather-strap" id="book-ribbon">
+              <div class="strap-leather-strip"></div>
+              <div class="strap-brass-lock">
+                <span class="strap-key-charm">🗝️</span>
+              </div>
+            </div>
+
+            <!-- Hanging Keepsake Bookmark Tag -->
+            <div class="fs-cover-tag">
+              <span class="fs-tag-title">For My Favorite Person 🌸</span>
+              <span class="fs-tag-hint">Scroll down to unfold our story</span>
+            </div>
+
+            <!-- Hanging Silk Bookmark Ribbon -->
+            <div class="cover-bottom-ribbon"></div>
+          </div>
+
+          <!-- Leather Spine on Left Edge -->
+          <div class="fs-book-spine">
+            <div class="spine-rib"></div>
+            <div class="spine-rib"></div>
+            <div class="spine-rib"></div>
+            <div class="spine-rib"></div>
+            <div class="spine-rib"></div>
+          </div>
+
+          <!-- Gilded Page Edges Stack on Right & Bottom -->
+          <div class="fs-page-stack"></div>
+          <div class="fs-page-stack-bottom"></div>
+
+          <!-- Inner Radiance Burst -->
+          <div class="fs-book-radiance" id="book-radiance"></div>
+
+        </div>
+
+        <!-- Mouse Scroll Prompt Indicator -->
+        <div class="hero-scroll-prompt" id="hero-scroll-prompt">
+          <div class="mouse-scroll-indicator">
+            <div class="mouse-wheel-dot"></div>
+          </div>
+          <span>Scroll down to open our story</span>
+          <i class="fa-solid fa-chevron-down scroll-arrow-pulse"></i>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- FLOATING ACOUSTIC MELODY PLAYER -->
+  <div class="music-widget" id="music-widget">
+    <audio id="bg-acoustic-audio" preload="auto" loop src="audio/acoustic_melody.mp3"></audio>
+    <button class="music-btn" id="music-btn" title="Toggle Romantic Acoustic Melody">
+      <i class="fa-solid fa-music music-icon"></i>
+      <span class="music-label">Acoustic Melody: OFF</span>
+      <span class="music-equalizer hidden" id="music-eq">
+        <span class="eq-bar"></span>
+        <span class="eq-bar"></span>
+        <span class="eq-bar"></span>
+        <span class="eq-bar"></span>
+      </span>
+    </button>
+  </div>
+
+  <!-- FLOATING PRESENTATION DOCK NAVIGATION -->
+  <header class="book-nav" id="main-nav">
+    <div class="nav-container">
+      <div class="nav-logo">
+        <span class="logo-quill">🖋️</span>
+        <span class="logo-text">The Story of Us</span>
+      </div>
+      <nav class="nav-links">
+        <a href="#our-story" class="nav-link active"><i class="fa-solid fa-book-open"></i> Chapters (18)</a>
+        <a href="#lifetime-loader" class="nav-link"><i class="fa-solid fa-hourglass-half"></i> 80 Years</a>
+        <a href="#memories-vault" class="nav-link"><i class="fa-solid fa-gem"></i> Keepsakes</a>
+        <a href="#reasons-scroll" class="nav-link"><i class="fa-solid fa-scroll"></i> 170 Reasons</a>
+        <a href="#media-reel" class="nav-link"><i class="fa-solid fa-film"></i> Memories</a>
+        <a href="#birthday-letter" class="nav-link"><i class="fa-solid fa-feather"></i> Letter</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- MAIN BOOK EXPERIENCE (INSIDE THE BOOK) -->
+  <main class="book-main-content" id="main-content">
+
+    <!-- PRESENTATION ACT I: THE 18 CHAPTERS (INTERACTIVE STORYBOOK FOLIO) -->
+    <section class="book-section presentation-slide-section" id="our-story">
+      <div class="parchment-section-header">
+        <div class="parchment-stamp">Act I • The Story of Us 📖</div>
+        <h2 class="parchment-title">Eighteen Chapters of You & Me</h2>
+        <p class="parchment-subtitle">From an unfinished chess match on the shoot to our journey forever.</p>
+        
+        <!-- Elegant Presentation Badges & Celebration Button -->
+        <div class="presentation-milestone-bar">
+          <div class="pres-chip"><span class="chip-num">18</span> <span>Chapters</span></div>
+          <div class="pres-chip"><span class="chip-num">Jan 30</span> <span>Anniversary 🌹</span></div>
+          <div class="pres-chip"><span class="chip-num">Feb 1</span> <span>First Date 🌹</span></div>
+          <div class="pres-chip"><span class="chip-num">∞</span> <span>Forever</span></div>
+          <button class="celebrate-pill-btn" id="celebrate-btn" title="Celebrate With Golden Confetti">
+            <i class="fa-solid fa-wand-magic-sparkles"></i> <span>Celebrate! 🎉</span>
+          </button>
+        </div>
+        <div class="vintage-divider">❧ ─── ❦ ─── ☙</div>
+      </div>
+
+      <!-- Interactive Chapter Ribbon Jump Navigator -->
+      <div class="chapter-ribbon-bar">
+        <div class="ribbon-bar-header">
+          <span class="ribbon-icon">🔖</span>
+          <span class="ribbon-title">Chapters Index (Turn to any chapter):</span>
+        </div>
+        <div class="chapter-index-chips" id="story-nav-chips">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+
+      <!-- OPEN TWO-PAGE STORYBOOK FOLIO CONTAINER -->
+      <div class="storybook-folio-wrapper">
+        <div class="storybook-folio" id="storybook-folio">
+          
+          <!-- Left Folio Page (The Visual Keepsake) -->
+          <div class="folio-page folio-page-left" id="folio-left-page">
+            <!-- Dynamically populated by JS -->
+          </div>
+
+          <!-- Book Center Spine & Stitching -->
+          <div class="folio-spine-divider">
+            <div class="spine-stitch-line"></div>
+            <div class="spine-shadow-fold"></div>
+          </div>
+
+          <!-- Right Folio Page (The Inscribed Chapter) -->
+          <div class="folio-page folio-page-right" id="folio-right-page">
+            <!-- Dynamically populated by JS -->
+          </div>
+
+          <!-- 3D Realistic Single Page-Turn Flipping Leaf -->
+          <div class="folio-flipper" id="folio-flipper">
+            <div class="flipper-face flipper-front" id="flipper-front"></div>
+            <div class="flipper-face flipper-back" id="flipper-back"></div>
+            <div class="flipper-shadow" id="flipper-shadow"></div>
+          </div>
+
+          <!-- Multi-Page Flutter Animation Leaves (when jumping multiple chapters) -->
+          <div class="folio-flutter-container" id="folio-flutter-container"></div>
+        </div>
+
+        <!-- Book Navigation Toolbar: Next / Previous & Chapter Tracker -->
+        <div class="folio-nav-toolbar">
+          <button class="folio-nav-btn prev-btn" id="btn-prev-chapter" title="Previous Chapter (Left Arrow)">
+            <i class="fa-solid fa-arrow-left"></i> <span>Previous Chapter</span>
+          </button>
+
+          <div class="folio-chapter-tracker">
+            <span class="tracker-badge" id="tracker-chapter-num">Chapter 01 of 18</span>
+            <span class="tracker-chapter-title" id="tracker-chapter-title">The Unfinished Match ♟️</span>
+          </div>
+
+          <button class="folio-nav-btn next-btn" id="btn-next-chapter" title="Next Chapter (Right Arrow)">
+            <span>Next Chapter</span> <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </div>
+
+        <div class="folio-keyboard-hint">
+          <i class="fa-regular fa-keyboard"></i> <span>Tip: You can also use your keyboard's <strong>Left / Right arrows</strong> to turn pages!</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION: 80-YEAR LIFETIME LOADING SCREEN & REAL-TIME RELATIONSHIP TIMER -->
+    <section class="book-section" id="lifetime-loader">
+      <div class="parchment-section-header">
+        <div class="parchment-stamp">Eternity In Progress ⏳✨</div>
+        <h2 class="parchment-title">Our 80-Year Lifetime Loading...</h2>
+        <p class="parchment-subtitle">
+          "I asked you out on January 30, 2026 at 8:50 PM. Loading an eternity of laughter, forehead kisses, shared cups of coffee, and living together for 80 years and beyond."
+        </p>
+        <div class="vintage-divider">❧ ─── ❦ ─── ☙</div>
+      </div>
+
+      <div class="lifetime-glass-card">
+        <!-- Floating Celestial Ambiance Glows -->
+        <div class="lifetime-aura aura-left"></div>
+        <div class="lifetime-aura aura-right"></div>
+
+        <!-- Top Header Badge & Fullscreen Mode Action -->
+        <div class="lifetime-header-row">
+          <div class="lifetime-anniversary-badge">
+            <span class="anniversary-ring-icon">🌹</span>
+            <div class="anniversary-text-group">
+              <span class="anniversary-label">ANNIVERSARY ORIGIN</span>
+              <span class="anniversary-date">January 30, 2026 • 8:50 PM</span>
+            </div>
+          </div>
+
+          <div class="lifetime-mode-actions">
+            <button class="lifetime-fullscreen-btn" id="btn-fullscreen-lifetime" title="Open atmospheric full-screen loading screen mode">
+              <i class="fa-solid fa-expand"></i> <span>Full-Screen Eternity Mode</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- THE 6 ROYAL GLASSMORPHIC TIME ORBS (LIVE TICKING) -->
+        <div class="timer-orbs-grid">
+          <div class="timer-orb-unit">
+            <div class="orb-glass-body">
+              <span class="orb-number" id="time-years">00</span>
+              <span class="orb-unit-label">YEARS</span>
+            </div>
+            <div class="orb-sub-text">In Inscribed Love</div>
+          </div>
+
+          <div class="timer-orb-unit">
+            <div class="orb-glass-body">
+              <span class="orb-number" id="time-months">00</span>
+              <span class="orb-unit-label">MONTHS</span>
+            </div>
+            <div class="orb-sub-text">Of Sweet Whispers</div>
+          </div>
+
+          <div class="timer-orb-unit">
+            <div class="orb-glass-body">
+              <span class="orb-number" id="time-days">00</span>
+              <span class="orb-unit-label">DAYS</span>
+            </div>
+            <div class="orb-sub-text">Of Cherished Smiles</div>
+          </div>
+
+          <div class="timer-orb-unit">
+            <div class="orb-glass-body">
+              <span class="orb-number" id="time-hours">00</span>
+              <span class="orb-unit-label">HOURS</span>
+            </div>
+            <div class="orb-sub-text">Of Endless Comfort</div>
+          </div>
+
+          <div class="timer-orb-unit">
+            <div class="orb-glass-body">
+              <span class="orb-number" id="time-minutes">00</span>
+              <span class="orb-unit-label">MINUTES</span>
+            </div>
+            <div class="orb-sub-text">Of Heartfelt Talks</div>
+          </div>
+
+          <div class="timer-orb-unit pulse-second">
+            <div class="orb-glass-body">
+              <span class="orb-number" id="time-seconds">00</span>
+              <span class="orb-unit-label">SECONDS</span>
+            </div>
+            <div class="orb-sub-text">Beating Ticks 💖</div>
+          </div>
+        </div>
+
+        <!-- ROMANTIC MICRO-STATS TICKER -->
+        <div class="lifetime-stats-banner">
+          <div class="stat-pill">
+            <i class="fa-solid fa-calendar-check stat-icon"></i>
+            <span id="stat-total-days">0</span> <span>Total Days Together</span>
+          </div>
+          <div class="stat-pill">
+            <i class="fa-solid fa-clock stat-icon"></i>
+            <span id="stat-total-hours">0</span> <span>Total Hours</span>
+          </div>
+          <div class="stat-pill heartbeat-pill">
+            <i class="fa-solid fa-heart-pulse stat-icon beating-heart"></i>
+            <span id="stat-total-heartbeats">0</span> <span>Estimated Shared Heartbeats</span>
+          </div>
+        </div>
+
+        <!-- THE WORKING 80-YEAR ETERNITY LOADING PROGRESS BAR -->
+        <div class="eternity-loader-wrapper">
+          <div class="loader-meta-header">
+            <div class="loader-status-indicator">
+              <span class="loader-spinner-dot"></span>
+              <span class="loader-status-text" id="loader-status-quote">
+                Loading 80 years of inside jokes, forehead kisses, and growing old together...
+              </span>
+            </div>
+            <div class="loader-percentage-display">
+              <span class="percentage-val" id="loader-percent-number">0.000000%</span>
+              <span class="percentage-sub">of 80-Year Lifetime</span>
+            </div>
+          </div>
+
+          <!-- The Physical Glowing Progress Bar Track -->
+          <div class="eternity-progress-track" id="eternity-progress-track">
+            <!-- Liquid Gold & Velvet Fill -->
+            <div class="progress-fluid-fill" id="progress-fluid-fill" style="width: 0%;">
+              <div class="progress-fluid-sheen"></div>
+              <!-- Traveling Beating Heart Marker -->
+              <div class="progress-heart-thumb" id="progress-heart-thumb">
+                <span class="thumb-heart-emoji">💖</span>
+                <div class="thumb-glow-aura"></div>
+                <div class="thumb-current-pill">We Are Here ✨</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Range Bounds Labels -->
+          <div class="loader-track-labels">
+            <div class="track-label-left">
+              <strong>Day 1 • Jan 30, 2026 (8:50 PM)</strong>
+              <span>"I kinda like you..."</span>
+            </div>
+            <div class="track-label-right">
+              <strong>80 Years • Jan 30, 2106 (8:50 PM)</strong>
+              <span>"Forever & Beyond ♾️"</span>
+            </div>
+          </div>
+
+        <!-- INTERACTIVE 80-YEAR MILESTONE CONSTELLATIONS -->
+        <div class="milestones-timeline-section">
+          <div class="milestones-header">
+            <span class="milestones-header-title">❧ Lifetime Constellations • Chapters of Our 80 Years ☙</span>
+            <span class="milestones-hint">Click any milestone to preview our future!</span>
+          </div>
+
+          <div class="milestones-chips-grid" id="milestones-chips-grid">
+            <!-- Dynamically populated from LIFETIME_CONFIG.milestones -->
+          </div>
+
+          <!-- Active Milestone Preview Card (Revealed on Click) -->
+          <div class="milestone-detail-card" id="milestone-active-card">
+            <!-- Dynamically updated by JS -->
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION 2: GIFTS & CARDS MEMORY VAULT -->
+    <section class="book-section" id="memories-vault">
+      <div class="parchment-section-header">
+        <div class="parchment-stamp">Keepsakes Pressed Between Pages 💌</div>
+        <h2 class="parchment-title">Gifts & Cards Memory Vault</h2>
+        <p class="parchment-subtitle">A photo of every gift, card, and handwritten note she has given me.</p>
+        <div class="vintage-divider">❧ ─── ❦ ─── ☙</div>
+      </div>
+
+      <!-- Category Filter Tabs -->
+      <div class="filter-bar">
+        <button class="filter-btn active" data-category="all">
+          <i class="fa-solid fa-book"></i> All Keepsakes (<span id="count-all">0</span>)
+        </button>
+        <button class="filter-btn" data-category="gifts">
+          <i class="fa-solid fa-gift"></i> Gifts 🎁 (<span id="count-gifts">0</span>)
+        </button>
+        <button class="filter-btn" data-category="cards">
+          <i class="fa-solid fa-envelope"></i> Cards 💌 (<span id="count-cards">0</span>)
+        </button>
+        <button class="filter-btn" data-category="notes">
+          <i class="fa-solid fa-note-sticky"></i> Notes 📝 (<span id="count-notes">0</span>)
+        </button>
+      </div>
+
+      <div class="interactive-hint">
+        <i class="fa-solid fa-hand-pointer pulse-icon"></i> 
+        <span><strong>Interactive Keepsakes:</strong> Tap any Polaroid to turn it over and read the memory notes on the back!</span>
+      </div>
+
+      <!-- Polaroid Cards Grid (Populated by JS) -->
+      <div class="polaroid-grid" id="memories-grid">
+        <!-- Dynamically rendered polaroids -->
+      </div>
+    </section>
+
+    <!-- SECTION 3: THE 170 HANDWRITTEN REASONS SCROLL -->
+    <section class="book-section" id="reasons-scroll">
+      <div class="parchment-section-header">
+        <div class="parchment-stamp">Handwritten Parchment Gift 📜</div>
+        <h2 class="parchment-title">170 Things She Wrote For Me</h2>
+        <p class="parchment-subtitle">That long continuous paper strip she handwritten for me—transcribed word for word. Tap to unroll the scroll, then click any line to see my reply.</p>
+        <div class="vintage-divider">❧ ─── ❦ ─── ☙</div>
+      </div>
+
+      <!-- STAGE 1: THE ROLLED-UP PARCHMENT SCROLL (INITIAL STATE) -->
+      <div class="scroll-rolled-stage" id="scroll-rolled-stage">
+        <div class="rolled-scroll-pedestal">
+          <div class="pedestal-shadow"></div>
+          
+          <!-- 3D Rolled Paper Cylinder -->
+          <div class="vintage-rolled-scroll-3d" id="unroll-trigger-bundle">
+            <!-- Spiral curl ends -->
+            <div class="scroll-curl-end curl-left">
+              <div class="curl-ring-1"></div>
+              <div class="curl-ring-2"></div>
+              <div class="curl-ring-3"></div>
+            </div>
+
+            <!-- Central parchment rolled cylinder body -->
+            <div class="scroll-cylinder-body">
+              <div class="scroll-paper-layer layer-1"></div>
+              <div class="scroll-paper-layer layer-2"></div>
+              <div class="scroll-paper-layer layer-3"></div>
+              <div class="scroll-cylinder-shading"></div>
+
+              <!-- Silk Velvet Ribbon Wrap -->
+              <div class="scroll-cylinder-ribbon">
+                <div class="ribbon-band"></div>
+                <div class="ribbon-gold-trim top"></div>
+                <div class="ribbon-gold-trim btm"></div>
+              </div>
+
+              <!-- Hanging Wax Seal & Unroll Button -->
+              <div class="scroll-wax-seal-container">
+                <div class="seal-hanging-twine"></div>
+                <button class="scroll-wax-seal-btn" id="unroll-action-btn" title="Click to unroll her 170 handwritten notes">
+                  <div class="seal-outer-rim"></div>
+                  <div class="seal-inner-stamp">
+                    <span class="seal-stamp-icon">📜</span>
+                    <span class="seal-stamp-title">UNROLL</span>
+                    <span class="seal-stamp-sub">170 Notes</span>
+                  </div>
+                  <div class="seal-sparkle-glow"></div>
+                </button>
+              </div>
+            </div>
+
+            <!-- Spiral curl end right -->
+            <div class="scroll-curl-end curl-right">
+              <div class="curl-ring-1"></div>
+              <div class="curl-ring-2"></div>
+              <div class="curl-ring-3"></div>
+            </div>
+          </div>
+
+          <div class="unroll-guidance-pill" id="unroll-guidance-pill">
+            <i class="fa-solid fa-hand-pointer pulse-icon"></i>
+            <span>Tap the wax seal or scroll to unroll her handwritten paper strip</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- STAGE 2: THE UNROLLED CONTINUOUS PAPER STRIP (REVEALED ON UNROLL) -->
+      <div class="scroll-unrolled-stage hidden-scroll" id="scroll-unrolled-stage">
+
+        <!-- Toolbar with Search, Counters, Expand All, and Roll Back Up -->
+        <div class="scroll-control-panel">
+          <div class="scroll-search-box">
+            <i class="fa-solid fa-magnifying-glass search-icon"></i>
+            <input type="text" id="scroll-search-input" placeholder="Search her 170 notes... (e.g. worm, waffles, crowd, safe, 142)" autocomplete="off">
+            <button id="scroll-clear-search" class="clear-search-btn" title="Clear search">✕</button>
+          </div>
+
+          <div class="scroll-actions-row">
+            <div class="scroll-stats-badge">
+              <span class="badge-icon">💌</span>
+              <span id="scroll-revealed-counter">0 of 170 Replies Revealed</span>
+            </div>
+
+            <div class="scroll-btn-cluster">
+              <button class="scroll-toggle-all-btn" id="scroll-toggle-all-btn">
+                <i class="fa-solid fa-envelope-open-text"></i> <span id="toggle-all-label">Expand All Replies</span>
+              </button>
+              <button class="scroll-jump-btn" id="scroll-jump-btn" title="Quickly jump to bottom or top of the scroll">
+                <i class="fa-solid fa-arrow-down"></i> <span id="jump-btn-label">To Bottom</span>
+              </button>
+              <button class="scroll-rollup-btn" id="scroll-roll-up-btn" title="Roll back into a paper scroll">
+                <i class="fa-solid fa-scroll"></i> Roll Up
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- AUTHENTIC NARROW CONTINUOUS PAPER STRIP -->
+        <div class="continuous-paper-roll-wrapper">
+          <!-- Top Turned Wooden Spool / Unrolled Paper Roll Header -->
+          <div class="scroll-spool-assembly top-spool">
+            <div class="spool-finial finial-left"></div>
+            <div class="spool-wooden-cylinder">
+              <div class="cylinder-paper-roll-shading"></div>
+            </div>
+            <div class="spool-finial finial-right"></div>
+          </div>
+
+          <!-- Realistic Deckled / Torn Paper Top Edge -->
+          <div class="paper-strip-torn-edge edge-top"></div>
+
+          <!-- The Narrow Long Handcrafted Paper Strip Body -->
+          <div class="authentic-paper-strip-body" id="scroll-strip-container">
+            <!-- Populated dynamically by JS from HER_SCROLL_LIST (170 items) -->
+          </div>
+
+          <!-- Realistic Deckled / Torn Paper Bottom Edge -->
+          <div class="paper-strip-torn-edge edge-bottom"></div>
+
+          <!-- Bottom Turned Wooden Spool with Rolling Cylinder -->
+          <div class="scroll-spool-assembly bottom-spool" id="scroll-bottom-spool">
+            <div class="spool-finial finial-left"></div>
+            <div class="spool-wooden-cylinder">
+              <div class="cylinder-paper-roll-shading"></div>
+            </div>
+            <div class="spool-finial finial-right"></div>
+          </div>
+
+          <div class="scroll-footer-message">
+            <span>❧ 170 Reasons • Inscribed Forever in My Heart ☙</span>
+            <div class="scroll-bottom-actions">
+              <button class="scroll-bottom-jump-btn" id="scroll-bottom-jump-top-btn" title="Jump back to the top of the scroll">
+                <i class="fa-solid fa-arrow-up"></i> Back to Top
+              </button>
+              <button class="scroll-bottom-rollup-btn" id="scroll-bottom-roll-up-btn" title="Roll back into paper scroll">
+                <i class="fa-solid fa-scroll"></i> Roll Up Scroll
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION 4: PHOTOS & VIDEOS MEMORIES REEL -->
+    <section class="book-section" id="media-reel">
+      <div class="parchment-section-header">
+        <div class="parchment-stamp">Archived Film & Motion 🎬</div>
+        <h2 class="parchment-title">Photos & Videos Memories Reel</h2>
+        <p class="parchment-subtitle">Our favorite laughs, Korean photobooth clips, and candid moments together.</p>
+        <div class="vintage-divider">❧ ─── ❦ ─── ☙</div>
+      </div>
+
+      <!-- Filmstrip Media Grid -->
+      <div class="filmstrip-grid" id="media-reel-container">
+        <!-- Dynamically rendered media -->
+      </div>
+    </section>
+
+    <!-- SECTION 4: BIRTHDAY LOVE LETTER -->
+    <section class="book-section" id="birthday-letter">
+      <div class="parchment-section-header">
+        <div class="parchment-stamp">The Final Page ❤️</div>
+        <h2 class="parchment-title">Open When It's Your Birthday...</h2>
+        <p class="parchment-subtitle">A letter written from the deepest corner of my heart.</p>
+        <div class="vintage-divider">❧ ─── ❦ ─── ☙</div>
+      </div>
+
+      <!-- Wax Sealed Parchment Envelope -->
+      <div class="envelope-wrapper" id="envelope-wrapper">
+        <div class="parchment-envelope" id="envelope-trigger">
+          <!-- 3D Triangular Envelope Flap -->
+          <div class="envelope-flap" id="envelope-flap">
+            <div class="flap-crease-shadow"></div>
+          </div>
+          <div class="envelope-inner-glow" id="envelope-inner-glow"></div>
+
+          <!-- Ornate Royal Wax Seal Assembly -->
+          <div class="wax-seal-wrapper" id="wax-seal-wrapper">
+            <div class="wax-seal-aura"></div>
+            <div class="wax-seal" id="wax-seal">
+              <div class="seal-outer-rim"></div>
+              <!-- Left Seal Fragment -->
+              <div class="wax-seal-half seal-half-left">
+                <span class="seal-crest">❧</span>
+                <span class="seal-monogram">V</span>
+              </div>
+              <!-- Right Seal Fragment -->
+              <div class="wax-seal-half seal-half-right">
+                <span class="seal-monogram">💖</span>
+                <span class="seal-crest">☙</span>
+              </div>
+              <!-- Glowing Golden Fracture Crack -->
+              <div class="seal-crack-glow" id="seal-crack-glow"></div>
+            </div>
+            <!-- Flying Wax Shards Container -->
+            <div class="wax-shards-container" id="wax-shards-container"></div>
+          </div>
+
+          <div class="envelope-front-text">
+            <span class="to-label">To: The Birthday Girl 🌸</span>
+            <span class="from-label">From: The Luckiest Person in the World ✨</span>
+          </div>
+
+          <div class="envelope-seal-hint">
+            <i class="fa-solid fa-wand-magic-sparkles pulse-icon"></i> <span>Tap the wax seal to crack it open! ✨</span>
+          </div>
+        </div>
+
+        <!-- Unfolded Letter Page -->
+        <div class="letter-modal-content parchment-page-card hidden" id="letter-content">
+          <button class="close-letter-btn" id="close-letter-btn" title="Fold Letter">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+          
+          <div class="letter-header">
+            <div class="stamp-box">BIRTHDAY ENTRY 🎂</div>
+            <h3 class="letter-title">My Dearest Love,</h3>
+            <div class="letter-date">September 2026</div>
+          </div>
+
+          <div class="letter-body">
+            <p>
+              Happy Birthday! As I was putting together this book and looking through every single card, gift, and little note you've given me, my heart was overflowing with gratitude.
+            </p>
+            <p>
+              You have this incredible way of making every day brighter, every laugh sweeter, and every moment more meaningful. Looking at these polaroids isn't just looking at objects—it's looking at your kindness, your warmth, and how endlessly thoughtful you are.
+            </p>
+            <p>
+              Thank you for being my best friend, my confidante, and my favorite person in the world. I hope this year brings you as much happiness, peace, and magic as you give to everyone around you.
+            </p>
+            <p class="letter-closing">
+              Forever & Always yours,<br>
+              <span class="signature-name">With all my love ❤️</span>
+            </p>
+          </div>
+
+          <div class="letter-footer-stamps">
+            <span>✨ Inscribed With Love</span>
+            <span>💖 Happy Birthday</span>
+            <span>♟️ From The Unfinished Match to Forever</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- LIGHTBOX MODAL -->
+  <div class="lightbox-modal hidden" id="lightbox-modal">
+    <div class="lightbox-backdrop" id="lightbox-backdrop"></div>
+    <div class="lightbox-dialog parchment-page-card">
+      <button class="lightbox-close-btn" id="lightbox-close"><i class="fa-solid fa-xmark"></i></button>
+      <div class="lightbox-content" id="lightbox-content-body"></div>
+    </div>
+  </div>
+
+  <!-- FULL-SCREEN IMMERSIVE ETERNITY LOADING SCREEN MODAL -->
+  <div class="fullscreen-eternity-modal hidden" id="fullscreen-eternity-modal">
+    <div class="eternity-modal-backdrop" id="eternity-modal-backdrop"></div>
+    <div class="eternity-modal-content">
+      <button class="eternity-close-btn" id="btn-close-fullscreen-eternity" title="Close Fullscreen (Esc)">
+        <i class="fa-solid fa-xmark"></i> <span>Return to Book</span>
+      </button>
+
+      <div class="fs-eternity-header">
+        <div class="fs-eternity-flourish">❧ ❦ ☙</div>
+        <span class="fs-anniversary-tag">January 30, 2026, 8:50 PM ➔ Forever</span>
+        <h1 class="fs-eternity-title">Our 80-Year Lifetime Loading...</h1>
+        <p class="fs-eternity-subtitle">"Every second with you is my favorite second in time."</p>
+      </div>
+
+      <!-- High-contrast live clock for full-screen view -->
+      <div class="fs-timer-row">
+        <div class="fs-timer-card"><span class="fs-num" id="fs-years">00</span><span class="fs-label">Years</span></div>
+        <div class="fs-timer-colon">:</div>
+        <div class="fs-timer-card"><span class="fs-num" id="fs-months">00</span><span class="fs-label">Months</span></div>
+        <div class="fs-timer-colon">:</div>
+        <div class="fs-timer-card"><span class="fs-num" id="fs-days">00</span><span class="fs-label">Days</span></div>
+        <div class="fs-timer-colon">:</div>
+        <div class="fs-timer-card"><span class="fs-num" id="fs-hours">00</span><span class="fs-label">Hours</span></div>
+        <div class="fs-timer-colon">:</div>
+        <div class="fs-timer-card"><span class="fs-num" id="fs-minutes">00</span><span class="fs-label">Minutes</span></div>
+        <div class="fs-timer-colon">:</div>
+        <div class="fs-timer-card fs-pulse"><span class="fs-num" id="fs-seconds">00</span><span class="fs-label">Seconds</span></div>
+      </div>
+
+      <!-- Large Fullscreen Progress Bar -->
+      <div class="fs-progress-container">
+        <div class="fs-progress-meta">
+          <span class="fs-loading-msg" id="fs-loading-quote">Loading 80 years of hand holding...</span>
+          <span class="fs-percent-text" id="fs-percent-number">0.000000%</span>
+        </div>
+        <div class="fs-progress-track">
+          <div class="fs-progress-fill" id="fs-progress-fill" style="width: 0%;">
+            <div class="fs-progress-sheen"></div>
+            <div class="fs-heart-head">💖</div>
+          </div>
+        </div>
+        <div class="fs-progress-subline">
+          <span>Day 1: Jan 30, 2026, 8:50 PM</span>
+          <span>Target: 80 Years of Living Together (Jan 30, 2106)</span>
+        </div>
+      </div>
+
+      <!-- Fullscreen Milestone Teaser -->
+      <div class="fs-milestone-preview" id="fs-milestone-preview">
+        <!-- Populated by JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- BOOK FOOTER -->
+  <footer class="book-footer">
+    <div class="footer-content">
+      <div class="footer-flourish">❧ ❦ ☙</div>
+      <p>Handcrafted as a special birthday present for the most wonderful girlfriend.</p>
+      <p class="footer-sub">From an unfinished chess game to wherever the next chapter leads.</p>
+    </div>
+  </footer>
+
+  <!-- Include Data Configuration Files -->
+  <script src="storyData.js?v=20260919_v13"></script>
+  <script src="memoriesData.js?v=20260919_v13"></script>
+  <script src="scrollData.js?v=20260919_v13"></script>
+  <script src="mediaData.js?v=20260919_v13"></script>
+  <script src="lifetimeData.js?v=20260919_v13"></script>
+
+  <!-- Core App Controller -->
+  <script src="app.js?v=20260920_v17"></script>
+</body>
+</html>

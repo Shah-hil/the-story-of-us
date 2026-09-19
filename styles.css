@@ -1,0 +1,5803 @@
+/* =========================================================================
+   THE STORY OF US - OPULENT KEEPSAKE BOOK & 3D CHAPTER PAGE-TURNER
+   Aesthetic: Deep Royal Burgundy Velvet, Champagne Gold Foil, Illuminated Manuscripts,
+              Aged Parchment, Romantic Lace Flourishes & Candlelit Glow
+   ========================================================================= */
+
+:root {
+  /* Opulent Romantic Jewel-Tone Palette */
+  --velvet-burgundy-dark: #380812;
+  --velvet-burgundy: #6A1422;
+  --velvet-burgundy-light: #8A1E30;
+  --velvet-crimson: #A32338;
+  --velvet-rose: #C24357;
+
+  --midnight-deep: #16070B;
+  --midnight-leather: #240E14;
+  --midnight-plum: #2D121B;
+
+  --gold-foil-deep: #9E7422;
+  --gold-foil: #C8963E;
+  --gold-leaf: #E6B85C;
+  --gold-bright: #F7D278;
+  --gold-shimmer: #FFF0B8;
+  --gold-glow: rgba(230, 184, 92, 0.35);
+  --gold-glow-strong: rgba(247, 210, 120, 0.55);
+
+  --parchment-pure: #FFFDF8;
+  --parchment-ivory: #FDF7EA;
+  --parchment-aged: #F7ECD4;
+  --parchment-tea: #ECDABE;
+  --parchment-border: #DFCAA5;
+
+  --ink-walnut-dark: #1F0C0F;
+  --ink-espresso: #2B161A;
+  --ink-burgundy: #731524;
+  --ink-rose: #9C2638;
+  --ink-muted: #6B5047;
+  --ink-gold: #A8761E;
+
+  /* Typography */
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-handwriting: 'Caveat', cursive;
+  --font-body: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  /* Opulent Shadows & Radiance */
+  --shadow-book-spread: 0 25px 60px -10px rgba(22, 7, 11, 0.45), 0 8px 25px rgba(106, 20, 34, 0.18);
+  --shadow-polaroid: 0 10px 25px rgba(25, 10, 15, 0.22), 0 3px 8px rgba(200, 150, 62, 0.15);
+  --shadow-polaroid-hover: 0 18px 40px rgba(35, 12, 18, 0.32), 0 6px 18px rgba(230, 184, 92, 0.3);
+  --shadow-gold-button: 0 8px 25px rgba(106, 20, 34, 0.45), 0 0 18px rgba(230, 184, 92, 0.4);
+
+  --radius-card: 16px;
+  --radius-pill: 50px;
+}
+
+/* Base Reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  background-color: #120307;
+}
+
+/* =========================================================================
+   BODY: RICH OPULENT CANDLELIT PALACE OF MEMORIES
+   ========================================================================= */
+body.book-theme {
+  font-family: var(--font-body);
+  color: var(--ink-espresso);
+  background: transparent;
+  line-height: 1.75;
+  overflow-x: hidden;
+  min-height: 100vh;
+  position: relative;
+}
+
+/* =========================================================================
+   DREAMY ATMOSPHERIC BACKDROP WITH TRANSLUCENT VELVET VEIL
+   ========================================================================= */
+.site-dreamy-backdrop {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* Layer 1: Authentic Cinematic Night Sky with gentle ambient drift */
+.dreamy-bg-image {
+  position: absolute;
+  inset: -30px;
+  background-image: url('images/dreamy_velvet_backdrop.jpg?v=20260920_c3');
+  background-size: cover;
+  background-position: center 30%;
+  background-repeat: no-repeat;
+  filter: saturate(1.1) brightness(0.95) contrast(1.08);
+  animation: dreamySlowDrift 60s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+@keyframes dreamySlowDrift {
+  0% {
+    transform: scale(1) translate(0, 0);
+  }
+  50% {
+    transform: scale(1.03) translate(-8px, -5px);
+  }
+  100% {
+    transform: scale(1.01) translate(6px, -10px);
+  }
+}
+
+/* Layer 2: Deep Atmospheric Velvet Vignette */
+.dreamy-velvet-veil {
+  position: absolute;
+  inset: 0;
+  /* Cinematic vignette that frames the memory book while keeping stars clear */
+  background: 
+    radial-gradient(ellipse at 50% 45%, rgba(8, 12, 22, 0.2) 0%, rgba(10, 6, 16, 0.6) 65%, rgba(5, 2, 8, 0.9) 100%),
+    linear-gradient(180deg, rgba(8, 4, 10, 0.45) 0%, transparent 20%, transparent 80%, rgba(6, 2, 8, 0.75) 100%);
+  box-shadow: inset 0 0 140px rgba(4, 2, 6, 0.88);
+}
+
+/* Layer 3: Soft ambient glow elements disabled for clean, organic look */
+.dreamy-firefly-glow {
+  display: none;
+}
+
+/* Fairy Lights Across Top removed for mature, authentic aesthetic */
+body.book-theme::before {
+  display: none;
+}
+
+/* Left Book Spine Binding Partition Removed for Seamless Presentation Experience */
+.book-spine-left {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+/* =========================================================================
+   1. PRESENTATION-STYLE HERO SCROLL-TRACK (LxL Creative Inspired)
+   ========================================================================= */
+.hero-presentation-track {
+  position: relative;
+  width: 100%;
+  height: 220vh; /* Smooth scrollytelling runway */
+  margin: 0;
+  padding: 0;
+  z-index: 10;
+}
+
+.hero-sticky-viewport {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 2400px;
+  pointer-events: auto;
+}
+
+/* The inner presentation card that starts full-screen and scales down ("gets small") */
+.hero-presentation-card {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  max-width: 100vw;
+  max-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 20px 30px;
+  background: radial-gradient(circle at 50% 45%, rgba(45, 10, 20, 0.35) 0%, rgba(18, 4, 10, 0.65) 55%, rgba(8, 1, 4, 0.9) 100%);
+  border-radius: 0px;
+  border: 1.5px solid transparent;
+  transform-origin: center center;
+  transition: border-radius 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+  will-change: transform, border-radius, box-shadow;
+  overflow: hidden;
+}
+
+/* Grand Opening Presentation Header */
+.hero-header-banner {
+  text-align: center;
+  margin-bottom: 16px;
+  z-index: 25;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.hero-kicker {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold-bright);
+  background: rgba(106, 20, 34, 0.45);
+  border: 1px solid rgba(230, 184, 92, 0.45);
+  padding: 5px 18px;
+  border-radius: 50px;
+  margin-bottom: 8px;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+}
+
+.hero-glamour-title {
+  font-family: var(--font-serif);
+  font-size: clamp(2.2rem, 5vw, 3.8rem);
+  font-weight: 700;
+  color: #FFF9ED;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.8), 0 0 35px var(--gold-glow-strong);
+  margin: 0 0 6px;
+  line-height: 1.15;
+}
+
+.hero-glamour-subtitle {
+  font-family: var(--font-handwriting);
+  font-size: clamp(1.15rem, 2vw, 1.5rem);
+  color: var(--gold-bright);
+  max-width: 650px;
+  margin: 0 auto;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+  line-height: 1.35;
+}
+
+/* Mouse Scroll Prompt Indicator */
+.hero-scroll-prompt {
+  position: absolute;
+  bottom: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  color: var(--gold-bright);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  z-index: 45;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+}
+
+.mouse-scroll-indicator {
+  width: 22px;
+  height: 34px;
+  border: 2px solid var(--gold-leaf);
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  padding-top: 5px;
+  box-shadow: 0 0 10px var(--gold-glow);
+}
+
+.mouse-wheel-dot {
+  width: 4px;
+  height: 7px;
+  background: var(--gold-bright);
+  border-radius: 2px;
+  animation: mouseWheelSlide 1.8s infinite;
+}
+
+@keyframes mouseWheelSlide {
+  0% { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(12px); opacity: 0; }
+}
+
+.scroll-arrow-pulse {
+  font-size: 0.85rem;
+  animation: arrowBounce 1.5s infinite alternate;
+}
+
+@keyframes arrowBounce {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(5px); }
+}
+
+/* Ambient Candlelight Glow Aura */
+.gate-ambient-glow {
+  position: absolute;
+  width: 700px;
+  height: 700px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(247, 210, 120, 0.28) 0%, rgba(163, 35, 56, 0.18) 50%, transparent 75%);
+  filter: blur(60px);
+  pointer-events: none;
+  z-index: 2;
+  animation: ambientAuraPulse 4s ease-in-out infinite alternate;
+}
+
+@keyframes ambientAuraPulse {
+  0% { transform: scale(0.95); opacity: 0.75; }
+  100% { transform: scale(1.05); opacity: 1; }
+}
+
+/* 3D Book Container with Realistic Proportions */
+.fs-book-wrapper {
+  position: relative;
+  width: min(85vw, 460px);
+  aspect-ratio: 0.731;
+  height: auto;
+  max-height: 56vh;
+  transform-style: preserve-3d;
+  cursor: pointer;
+  transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.3, 1);
+  z-index: 10;
+}
+
+.fs-book-wrapper:hover {
+  transform: translateY(-6px) scale(1.015);
+}
+
+@media (max-width: 768px) {
+  .hero-presentation-track {
+    height: 180vh;
+  }
+  .hero-presentation-card {
+    padding: 16px 12px 24px;
+  }
+  .hero-header-banner {
+    margin-bottom: 10px;
+  }
+  .hero-glamour-title {
+    font-size: 2.1rem;
+  }
+  .hero-glamour-subtitle {
+    font-size: 1.1rem;
+    max-width: 90vw;
+  }
+  .fs-book-wrapper {
+    width: min(88vw, 360px);
+    max-height: 48vh;
+  }
+  .hero-scroll-prompt {
+    bottom: 12px;
+    font-size: 0.75rem;
+  }
+}
+
+/* Deep 3D Contact & Floor Shadows */
+.book-depth-casing {
+  position: absolute;
+  top: 18px;
+  left: 10px;
+  width: 100%;
+  height: 100%;
+  border-radius: 4px 14px 14px 4px;
+  box-shadow: 
+    0 45px 110px -10px rgba(0, 0, 0, 0.95), 
+    0 20px 45px rgba(0, 0, 0, 0.8), 
+    0 0 50px rgba(230, 184, 92, 0.35);
+  transform: translateZ(-35px);
+  background: #140307;
+  z-index: 1;
+}
+
+/* Frontispiece Page (Revealed Inside Cover) */
+.fs-book-page.frontispiece-page {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  z-index: 5;
+  background: #FAF1DE;
+  border-radius: 4px 14px 14px 4px;
+  overflow: hidden;
+  box-shadow: inset 0 0 35px rgba(200, 150, 62, 0.3);
+}
+
+.fs-book-page .parchment-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.95;
+  filter: contrast(1.05) sepia(0.12);
+}
+
+.frontispiece-content {
+  position: relative;
+  z-index: 10;
+  max-width: 480px;
+  padding: 30px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: frontispieceGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes frontispieceGlow {
+  0% { transform: scale(1); filter: drop-shadow(0 0 10px rgba(230, 184, 92, 0.2)); }
+  100% { transform: scale(1.015); filter: drop-shadow(0 0 25px rgba(230, 184, 92, 0.4)); }
+}
+
+.frontispiece-flourish {
+  font-size: 2.2rem;
+  color: var(--gold-leaf);
+  margin-bottom: 12px;
+  letter-spacing: 8px;
+  text-shadow: 0 0 12px var(--gold-glow);
+}
+
+.frontispiece-subtitle {
+  display: inline-block;
+  background: rgba(106, 20, 34, 0.14);
+  color: var(--velvet-burgundy);
+  border: 1.5px solid rgba(200, 150, 62, 0.45);
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 6px 20px;
+  border-radius: var(--radius-pill);
+  margin-bottom: 18px;
+  box-shadow: 0 4px 15px rgba(106, 20, 34, 0.15);
+}
+
+.frontispiece-title {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 4.5vw, 2.8rem);
+  font-weight: 700;
+  color: var(--velvet-burgundy-dark);
+  line-height: 1.25;
+  margin-bottom: 14px;
+  text-shadow: 0 2px 10px rgba(200, 150, 62, 0.35);
+}
+
+.frontispiece-divider {
+  width: 140px;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--gold-bright), transparent);
+  margin: 8px auto 18px;
+}
+
+.frontispiece-quote {
+  font-family: var(--font-handwriting);
+  font-size: clamp(1.35rem, 2.5vw, 1.75rem);
+  color: var(--velvet-burgundy-light);
+  line-height: 1.45;
+  margin: 0 auto 24px;
+}
+
+.frontispiece-prompt {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--ink-espresso);
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
+  padding: 10px 24px;
+  border-radius: var(--radius-pill);
+  border: 1.5px solid var(--gold-foil);
+  box-shadow: 0 6px 20px rgba(106, 20, 34, 0.15);
+}
+
+.prompt-candle {
+  font-size: 1.3rem;
+  animation: candleFlicker 1.8s ease-in-out infinite alternate;
+}
+
+@keyframes candleFlicker {
+  0% { transform: scale(1) rotate(-3deg); filter: drop-shadow(0 0 5px #F7D278); }
+  50% { transform: scale(1.2) rotate(4deg); filter: drop-shadow(0 0 15px #F7D278); }
+  100% { transform: scale(0.95) rotate(-2deg); filter: drop-shadow(0 0 7px #F7D278); }
+}
+
+/* Heavy Antique Leather Front Cover */
+.fs-book-cover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 20;
+  transform-origin: left center;
+  transform-style: preserve-3d;
+  transition: transform 1.7s cubic-bezier(0.25, 1, 0.35, 1), box-shadow 1.5s ease;
+  background: #240A12;
+  border-radius: 4px 14px 14px 4px;
+  overflow: hidden;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.85);
+}
+
+.cover-leather-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.cover-vignette {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at center, transparent 40%, rgba(18, 4, 8, 0.45) 100%);
+  pointer-events: none;
+}
+
+/* Hanging Silk Bookmark Ribbon from Bottom */
+.cover-bottom-ribbon {
+  position: absolute;
+  bottom: -28px;
+  right: 75px;
+  width: 32px;
+  height: 48px;
+  background: linear-gradient(180deg, #A32338 0%, #6A1422 100%);
+  clip-path: polygon(0 0, 100% 0, 100% 85%, 50% 100%, 0 85%);
+  box-shadow: 0 5px 12px rgba(0,0,0,0.5);
+  z-index: 18;
+}
+
+/* Stitched Leather Strap & Brass Clasp */
+.fs-leather-strap {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  z-index: 30;
+  transition: transform 0.9s cubic-bezier(0.3, 1, 0.4, 1), opacity 0.8s ease;
+}
+
+.strap-leather-strip {
+  width: 75px;
+  height: 48px;
+  background: linear-gradient(180deg, #4A1220 0%, #6A1828 50%, #300A14 100%);
+  border-top: 1.5px dashed rgba(247, 210, 120, 0.65);
+  border-bottom: 1.5px dashed rgba(247, 210, 120, 0.65);
+  box-shadow: -4px 6px 15px rgba(0, 0, 0, 0.6);
+  border-radius: 4px 0 0 4px;
+}
+
+.strap-brass-lock {
+  position: relative;
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle, #F7D278 0%, #C8963E 65%, #7A5314 100%);
+  border: 2px solid #FFECA8;
+  border-radius: 8px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.7), 0 0 16px rgba(247, 210, 120, 0.5);
+}
+
+.strap-key-charm {
+  font-size: 1.8rem;
+  filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.6));
+  animation: keyCharmSwing 3s ease-in-out infinite alternate;
+}
+
+@keyframes keyCharmSwing {
+  0% { transform: rotate(-10deg); }
+  100% { transform: rotate(10deg); }
+}
+
+/* Keepsake Tag - Centered cleanly between ornate bronze corners */
+.fs-cover-tag {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255, 253, 245, 0.97);
+  border: 2px solid var(--gold-leaf);
+  border-radius: 12px;
+  padding: 8px 22px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.65), 0 0 15px rgba(230, 184, 92, 0.35);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  z-index: 25;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  white-space: nowrap;
+}
+
+.fs-cover-tag:hover {
+  transform: translateX(-50%) scale(1.05);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.75), 0 0 20px rgba(247, 210, 120, 0.5);
+}
+
+.fs-tag-title {
+  font-family: var(--font-handwriting);
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: var(--velvet-burgundy);
+  line-height: 1.2;
+}
+
+.fs-tag-hint {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--ink-muted);
+}
+
+/* Spine on Left Edge */
+.fs-book-spine {
+  position: absolute;
+  top: 0;
+  left: -26px;
+  width: 32px;
+  height: 100%;
+  background: linear-gradient(90deg, #120407 0%, #350D17 40%, #4D1522 70%, #200810 100%);
+  border-radius: 6px 0 0 6px;
+  box-shadow: -8px 0 20px rgba(0,0,0,0.7);
+  transform: translateZ(-10px);
+  z-index: 25;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 30px 0;
+}
+
+.fs-book-spine .spine-rib {
+  width: 100%;
+  height: 8px;
+  background: linear-gradient(180deg, #6A1828 0%, #280810 100%);
+  border-top: 1px solid rgba(247, 210, 120, 0.5);
+  border-bottom: 1.5px solid rgba(0, 0, 0, 0.7);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.5);
+}
+
+/* Deckle Page Stacks along Right & Bottom */
+.fs-page-stack {
+  position: absolute;
+  top: 6px;
+  right: -18px;
+  width: 20px;
+  height: calc(100% - 12px);
+  background: linear-gradient(90deg, #C4B08C 0%, #F5ECDA 45%, #B89F78 100%);
+  border-radius: 0 4px 4px 0;
+  box-shadow: inset 2px 0 5px rgba(0,0,0,0.5), 6px 0 18px rgba(0,0,0,0.5);
+  transform: translateZ(-15px);
+  z-index: 10;
+}
+
+.fs-page-stack-bottom {
+  position: absolute;
+  bottom: -12px;
+  left: 15px;
+  width: calc(100% - 20px);
+  height: 14px;
+  background: linear-gradient(180deg, #C4B08C 0%, #F5ECDA 45%, #B89F78 100%);
+  border-radius: 0 0 4px 4px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.5);
+  transform: translateZ(-15px);
+  z-index: 10;
+}
+
+/* Radiance Light Burst */
+.fs-book-radiance {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #FFFFFF 0%, #F7D278 45%, rgba(200, 150, 62, 0) 100%);
+  transform: translate(-50%, -50%) scale(0.1);
+  opacity: 0;
+  transition: transform 1.6s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 1.1s ease;
+  pointer-events: none;
+  z-index: 40;
+}
+
+/* Bottom Hint */
+.fs-bottom-hint {
+  position: absolute;
+  bottom: 25px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 45;
+  color: #FFFDF8;
+  background: rgba(36, 10, 18, 0.85);
+  backdrop-filter: blur(10px);
+  border: 1.5px solid var(--gold-leaf);
+  padding: 10px 28px;
+  border-radius: var(--radius-pill);
+  font-size: 1rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  pointer-events: none;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5), 0 0 15px var(--gold-glow);
+  animation: pulseHint 2s infinite alternate;
+}
+
+@keyframes pulseHint {
+  0% { transform: translateX(-50%) translateY(0); opacity: 0.88; }
+  100% { transform: translateX(-50%) translateY(-5px); opacity: 1; }
+}
+
+/* Opened State Animations */
+.fs-book-wrapper.opened .fs-leather-strap {
+  transform: translateY(-50%) translateX(75px) rotate(15deg);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.fs-book-wrapper.opened .fs-cover-tag {
+  opacity: 0;
+  transform: translateY(20px) rotate(-3deg);
+}
+
+.fs-book-wrapper.opened .fs-book-cover {
+  transform: rotateY(-180deg);
+  box-shadow: -35px 35px 80px rgba(0, 0, 0, 0.85);
+}
+
+.fs-book-wrapper.opened .fs-book-radiance {
+  transform: translate(-50%, -50%) scale(10);
+  opacity: 0.9;
+  filter: blur(35px);
+}
+
+.fs-book-wrapper.opened .fs-bottom-hint {
+  opacity: 0;
+}
+
+/* =========================================================================
+   2. ACOUSTIC MUSIC WIDGET
+   ========================================================================= */
+.music-widget {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 920;
+}
+
+.music-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(135deg, #4A1220 0%, #2A0812 100%);
+  color: var(--gold-bright);
+  border: 1.5px solid var(--gold-leaf);
+  padding: 11px 22px;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 0.9rem;
+  box-shadow: 0 8px 25px rgba(25, 6, 12, 0.6), 0 0 15px var(--gold-glow);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.music-btn:hover {
+  transform: translateY(-3px);
+  background: linear-gradient(135deg, #6A1828 0%, #3D0C1A 100%);
+  box-shadow: 0 12px 30px rgba(25, 6, 12, 0.7), 0 0 25px var(--gold-glow);
+}
+
+.music-btn.playing {
+  background: linear-gradient(135deg, #7A182E 0%, #450A18 100%);
+  border-color: #F7D788;
+  box-shadow: 0 8px 30px rgba(180, 40, 60, 0.45), 0 0 20px rgba(247, 215, 136, 0.5);
+}
+
+.music-icon.spinning {
+  animation: musicSpin 3.5s linear infinite;
+}
+
+@keyframes musicSpin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Dancing Music Equalizer Bars */
+.music-equalizer {
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 3px;
+  height: 14px;
+  margin-left: 2px;
+}
+
+.music-equalizer.hidden {
+  display: none;
+}
+
+.eq-bar {
+  width: 3px;
+  height: 100%;
+  background: var(--gold-bright);
+  border-radius: 2px;
+  transform-origin: bottom;
+  animation: eqDance 1.2s ease-in-out infinite;
+}
+
+.eq-bar:nth-child(1) { animation-duration: 0.8s; height: 60%; }
+.eq-bar:nth-child(2) { animation-duration: 1.1s; height: 100%; animation-delay: 0.15s; }
+.eq-bar:nth-child(3) { animation-duration: 0.7s; height: 80%; animation-delay: 0.3s; }
+.eq-bar:nth-child(4) { animation-duration: 1.0s; height: 45%; animation-delay: 0.45s; }
+
+@keyframes eqDance {
+  0%, 100% { transform: scaleY(0.3); }
+  50% { transform: scaleY(1); }
+}
+
+/* =========================================================================
+   3. STICKY BOOKMARK RIBBON NAVIGATION
+   ========================================================================= */
+/* =========================================================================
+   3. FLOATING GLASSMORPHISM PRESENTATION DOCK NAVIGATION
+   ========================================================================= */
+.book-nav {
+  position: fixed;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 32px);
+  max-width: 960px;
+  background: rgba(24, 7, 15, 0.76);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid rgba(230, 184, 92, 0.4);
+  box-shadow: 
+    0 16px 36px rgba(0, 0, 0, 0.65), 
+    0 0 24px rgba(230, 184, 92, 0.18),
+    inset 0 1px 1px rgba(255, 255, 255, 0.15);
+  border-radius: 50px;
+  z-index: 950;
+  padding: 8px 18px;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.book-nav:hover {
+  border-color: rgba(247, 210, 120, 0.7);
+  box-shadow: 
+    0 20px 48px rgba(0, 0, 0, 0.75), 
+    0 0 32px rgba(230, 184, 92, 0.28),
+    inset 0 1px 2px rgba(255, 255, 255, 0.25);
+}
+
+.nav-container {
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--gold-bright);
+  text-shadow: 0 0 10px var(--gold-glow);
+  white-space: nowrap;
+  letter-spacing: 0.5px;
+}
+
+.logo-quill {
+  font-size: 1.25rem;
+  filter: drop-shadow(0 0 6px rgba(247, 210, 120, 0.7));
+}
+
+.nav-links {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.nav-links::-webkit-scrollbar {
+  display: none;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: rgba(238, 220, 206, 0.88);
+  font-weight: 600;
+  font-size: 0.84rem;
+  padding: 6px 14px;
+  border-radius: 40px;
+  transition: all 0.25s ease;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+  border: 1px solid transparent;
+}
+
+.nav-link:hover, .nav-link.active {
+  color: #FFFFFF;
+  background: rgba(230, 184, 92, 0.24);
+  border-color: rgba(247, 210, 120, 0.55);
+  box-shadow: 0 0 16px rgba(230, 184, 92, 0.32);
+}
+
+/* =========================================================================
+   4. MAIN CONTENT CONTAINER
+   ========================================================================= */
+.book-main-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 24px 80px;
+  position: relative;
+  z-index: 10;
+}
+
+/* Parchment Card Container with Victorian Border */
+.parchment-page-card {
+  background: #FCF8EE;
+  background-image: 
+    radial-gradient(circle at 50% 0%, rgba(247, 210, 120, 0.18) 0%, transparent 70%),
+    linear-gradient(180deg, #FFFDF8 0%, #FAF1DE 50%, #F5E8CE 100%);
+  border: 2px solid var(--parchment-border);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-book-spread);
+  position: relative;
+}
+
+/* Ornate Victorian Gilded Corner Tabs */
+.corner-photo-tab {
+  position: absolute;
+  width: 26px;
+  height: 26px;
+  z-index: 5;
+  border: 2.5px solid var(--gold-leaf);
+  pointer-events: none;
+}
+
+.tab-tl { top: 8px; left: 8px; border-right: none; border-bottom: none; border-radius: 4px 0 0 0; }
+.tab-tr { top: 8px; right: 8px; border-left: none; border-bottom: none; border-radius: 0 4px 0 0; }
+.tab-bl { bottom: 8px; left: 8px; border-right: none; border-top: none; border-radius: 0 0 0 4px; }
+.tab-br { bottom: 8px; right: 8px; border-left: none; border-top: none; border-radius: 0 0 4px 0; }
+
+/* Section Headers */
+.parchment-section-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.parchment-stamp {
+  display: inline-block;
+  background: linear-gradient(135deg, rgba(138, 30, 48, 0.2) 0%, rgba(106, 20, 34, 0.25) 100%);
+  color: var(--gold-bright);
+  border: 1.5px solid var(--gold-leaf);
+  font-size: 0.88rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 6px 20px;
+  border-radius: var(--radius-pill);
+  margin-bottom: 12px;
+  box-shadow: 0 3px 12px rgba(106, 20, 34, 0.2);
+}
+
+.parchment-title {
+  font-family: var(--font-serif);
+  font-size: clamp(2.2rem, 4.5vw, 3.2rem);
+  font-weight: 700;
+  color: var(--gold-bright);
+  line-height: 1.25;
+  margin-bottom: 10px;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5), 0 0 15px var(--gold-glow);
+}
+
+.parchment-subtitle {
+  color: #E2CFB8;
+  font-size: 1.15rem;
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.vintage-divider {
+  color: var(--gold-leaf);
+  font-size: 1.4rem;
+  letter-spacing: 8px;
+  margin-top: 14px;
+  text-shadow: 0 0 10px var(--gold-glow);
+}
+
+/* =========================================================================
+   5. BOOK HERO SECTION
+   ========================================================================= */
+/* =========================================================================
+   5. PRESENTATION SLIDE SECTIONS & ELEGANT MILESTONES
+   ========================================================================= */
+.presentation-slide-section {
+  padding: 30px 0 90px;
+  position: relative;
+  transition: opacity 0.5s ease;
+}
+
+.presentation-milestone-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: 22px auto 14px;
+}
+
+.pres-chip {
+  background: rgba(36, 11, 20, 0.72);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(230, 184, 92, 0.45);
+  padding: 8px 18px;
+  border-radius: 40px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #F8ECE0;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.pres-chip:hover {
+  transform: translateY(-2px);
+  border-color: var(--gold-bright);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.5), 0 0 15px rgba(230, 184, 92, 0.25);
+}
+
+.pres-chip .chip-num {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: 1.15rem;
+  color: var(--gold-bright);
+  text-shadow: 0 0 10px var(--gold-glow);
+}
+
+.celebrate-pill-btn {
+  background: linear-gradient(135deg, #A32338 0%, #6A1422 100%);
+  color: #FFFDF8;
+  border: 1px solid var(--gold-bright);
+  padding: 9px 24px;
+  border-radius: 40px;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 0.92rem;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(163, 35, 56, 0.45), 0 0 18px var(--gold-glow);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.celebrate-pill-btn:hover {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 10px 28px rgba(163, 35, 56, 0.65), 0 0 25px var(--gold-glow-strong);
+  background: linear-gradient(135deg, #B82A42 0%, #7E182A 100%);
+}
+
+.celebrate-pill-btn:active {
+  transform: translateY(0) scale(0.98);
+}
+
+/* =========================================================================
+   6. SECTION 1: INTERACTIVE 3D CHAPTER STORYBOOK FOLIO
+   ========================================================================= */
+.book-section {
+  margin-bottom: 95px;
+}
+
+/* Chapter Ribbon Jump Navigator */
+.chapter-ribbon-bar {
+  background: linear-gradient(135deg, rgba(42, 11, 21, 0.95) 0%, rgba(28, 7, 14, 0.95) 100%);
+  border: 1.5px solid var(--gold-leaf);
+  border-radius: 12px;
+  padding: 14px 20px;
+  margin-bottom: 25px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4), 0 0 12px var(--gold-glow);
+}
+
+.ribbon-bar-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.ribbon-icon {
+  font-size: 1.2rem;
+}
+
+.ribbon-title {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--gold-bright);
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+}
+
+.chapter-index-chips {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 6px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--gold-foil) transparent;
+}
+
+.chapter-chip {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(230, 184, 92, 0.35);
+  color: #F0DFC8;
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.25s ease;
+}
+
+.chapter-chip:hover {
+  background: rgba(230, 184, 92, 0.2);
+  color: #FFFFFF;
+  border-color: var(--gold-leaf);
+}
+
+.chapter-chip.active {
+  background: linear-gradient(135deg, var(--velvet-burgundy-light) 0%, var(--velvet-burgundy-dark) 100%);
+  color: var(--gold-bright);
+  border-color: var(--gold-leaf);
+  box-shadow: 0 0 12px var(--gold-glow);
+  font-weight: 700;
+}
+
+.chip-num {
+  font-weight: 700;
+  color: var(--gold-bright);
+}
+
+/* OPEN TWO-PAGE STORYBOOK FOLIO CONTAINER */
+.storybook-folio-wrapper {
+  position: relative;
+  width: 100%;
+  perspective: 2500px;
+}
+
+.storybook-folio {
+  position: relative;
+  width: 100%;
+  min-height: 640px;
+  background: #FAF1DE;
+  background-image: 
+    radial-gradient(circle at 50% 0%, rgba(247, 210, 120, 0.15) 0%, transparent 60%),
+    linear-gradient(180deg, #FFFDF8 0%, #FAF1DE 50%, #F5E6CD 100%);
+  border: 3px solid #C8963E;
+  border-radius: 14px;
+  box-shadow: 0 25px 70px rgba(18, 4, 8, 0.75), 0 0 30px rgba(200, 150, 62, 0.25);
+  display: grid;
+  grid-template-columns: 1fr 20px 1fr;
+  overflow: hidden;
+  transform-style: preserve-3d;
+  transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.3, 1);
+}
+
+/* 3D Page Turn Animation Classes */
+.storybook-folio.turning-page-forward {
+  animation: folioTurnForward 0.6s ease-in-out;
+}
+
+.storybook-folio.turning-page-backward {
+  animation: folioTurnBackward 0.6s ease-in-out;
+}
+
+@keyframes folioTurnForward {
+  0% { transform: rotateY(0deg) scale(1); }
+  50% { transform: rotateY(-2.5deg) scale(0.99); }
+  100% { transform: rotateY(0deg) scale(1); }
+}
+
+@keyframes folioTurnBackward {
+  0% { transform: rotateY(0deg) scale(1); }
+  50% { transform: rotateY(2.5deg) scale(0.99); }
+  100% { transform: rotateY(0deg) scale(1); }
+}
+
+/* =========================================================================
+   3D REALISTIC SINGLE-PAGE TURN FLIPPER
+   ========================================================================= */
+.folio-flipper {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  height: 100%;
+  transform-style: preserve-3d;
+  pointer-events: none;
+  z-index: 50;
+  display: none;
+}
+
+.folio-flipper.flipper-right-start {
+  left: calc(50% + 10px);
+  width: calc(50% - 10px);
+  transform-origin: left center;
+}
+
+.folio-flipper.flipper-left-start {
+  left: 0;
+  width: calc(50% - 10px);
+  transform-origin: right center;
+}
+
+.folio-flipper.flipping-forward {
+  display: block;
+  animation: flipPageForward 0.65s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+}
+
+.folio-flipper.flipping-backward {
+  display: block;
+  animation: flipPageBackward 0.65s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+}
+
+@keyframes flipPageForward {
+  0% {
+    transform: rotateY(0deg);
+    filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.15));
+  }
+  35% {
+    transform: rotateY(-65deg) skewY(-2deg) scale(1.02);
+    filter: drop-shadow(-18px 15px 35px rgba(18, 4, 8, 0.55));
+  }
+  70% {
+    transform: rotateY(-135deg) skewY(2deg) scale(1.02);
+    filter: drop-shadow(18px 15px 35px rgba(18, 4, 8, 0.55));
+  }
+  100% {
+    transform: rotateY(-180deg);
+    filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.15));
+  }
+}
+
+@keyframes flipPageBackward {
+  0% {
+    transform: rotateY(0deg);
+    filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.15));
+  }
+  35% {
+    transform: rotateY(65deg) skewY(2deg) scale(1.02);
+    filter: drop-shadow(18px 15px 35px rgba(18, 4, 8, 0.55));
+  }
+  70% {
+    transform: rotateY(135deg) skewY(-2deg) scale(1.02);
+    filter: drop-shadow(-18px 15px 35px rgba(18, 4, 8, 0.55));
+  }
+  100% {
+    transform: rotateY(180deg);
+    filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.15));
+  }
+}
+
+/* Flipper Front & Back Faces */
+.flipper-face {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 38px 34px;
+  box-sizing: border-box;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  overflow: hidden;
+  background: #FAF1DE;
+  background-image: 
+    radial-gradient(circle at 50% 0%, rgba(247, 210, 120, 0.15) 0%, transparent 60%),
+    linear-gradient(180deg, #FFFDF8 0%, #FAF1DE 50%, #F5E6CD 100%);
+  border: 1px solid rgba(200, 150, 62, 0.35);
+  border-radius: 12px;
+}
+
+.flipper-right-start .flipper-front {
+  transform: rotateY(0deg);
+}
+
+.flipper-right-start .flipper-back {
+  transform: rotateY(180deg);
+}
+
+.flipper-left-start .flipper-front {
+  transform: rotateY(-180deg);
+}
+
+.flipper-left-start .flipper-back {
+  transform: rotateY(0deg);
+}
+
+/* Dynamic Paper Spine Shadow Sweep */
+.flipper-shadow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.flipping-forward .flipper-shadow {
+  animation: shadowSweepForward 0.65s ease-in-out forwards;
+}
+
+.flipping-backward .flipper-shadow {
+  animation: shadowSweepBackward 0.65s ease-in-out forwards;
+}
+
+@keyframes shadowSweepForward {
+  0% { background: linear-gradient(90deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.1) 100%); opacity: 0; }
+  45% { background: linear-gradient(90deg, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.05) 50%, rgba(0,0,0,0.25) 100%); opacity: 0.7; }
+  100% { background: linear-gradient(90deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0) 100%); opacity: 0; }
+}
+
+@keyframes shadowSweepBackward {
+  0% { background: linear-gradient(-90deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.1) 100%); opacity: 0; }
+  45% { background: linear-gradient(-90deg, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.05) 50%, rgba(0,0,0,0.25) 100%); opacity: 0.7; }
+  100% { background: linear-gradient(-90deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0) 100%); opacity: 0; }
+}
+
+/* =========================================================================
+   MULTI-PAGE FLUTTER ANIMATION (JUMPING BETWEEN MULTIPLE CHAPTERS)
+   ========================================================================= */
+.folio-flutter-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 60;
+  display: none;
+}
+
+.folio-flutter-container.active {
+  display: block;
+}
+
+.flutter-leaf {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  background: #FAF1DE;
+  background-image: 
+    radial-gradient(circle at 50% 0%, rgba(247, 210, 120, 0.15) 0%, transparent 60%),
+    linear-gradient(180deg, #FFFDF8 0%, #FAF1DE 50%, #F5E6CD 100%);
+  border: 1px solid rgba(200, 150, 62, 0.45);
+  box-shadow: 0 10px 30px rgba(18, 4, 8, 0.35);
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* Flutter Forward (Right to Left cascade) */
+.flutter-leaf.forward {
+  left: calc(50% + 10px);
+  width: calc(50% - 10px);
+  transform-origin: left center;
+  border-radius: 0 12px 12px 0;
+  animation: flutterPageForward 0.55s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+}
+
+/* Flutter Backward (Left to Right cascade) */
+.flutter-leaf.backward {
+  left: 0;
+  width: calc(50% - 10px);
+  transform-origin: right center;
+  border-radius: 12px 0 0 12px;
+  animation: flutterPageBackward 0.55s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+}
+
+/* Staggered delay for cascading leaf turns */
+.flutter-leaf.leaf-1 { animation-delay: 0ms; opacity: 0.95; z-index: 4; }
+.flutter-leaf.leaf-2 { animation-delay: 90ms; opacity: 0.92; z-index: 3; }
+.flutter-leaf.leaf-3 { animation-delay: 180ms; opacity: 0.89; z-index: 2; }
+.flutter-leaf.leaf-4 { animation-delay: 270ms; opacity: 0.86; z-index: 1; }
+
+@keyframes flutterPageForward {
+  0% {
+    transform: rotateY(0deg);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+  50% {
+    transform: rotateY(-90deg) skewY(-3deg) scale(1.03);
+    box-shadow: -15px 12px 30px rgba(18, 4, 8, 0.45);
+  }
+  100% {
+    transform: rotateY(-180deg);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+}
+
+@keyframes flutterPageBackward {
+  0% {
+    transform: rotateY(0deg);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+  50% {
+    transform: rotateY(90deg) skewY(3deg) scale(1.03);
+    box-shadow: 15px 12px 30px rgba(18, 4, 8, 0.45);
+  }
+  100% {
+    transform: rotateY(180deg);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+}
+
+/* Center Spine Groove & Stitching */
+.folio-spine-divider {
+  position: relative;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    rgba(30, 8, 14, 0.25) 0%, 
+    rgba(18, 4, 8, 0.5) 50%, 
+    rgba(30, 8, 14, 0.25) 100%
+  );
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.spine-stitch-line {
+  width: 2px;
+  height: 94%;
+  background: repeating-linear-gradient(180deg, 
+    var(--gold-leaf) 0px, 
+    var(--gold-leaf) 8px, 
+    transparent 8px, 
+    transparent 16px
+  );
+  box-shadow: 0 0 4px var(--gold-glow);
+}
+
+/* Folio Page Base */
+.folio-page {
+  position: relative;
+  padding: 38px 34px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Ornate Victorian Baroque Corner Flourishes */
+.page-corner-ornament {
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  border: 2px solid var(--gold-leaf);
+  pointer-events: none;
+  opacity: 0.8;
+}
+
+.ornament-tl { top: 10px; left: 10px; border-right: none; border-bottom: none; border-radius: 4px 0 0 0; }
+.ornament-tr { top: 10px; right: 10px; border-left: none; border-bottom: none; border-radius: 0 4px 0 0; }
+.ornament-bl { bottom: 10px; left: 10px; border-right: none; border-top: none; border-radius: 0 0 0 4px; }
+.ornament-br { bottom: 10px; right: 10px; border-left: none; border-top: none; border-radius: 0 0 4px 0; }
+
+/* -------------------------------------------------------------------------
+   LEFT FOLIO PAGE: VISUAL KEEPSAKE (NO BLANK SPACE!)
+   ------------------------------------------------------------------------- */
+.folio-page-left {
+  background: linear-gradient(135deg, rgba(255, 253, 248, 0.4) 0%, rgba(247, 236, 212, 0.4) 100%);
+  border-right: 1px solid rgba(200, 150, 62, 0.2);
+}
+
+.folio-left-inner {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
+}
+
+.folio-seal-header {
+  width: 100%;
+}
+
+.folio-quote-card {
+  width: 100%;
+}
+
+/* Chapter Wax Seal Header */
+.folio-seal-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  border-bottom: 1px solid rgba(200, 150, 62, 0.35);
+  padding-bottom: 12px;
+}
+
+.wax-seal-badge {
+  width: 44px;
+  height: 44px;
+  background: radial-gradient(circle, #A32338 0%, #6A1422 70%, #380812 100%);
+  border: 2px solid #FFE7A0;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(106, 20, 34, 0.4), inset 0 2px 4px rgba(255, 255, 255, 0.3);
+}
+
+.wax-seal-num {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: #FFFDF8;
+}
+
+.folio-seal-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.seal-meta-date {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--velvet-burgundy);
+}
+
+.seal-meta-loc {
+  font-size: 0.82rem;
+  color: var(--ink-muted);
+}
+
+/* Polaroid Photo Keepsake - Dynamic Adaptive Aspect Ratio Framing */
+.folio-polaroid-frame {
+  background: #FFFFFF;
+  padding: 12px 12px 16px;
+  border-radius: 6px;
+  box-shadow: var(--shadow-polaroid);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+  position: relative;
+  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.3, 1), box-shadow 0.3s ease, max-width 0.35s ease;
+  transform: rotate(-1.5deg);
+  width: fit-content;
+  max-width: 100%;
+  min-width: 260px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.folio-polaroid-frame:hover {
+  transform: rotate(0deg) scale(1.02);
+  box-shadow: var(--shadow-polaroid-hover);
+}
+
+.folio-polaroid-frame.frame-tall-portrait {
+  max-width: min(320px, 94%);
+}
+
+.folio-polaroid-frame.frame-portrait {
+  max-width: min(350px, 95%);
+}
+
+.folio-polaroid-frame.frame-square {
+  max-width: min(360px, 95%);
+}
+
+.folio-polaroid-frame.frame-landscape {
+  max-width: 440px;
+  width: 100%;
+}
+
+/* -------------------------------------------------------------------------
+   KOREAN PHOTOBOOTH LIVE CUTS (인생네컷) - CHAPTER 10 VISUAL KEEPSAKE
+   ------------------------------------------------------------------------- */
+.korean-photobooth-box {
+  background: #181114;
+  border: 3px solid #C8963E;
+  border-radius: 12px;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(244, 208, 111, 0.4);
+  padding: 10px;
+  margin-bottom: 12px;
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.korean-photobooth-box:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.55), 0 0 18px rgba(200, 150, 62, 0.3);
+}
+
+.photobooth-header-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 8px 8px;
+  border-bottom: 1px solid rgba(200, 150, 62, 0.35);
+  margin-bottom: 8px;
+}
+
+.booth-korean {
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #F4D06F;
+  letter-spacing: 2px;
+}
+
+.booth-title {
+  font-family: var(--font-serif);
+  font-size: 0.72rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #FAF2E3;
+}
+
+.booth-hearts {
+  font-size: 0.75rem;
+  letter-spacing: 2px;
+}
+
+.photobooth-video-wrapper {
+  position: relative;
+  width: 100%;
+  height: 240px;
+  background: #000;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: inset 0 0 12px rgba(0, 0, 0, 0.8);
+}
+
+.photobooth-video-player {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  cursor: pointer;
+}
+
+.photobooth-live-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: rgba(18, 5, 10, 0.82);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 60, 90, 0.6);
+  color: #FFFFFF;
+  font-family: var(--font-sans);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  padding: 4px 10px;
+  border-radius: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.live-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: #FF3366;
+  box-shadow: 0 0 8px #FF3366;
+  animation: livePulseDot 1.4s infinite ease-in-out;
+}
+
+@keyframes livePulseDot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.35; transform: scale(0.75); }
+}
+
+.photobooth-audio-toggle {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(18, 5, 10, 0.82);
+  backdrop-filter: blur(4px);
+  border: 1px solid var(--gold-leaf);
+  color: #FAF2E3;
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 5px 12px;
+  border-radius: 14px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  z-index: 4;
+  transition: all 0.22s ease;
+}
+
+.photobooth-audio-toggle:hover {
+  background: rgba(200, 150, 62, 0.35);
+  border-color: #FFEAA8;
+  color: #FFFFFF;
+}
+
+.photobooth-footer-bar {
+  padding: 8px 6px 2px;
+  text-align: center;
+}
+
+.photobooth-caption strong {
+  display: block;
+  font-family: var(--font-serif);
+  font-size: 0.88rem;
+  color: #F4D06F;
+  margin-bottom: 2px;
+}
+
+.photobooth-caption p {
+  font-family: var(--font-serif);
+  font-size: 0.76rem;
+  color: rgba(250, 242, 227, 0.82);
+  margin: 0;
+}
+
+.video-live-pill {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: rgba(0, 0, 0, 0.78);
+  border: 1px solid rgba(255, 50, 80, 0.6);
+  color: #FFF;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  padding: 3px 10px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.polaroid-washi-tape {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90px;
+  height: 22px;
+  background: rgba(247, 210, 120, 0.65);
+  border: 1px dashed rgba(200, 150, 62, 0.5);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  z-index: 5;
+}
+
+.polaroid-photo-box {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  border-radius: 3px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #18090E;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.35);
+  transition: width 0.3s ease, height 0.3s ease;
+}
+
+.polaroid-photo-box img {
+  display: block;
+  max-width: 100%;
+  max-height: 360px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  margin: 0 auto;
+  border-radius: 2px;
+}
+
+.polaroid-enlarge-badge {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  background: rgba(26, 7, 14, 0.85);
+  color: var(--gold-bright);
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--gold-leaf);
+  opacity: 0.9;
+  transition: opacity 0.2s ease;
+  z-index: 6;
+}
+
+.polaroid-handwritten-tag {
+  margin-top: 10px;
+  margin-bottom: 2px;
+  text-align: center;
+  font-family: var(--font-handwriting);
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--velvet-burgundy);
+  line-height: 1.25;
+  position: relative;
+  z-index: 2;
+  max-width: 100%;
+  padding: 0 10px;
+}
+
+/* Pull Quote Card (Fills lower page space gracefully) */
+.folio-quote-card {
+  background: rgba(106, 20, 34, 0.08);
+  border-left: 3px solid var(--velvet-burgundy);
+  border-right: 3px solid var(--velvet-burgundy);
+  border-radius: 8px;
+  padding: 14px 20px;
+  position: relative;
+  text-align: center;
+}
+
+.quote-symbol-start, .quote-symbol-end {
+  font-family: var(--font-serif);
+  font-size: 2.2rem;
+  color: var(--gold-leaf);
+  line-height: 0.5;
+  display: block;
+}
+
+.quote-symbol-start {
+  text-align: left;
+  margin-bottom: 4px;
+}
+
+.quote-symbol-end {
+  text-align: right;
+  margin-top: 4px;
+}
+
+.folio-quote-text {
+  font-family: var(--font-handwriting);
+  font-size: 1.45rem;
+  color: var(--velvet-burgundy);
+  line-height: 1.35;
+  font-weight: 700;
+}
+
+/* -------------------------------------------------------------------------
+   RIGHT FOLIO PAGE: INSCRIBED ILLUMINATED STORY TEXT
+   ------------------------------------------------------------------------- */
+.folio-page-right {
+  background: linear-gradient(135deg, rgba(255, 253, 248, 0.6) 0%, rgba(250, 241, 222, 0.6) 100%);
+}
+
+.folio-right-inner {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.folio-chapter-banner {
+  margin-bottom: 20px;
+  text-align: center;
+  border-bottom: 1.5px solid rgba(200, 150, 62, 0.35);
+  padding-bottom: 14px;
+}
+
+.chapter-roman {
+  font-family: var(--font-serif);
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 3px;
+  color: var(--gold-leaf);
+  text-transform: uppercase;
+}
+
+.chapter-ornament-divider {
+  color: var(--gold-leaf);
+  font-size: 1.1rem;
+  letter-spacing: 6px;
+  margin: 4px 0 8px;
+}
+
+.folio-chapter-title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.5rem, 2.3vw, 2rem);
+  font-weight: 700;
+  color: var(--velvet-burgundy-dark);
+  line-height: 1.25;
+}
+
+/* Scrollable Inscribed Body */
+.folio-text-scrollbox {
+  flex-grow: 1;
+  overflow-y: auto;
+  padding-right: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--gold-foil) rgba(0, 0, 0, 0.05);
+  max-height: 440px;
+}
+
+.folio-text-scrollbox::-webkit-scrollbar {
+  width: 6px;
+}
+
+.folio-text-scrollbox::-webkit-scrollbar-thumb {
+  background: var(--gold-foil);
+  border-radius: 4px;
+}
+
+.story-p {
+  font-size: 1.02rem;
+  line-height: 1.85;
+  color: var(--ink-espresso);
+}
+
+/* Grand Medieval Gilded Illuminated Drop-Cap */
+.illuminated-dropcap {
+  float: left;
+  font-family: var(--font-serif);
+  font-size: 3.6rem;
+  line-height: 0.82;
+  font-weight: 800;
+  color: #58101E;
+  background: linear-gradient(135deg, #FFF8DC 0%, #F5D77F 30%, #D4AF37 65%, #8C5912 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  padding: 8px 14px 6px 10px;
+  margin: 2px 14px 4px 0;
+  border: 2px solid #D4AF37;
+  border-radius: 8px;
+  background-color: rgba(254, 248, 230, 0.95);
+  box-shadow: 
+    0 4px 12px rgba(88, 16, 30, 0.25),
+    inset 0 1px 3px rgba(255, 255, 255, 0.8),
+    inset 0 -2px 4px rgba(153, 101, 21, 0.3);
+  position: relative;
+  display: inline-block;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+.illuminated-dropcap::before {
+  content: '❧';
+  position: absolute;
+  top: -8px;
+  right: -6px;
+  font-size: 0.9rem;
+  color: #D4AF37;
+  -webkit-text-fill-color: #D4AF37;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.2));
+}
+
+.illuminated-dropcap::after {
+  content: '☙';
+  position: absolute;
+  bottom: -7px;
+  left: -5px;
+  font-size: 0.9rem;
+  color: #D4AF37;
+  -webkit-text-fill-color: #D4AF37;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.2));
+}
+
+/* Vintage Rubber Postal Cancellation Stamps */
+.vintage-postal-stamp {
+  position: absolute;
+  bottom: 8px;
+  right: 10px;
+  width: 64px;
+  height: 64px;
+  border: 2px dashed rgba(138, 30, 48, 0.48);
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transform: rotate(-14deg);
+  pointer-events: none;
+  opacity: 0.78;
+  color: #8A1E30;
+  font-family: var(--font-sans);
+  text-transform: uppercase;
+  background: radial-gradient(circle, rgba(255, 240, 240, 0.35) 0%, transparent 80%);
+  box-shadow: inset 0 0 6px rgba(138, 30, 48, 0.2);
+  z-index: 1;
+}
+
+.frame-tall-portrait .vintage-postal-stamp,
+.frame-portrait .vintage-postal-stamp {
+  width: 52px;
+  height: 52px;
+  bottom: 6px;
+  right: 8px;
+  opacity: 0.65;
+}
+
+.stamp-city {
+  font-size: 0.50rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.frame-tall-portrait .stamp-city,
+.frame-portrait .stamp-city {
+  font-size: 0.44rem;
+}
+
+.stamp-date {
+  font-size: 0.60rem;
+  font-weight: 900;
+  letter-spacing: 0.5px;
+  border-top: 1px solid rgba(138, 30, 48, 0.5);
+  border-bottom: 1px solid rgba(138, 30, 48, 0.5);
+  padding: 1px 4px;
+  margin: 1px 0;
+}
+
+.frame-tall-portrait .stamp-date,
+.frame-portrait .stamp-date {
+  font-size: 0.50rem;
+  padding: 0 2px;
+}
+
+.stamp-star {
+  font-size: 0.44rem;
+  letter-spacing: 1px;
+}
+
+.frame-tall-portrait .stamp-star,
+.frame-portrait .stamp-star {
+  font-size: 0.38rem;
+}
+
+/* Chapter Footer Folio Stamp */
+.folio-page-footer {
+  margin-top: 18px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(200, 150, 62, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--ink-muted);
+}
+
+.folio-footer-ornament {
+  color: var(--gold-leaf);
+}
+
+/* -------------------------------------------------------------------------
+   FOLIO NAVIGATION TOOLBAR (PREV / NEXT / TRACKER)
+   ------------------------------------------------------------------------- */
+.folio-nav-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 22px;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.folio-nav-btn {
+  background: linear-gradient(135deg, #6A1422 0%, #4A0E18 100%);
+  color: #FFFDF8;
+  border: 1.5px solid var(--gold-leaf);
+  padding: 12px 28px;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 0.95rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 6px 20px rgba(18, 4, 8, 0.5), 0 0 12px var(--gold-glow);
+  transition: all 0.3s ease;
+}
+
+.folio-nav-btn:hover:not(:disabled) {
+  transform: translateY(-3px) scale(1.03);
+  background: linear-gradient(135deg, #8A1E30 0%, #5E121E 100%);
+  box-shadow: 0 10px 25px rgba(18, 4, 8, 0.6), 0 0 20px var(--gold-glow);
+}
+
+.folio-nav-btn:disabled, .folio-nav-btn.disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  filter: grayscale(0.5);
+  box-shadow: none;
+}
+
+.folio-chapter-tracker {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.tracker-badge {
+  background: rgba(230, 184, 92, 0.2);
+  color: var(--gold-bright);
+  border: 1px solid var(--gold-leaf);
+  font-size: 0.82rem;
+  font-weight: 700;
+  padding: 4px 14px;
+  border-radius: var(--radius-pill);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.tracker-chapter-title {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #FFFDF8;
+  margin-top: 4px;
+}
+
+.folio-keyboard-hint {
+  text-align: center;
+  margin-top: 14px;
+  font-size: 0.88rem;
+  color: #D4C3A3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+/* Mobile Responsiveness for Folio */
+@media (max-width: 900px) {
+  .storybook-folio {
+    grid-template-columns: 1fr;
+  }
+  .folio-spine-divider {
+    display: none;
+  }
+  .folio-page-left {
+    border-right: none;
+    border-bottom: 2px solid rgba(200, 150, 62, 0.3);
+  }
+  .folio-text-scrollbox {
+    max-height: none;
+  }
+  .folio-flipper,
+  .folio-flutter-container {
+    display: none !important;
+  }
+}
+
+/* =========================================================================
+   7. CHAPTER 10: KOREAN PHOTOBOOTH VIDEO CENTERPIECE
+   ========================================================================= */
+.korean-photobooth-box {
+  background: #FAF1DE;
+  border: 2px dashed var(--gold-leaf);
+  border-radius: 10px;
+  padding: 16px;
+  box-shadow: 0 6px 20px rgba(18, 4, 8, 0.15);
+}
+
+.photobooth-header-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.booth-korean {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: var(--velvet-burgundy);
+  background: rgba(106, 20, 34, 0.14);
+  padding: 3px 10px;
+  border-radius: 4px;
+}
+
+.booth-title {
+  font-weight: 700;
+  font-size: 0.88rem;
+  letter-spacing: 1px;
+  color: var(--velvet-burgundy-dark);
+}
+
+.booth-hearts {
+  font-size: 1.1rem;
+}
+
+.photobooth-video-wrapper {
+  position: relative;
+  width: 100%;
+  border-radius: 6px;
+  overflow: hidden;
+  background: #000000;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+}
+
+.photobooth-video-player {
+  width: 100%;
+  max-height: 380px;
+  display: block;
+}
+
+.photobooth-footer-bar {
+  margin-top: 10px;
+}
+
+.photobooth-caption strong {
+  color: var(--velvet-burgundy-dark);
+  font-size: 0.92rem;
+}
+
+.photobooth-caption p {
+  font-size: 0.82rem;
+  color: var(--ink-muted);
+}
+
+/* =========================================================================
+   7.5 SECTION: 80-YEAR LIFETIME LOADING SCREEN & REAL-TIME RELATIONSHIP TIMER
+   ========================================================================= */
+.lifetime-glass-card {
+  background: linear-gradient(135deg, rgba(255, 252, 246, 0.97) 0%, rgba(248, 238, 220, 0.95) 100%);
+  border: 2px solid var(--gold-foil);
+  border-radius: 20px;
+  box-shadow: 0 20px 50px rgba(35, 12, 18, 0.18), inset 0 0 35px rgba(212, 175, 55, 0.08);
+  position: relative;
+  overflow: hidden;
+  padding: 38px 32px;
+  margin-bottom: 30px;
+}
+
+.lifetime-aura {
+  position: absolute;
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(55px);
+  z-index: 0;
+}
+
+.lifetime-aura.aura-left {
+  top: -80px;
+  left: -80px;
+  background: radial-gradient(circle, rgba(200, 150, 62, 0.18) 0%, transparent 70%);
+}
+
+.lifetime-aura.aura-right {
+  bottom: -80px;
+  right: -80px;
+  background: radial-gradient(circle, rgba(138, 30, 48, 0.14) 0%, transparent 70%);
+}
+
+.lifetime-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 30px;
+  position: relative;
+  z-index: 2;
+}
+
+.lifetime-anniversary-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(250, 242, 227, 0.9));
+  border: 1.5px solid var(--gold-leaf);
+  padding: 8px 18px;
+  border-radius: 30px;
+  box-shadow: 0 4px 15px rgba(78, 12, 26, 0.08);
+}
+
+.anniversary-ring-icon {
+  font-size: 1.4rem;
+  filter: drop-shadow(0 2px 4px rgba(200, 150, 62, 0.4));
+  animation: ringSparkleGlow 2.5s infinite ease-in-out;
+}
+
+@keyframes ringSparkleGlow {
+  0%, 100% { transform: scale(1) rotate(0deg); }
+  50% { transform: scale(1.15) rotate(6deg); }
+}
+
+.anniversary-text-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.anniversary-label {
+  font-family: var(--font-sans);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--velvet-burgundy);
+  text-transform: uppercase;
+}
+
+.anniversary-date {
+  font-family: var(--font-serif);
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: var(--ink-espresso);
+}
+
+.lifetime-fullscreen-btn {
+  background: linear-gradient(135deg, var(--velvet-burgundy), #520B1B);
+  color: #FFFDF8;
+  border: 1.5px solid var(--gold-leaf);
+  padding: 10px 22px;
+  border-radius: 25px;
+  font-family: var(--font-serif);
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 4px 14px rgba(78, 12, 26, 0.28);
+  transition: all 0.25s ease;
+}
+
+.lifetime-fullscreen-btn:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(135deg, #9C2237, #661223);
+  box-shadow: 0 6px 20px rgba(78, 12, 26, 0.38);
+}
+
+/* -------------------------------------------------------------------------
+   THE 6 ROYAL GLASSMORPHIC TIME ORBS
+   ------------------------------------------------------------------------- */
+.timer-orbs-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 16px;
+  margin-bottom: 26px;
+  position: relative;
+  z-index: 2;
+}
+
+.timer-orb-unit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.orb-glass-body {
+  width: 100%;
+  background: linear-gradient(180deg, #FFFFFF 0%, #FBF6EC 100%);
+  border: 1.5px solid rgba(200, 150, 62, 0.45);
+  border-radius: 16px;
+  padding: 16px 8px 14px;
+  text-align: center;
+  box-shadow: 0 8px 22px rgba(70, 20, 30, 0.08), inset 0 2px 4px rgba(255, 255, 255, 0.95);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.25s ease;
+}
+
+.timer-orb-unit:hover .orb-glass-body {
+  transform: translateY(-3px);
+  border-color: var(--gold-leaf);
+  box-shadow: 0 12px 28px rgba(70, 20, 30, 0.14);
+}
+
+.orb-number {
+  display: block;
+  font-family: var(--font-serif);
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--velvet-burgundy-dark);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  margin-bottom: 6px;
+}
+
+.orb-unit-label {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--gold-leaf);
+}
+
+.orb-sub-text {
+  margin-top: 8px;
+  font-family: var(--font-handwriting);
+  font-size: 1.12rem;
+  font-weight: 700;
+  color: var(--ink-muted);
+  text-align: center;
+  line-height: 1.1;
+}
+
+.pulse-second .orb-glass-body {
+  animation: secondHeartbeatGlow 1.2s infinite ease-in-out;
+  border-color: rgba(210, 50, 80, 0.45);
+}
+
+@keyframes secondHeartbeatGlow {
+  0%, 100% {
+    box-shadow: 0 8px 22px rgba(70, 20, 30, 0.08), 0 0 0 rgba(210, 50, 80, 0);
+  }
+  50% {
+    box-shadow: 0 8px 22px rgba(70, 20, 30, 0.12), 0 0 14px rgba(210, 50, 80, 0.28);
+    transform: scale(1.02);
+  }
+}
+
+/* -------------------------------------------------------------------------
+   ROMANTIC MICRO-STATS TICKER BANNER
+   ------------------------------------------------------------------------- */
+.lifetime-stats-banner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 34px;
+  position: relative;
+  z-index: 2;
+}
+
+.stat-pill {
+  background: rgba(138, 30, 48, 0.06);
+  border: 1px solid rgba(138, 30, 48, 0.18);
+  padding: 8px 18px;
+  border-radius: 20px;
+  font-family: var(--font-serif);
+  font-size: 0.88rem;
+  color: var(--velvet-burgundy);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+}
+
+.stat-pill .stat-icon {
+  color: var(--gold-leaf);
+  font-size: 0.95rem;
+}
+
+.stat-pill.heartbeat-pill {
+  background: rgba(220, 38, 70, 0.08);
+  border-color: rgba(220, 38, 70, 0.25);
+  color: #A01530;
+}
+
+.beating-heart {
+  color: #E63946 !important;
+  animation: miniHeartBeat 0.9s infinite ease-in-out;
+}
+
+@keyframes miniHeartBeat {
+  0%, 100% { transform: scale(1); }
+  25% { transform: scale(1.25); }
+  50% { transform: scale(0.95); }
+  75% { transform: scale(1.15); }
+}
+
+/* -------------------------------------------------------------------------
+   THE WORKING 80-YEAR ETERNITY LOADING PROGRESS BAR
+   ------------------------------------------------------------------------- */
+.eternity-loader-wrapper {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.75), rgba(248, 238, 220, 0.75));
+  border: 1.5px solid var(--gold-foil);
+  border-radius: 18px;
+  padding: 24px;
+  margin-bottom: 34px;
+  box-shadow: 0 8px 24px rgba(45, 18, 24, 0.08);
+  position: relative;
+  z-index: 2;
+}
+
+.loader-meta-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+
+.loader-status-indicator {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+  min-width: 260px;
+}
+
+.loader-spinner-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #E63946;
+  box-shadow: 0 0 10px #E63946;
+  animation: spinnerPulse 1.2s infinite ease-in-out;
+  flex-shrink: 0;
+}
+
+@keyframes spinnerPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.7); }
+}
+
+.loader-status-text {
+  font-family: var(--font-serif);
+  font-size: 0.92rem;
+  font-style: italic;
+  color: var(--velvet-burgundy);
+  line-height: 1.35;
+  transition: opacity 0.3s ease;
+}
+
+.loader-percentage-display {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.percentage-val {
+  font-family: var(--font-serif);
+  font-size: 1.85rem;
+  font-weight: 700;
+  color: var(--gold-leaf);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.5px;
+  text-shadow: 0 1px 3px rgba(200, 150, 62, 0.25);
+}
+
+.percentage-sub {
+  font-family: var(--font-sans);
+  font-size: 0.68rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  margin-top: 4px;
+}
+
+/* The Glowing Physical Track */
+.eternity-progress-track {
+  height: 28px;
+  background: rgba(30, 8, 14, 0.12);
+  border: 1.5px solid var(--gold-leaf);
+  border-radius: 14px;
+  position: relative;
+  box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.25);
+  margin-bottom: 14px;
+}
+
+.progress-fluid-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #680E1E 0%, #A32038 35%, #C8963E 75%, #F4D06F 100%);
+  border-radius: 12px;
+  position: relative;
+  min-width: 14px;
+  transition: width 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+  box-shadow: 0 0 14px rgba(200, 150, 62, 0.45);
+}
+
+.progress-fluid-sheen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.55) 50%, transparent 100%);
+  background-size: 200% 100%;
+  animation: fluidSheenSwipe 2.5s infinite linear;
+  border-radius: 12px;
+}
+
+@keyframes fluidSheenSwipe {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.progress-heart-thumb {
+  position: absolute;
+  right: -14px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 6;
+  cursor: pointer;
+}
+
+.thumb-heart-emoji {
+  font-size: 1.5rem;
+  display: block;
+  filter: drop-shadow(0 0 8px #FF3366);
+  animation: thumbHeartThrob 1.2s infinite ease-in-out;
+}
+
+@keyframes thumbHeartThrob {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.22); }
+}
+
+.thumb-current-pill {
+  position: absolute;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  background: rgba(18, 4, 8, 0.92);
+  color: #FFE699;
+  border: 1px solid var(--gold-leaf);
+  font-family: var(--font-sans);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  padding: 3px 10px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+  pointer-events: none;
+}
+
+.thumb-current-pill::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 4px solid transparent;
+  border-top-color: var(--gold-leaf);
+}
+
+.loader-track-labels {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-serif);
+  font-size: 0.82rem;
+  color: var(--ink-espresso);
+}
+
+.track-label-left strong, .track-label-right strong {
+  display: block;
+  color: var(--velvet-burgundy);
+}
+
+.track-label-left span, .track-label-right span {
+  font-size: 0.75rem;
+  color: var(--ink-muted);
+  font-style: italic;
+}
+
+.track-label-right {
+  text-align: right;
+}
+
+/* -------------------------------------------------------------------------
+   INTERACTIVE 80-YEAR MILESTONE CONSTELLATIONS
+   ------------------------------------------------------------------------- */
+.milestones-timeline-section {
+  position: relative;
+  z-index: 2;
+}
+
+.milestones-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.milestones-header-title {
+  display: block;
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--velvet-burgundy-dark);
+  letter-spacing: 1px;
+}
+
+.milestones-hint {
+  font-family: var(--font-serif);
+  font-size: 0.82rem;
+  color: var(--ink-muted);
+  font-style: italic;
+}
+
+.milestones-chips-grid {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 22px;
+}
+
+.milestone-chip-btn {
+  background: linear-gradient(180deg, #FFFFFF 0%, #FAF2E3 100%);
+  border: 1.5px solid rgba(200, 150, 62, 0.4);
+  padding: 10px 16px;
+  border-radius: 16px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  transition: all 0.25s ease;
+  min-width: 120px;
+  box-shadow: 0 4px 12px rgba(50, 20, 10, 0.06);
+}
+
+.milestone-chip-btn:hover {
+  transform: translateY(-3px);
+  border-color: var(--gold-leaf);
+  box-shadow: 0 8px 18px rgba(50, 20, 10, 0.12);
+}
+
+.milestone-chip-btn.active {
+  background: linear-gradient(135deg, var(--velvet-burgundy), #520B1B);
+  border-color: #FFEAA8;
+  box-shadow: 0 6px 20px rgba(78, 12, 26, 0.3);
+}
+
+.milestone-chip-btn.active .chip-year-tag,
+.milestone-chip-btn.active .chip-title-text {
+  color: #FFFFFF !important;
+}
+
+.chip-sticker {
+  font-size: 1.3rem;
+}
+
+.chip-year-tag {
+  font-family: var(--font-sans);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: var(--gold-leaf);
+  text-transform: uppercase;
+}
+
+.chip-title-text {
+  font-family: var(--font-serif);
+  font-size: 0.84rem;
+  font-weight: 700;
+  color: var(--velvet-burgundy);
+  text-align: center;
+}
+
+.milestone-detail-card {
+  background: #FFFDF9;
+  border: 1.5px solid var(--gold-foil);
+  border-radius: 16px;
+  padding: 22px 26px;
+  box-shadow: 0 8px 24px rgba(45, 18, 24, 0.1);
+  position: relative;
+  animation: milestoneCardFadeIn 0.3s ease-out;
+}
+
+@keyframes milestoneCardFadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.milestone-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  border-bottom: 1px dashed rgba(200, 150, 62, 0.35);
+  padding-bottom: 12px;
+  margin-bottom: 14px;
+}
+
+.card-title-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.card-sticker {
+  font-size: 1.6rem;
+}
+
+.card-title-text {
+  font-family: var(--font-serif);
+  font-size: 1.18rem;
+  font-weight: 700;
+  color: var(--velvet-burgundy-dark);
+}
+
+.card-subtitle-text {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  letter-spacing: 1px;
+  color: var(--ink-muted);
+}
+
+.card-date-badge {
+  background: rgba(200, 150, 62, 0.15);
+  color: var(--velvet-burgundy);
+  border: 1px solid var(--gold-leaf);
+  padding: 4px 14px;
+  border-radius: 20px;
+  font-family: var(--font-serif);
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.card-description-text {
+  font-family: var(--font-serif);
+  font-size: 1.02rem;
+  color: var(--ink-espresso);
+  line-height: 1.65;
+  margin: 0;
+}
+
+.card-description-text p {
+  margin-bottom: 12px;
+}
+
+.card-description-text p:last-child {
+  margin-bottom: 0;
+}
+
+/* Locked Milestone Chip Styling */
+.milestone-chip-btn.locked-milestone {
+  background: linear-gradient(180deg, #F9F4EC 0%, #EFE5D3 100%);
+  border: 1.5px dashed rgba(160, 120, 70, 0.45);
+  opacity: 0.9;
+}
+
+.milestone-chip-btn.locked-milestone:hover {
+  opacity: 1;
+  border-color: var(--gold-leaf);
+  box-shadow: 0 6px 18px rgba(70, 40, 15, 0.15);
+}
+
+.chip-lock-icon {
+  font-size: 1.15rem;
+  color: #B8860B;
+  filter: drop-shadow(0 1px 2px rgba(0,0,0,0.15));
+}
+
+.milestone-chip-btn.active.locked-milestone {
+  background: linear-gradient(135deg, #421D12, #2B1207);
+  border-color: var(--gold-leaf);
+  box-shadow: 0 8px 24px rgba(35, 12, 18, 0.4);
+}
+
+.milestone-chip-btn.active.locked-milestone .chip-lock-icon {
+  color: #FFD700;
+}
+
+/* Locked Card Styling */
+.locked-capsule-view {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.milestone-countdown-banner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: linear-gradient(135deg, rgba(138, 30, 48, 0.08), rgba(200, 150, 62, 0.12));
+  border: 1px solid rgba(200, 150, 62, 0.35);
+  padding: 10px 18px;
+  border-radius: 12px;
+  font-family: var(--font-serif);
+  font-size: 0.94rem;
+  color: var(--velvet-burgundy);
+  text-align: center;
+}
+
+.milestone-countdown-banner strong {
+  color: var(--velvet-burgundy-dark);
+  font-weight: 700;
+}
+
+.countdown-clock-icon {
+  color: var(--gold-leaf);
+  animation: hourglassFlip 3s infinite ease-in-out;
+}
+
+@keyframes hourglassFlip {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(180deg); }
+}
+
+.sealed-capsule-card {
+  background: linear-gradient(135deg, #FAF2E3 0%, #F3E5CC 100%);
+  border: 1.5px solid rgba(180, 130, 60, 0.4);
+  border-radius: 14px;
+  padding: 24px 20px;
+  text-align: center;
+  position: relative;
+  box-shadow: inset 0 2px 6px rgba(255, 255, 255, 0.8), 0 4px 14px rgba(45, 18, 10, 0.06);
+}
+
+.capsule-wax-seal {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  margin: 0 auto 12px;
+  background: radial-gradient(circle at 35% 35%, #C22A44 0%, #7A0C1E 70%, #420610 100%);
+  border: 2px solid #EAA838;
+  box-shadow: 0 4px 12px rgba(100, 10, 20, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFF;
+  font-size: 1.3rem;
+  animation: sealGentleGlow 2.5s infinite ease-in-out;
+}
+
+@keyframes sealGentleGlow {
+  0%, 100% { transform: scale(1); box-shadow: 0 4px 12px rgba(100, 10, 20, 0.4); }
+  50% { transform: scale(1.08); box-shadow: 0 6px 18px rgba(180, 20, 40, 0.55); }
+}
+
+.sealed-capsule-card h4 {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  color: var(--velvet-burgundy-dark);
+  margin-bottom: 6px;
+}
+
+.sealed-capsule-card p {
+  font-family: var(--font-serif);
+  font-size: 0.96rem;
+  color: var(--ink-espresso);
+  line-height: 1.6;
+  max-width: 560px;
+  margin: 0 auto;
+}
+
+/* Strict Locked Security Note & Lock Rattle Animation */
+.locked-security-note {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 16px;
+  padding: 8px 20px;
+  background: rgba(180, 130, 60, 0.12);
+  border: 1px dashed rgba(180, 130, 60, 0.45);
+  border-radius: 20px;
+  color: #7A3E05;
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.capsule-wax-seal {
+  cursor: pointer;
+  transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.capsule-wax-seal:hover {
+  transform: scale(1.08);
+  filter: drop-shadow(0 6px 16px rgba(180, 130, 40, 0.4));
+}
+
+@keyframes lockRattle {
+  0%, 100% { transform: rotate(0deg); }
+  20% { transform: rotate(-14deg) scale(1.05); }
+  40% { transform: rotate(14deg) scale(1.05); }
+  60% { transform: rotate(-8deg); }
+  80% { transform: rotate(8deg); }
+}
+
+.capsule-wax-seal.rattling {
+  animation: lockRattle 0.45s ease-in-out;
+}
+
+.unlocked-status-pill {
+  background: rgba(46, 125, 50, 0.12);
+  color: #2E7D32;
+  border: 1px solid rgba(46, 125, 50, 0.35);
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-family: var(--font-sans);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* -------------------------------------------------------------------------
+   FULL-SCREEN IMMERSIVE ETERNITY LOADING SCREEN MODAL
+   ------------------------------------------------------------------------- */
+.fullscreen-eternity-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 1;
+  transition: opacity 0.4s ease;
+}
+
+.fullscreen-eternity-modal.hidden {
+  display: none;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.eternity-modal-backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 50% 40%, rgba(45, 10, 20, 0.98) 0%, rgba(12, 3, 6, 0.98) 100%);
+  backdrop-filter: blur(12px);
+}
+
+.eternity-modal-content {
+  position: relative;
+  z-index: 2;
+  width: min(880px, 94vw);
+  background: linear-gradient(135deg, rgba(30, 8, 16, 0.85) 0%, rgba(18, 4, 9, 0.95) 100%);
+  border: 2px solid var(--gold-foil);
+  border-radius: 24px;
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.85), 0 0 40px rgba(200, 150, 62, 0.25);
+  padding: 40px 36px;
+  color: #FAF2E3;
+}
+
+.eternity-close-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #FAF2E3;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-family: var(--font-serif);
+  font-size: 0.84rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.25s ease;
+}
+
+.eternity-close-btn:hover {
+  background: rgba(200, 150, 62, 0.3);
+  border-color: var(--gold-leaf);
+  transform: translateY(-2px);
+}
+
+.fs-eternity-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.fs-eternity-flourish {
+  font-size: 1.4rem;
+  color: var(--gold-bright);
+  margin-bottom: 6px;
+}
+
+.fs-anniversary-tag {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold-leaf);
+  margin-bottom: 8px;
+}
+
+.fs-eternity-title {
+  font-family: var(--font-serif);
+  font-size: 2.2rem;
+  color: #FFFDF9;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  margin-bottom: 6px;
+}
+
+.fs-eternity-subtitle {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.05rem;
+  color: rgba(250, 242, 227, 0.8);
+  margin: 0;
+}
+
+.fs-timer-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 34px;
+}
+
+.fs-timer-card {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1.5px solid rgba(200, 150, 62, 0.4);
+  padding: 14px 18px;
+  border-radius: 14px;
+  text-align: center;
+  min-width: 80px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+}
+
+.fs-num {
+  display: block;
+  font-family: var(--font-serif);
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: #FFE699;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.fs-label {
+  font-family: var(--font-sans);
+  font-size: 0.65rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: rgba(250, 242, 227, 0.7);
+  margin-top: 4px;
+  display: block;
+}
+
+.fs-timer-colon {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  color: var(--gold-leaf);
+  opacity: 0.6;
+}
+
+.fs-pulse {
+  animation: fsSecondGlow 1.2s infinite ease-in-out;
+}
+
+@keyframes fsSecondGlow {
+  0%, 100% { border-color: rgba(200, 150, 62, 0.4); }
+  50% { border-color: #FF4D79; box-shadow: 0 0 16px rgba(255, 77, 121, 0.4); }
+}
+
+.fs-progress-container {
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(200, 150, 62, 0.3);
+  border-radius: 16px;
+  padding: 20px 24px;
+  margin-bottom: 24px;
+}
+
+.fs-progress-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.fs-loading-msg {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 0.95rem;
+  color: #F4D06F;
+}
+
+.fs-percent-text {
+  font-family: var(--font-serif);
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #FFEAA8;
+  font-variant-numeric: tabular-nums;
+}
+
+.fs-progress-track {
+  height: 26px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1.5px solid var(--gold-leaf);
+  border-radius: 13px;
+  position: relative;
+  overflow: visible;
+  margin-bottom: 10px;
+}
+
+.fs-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #9C2237 0%, #C8963E 60%, #F4D06F 100%);
+  border-radius: 11px;
+  position: relative;
+  min-width: 14px;
+  transition: width 0.5s ease-out;
+  box-shadow: 0 0 18px rgba(244, 208, 111, 0.5);
+}
+
+.fs-progress-sheen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.6) 50%, transparent 100%);
+  background-size: 200% 100%;
+  animation: fluidSheenSwipe 2.5s infinite linear;
+  border-radius: 11px;
+}
+
+.fs-heart-head {
+  position: absolute;
+  right: -12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.4rem;
+  filter: drop-shadow(0 0 6px #FF3366);
+}
+
+.fs-progress-subline {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-serif);
+  font-size: 0.78rem;
+  color: rgba(250, 242, 227, 0.65);
+}
+
+.fs-milestone-preview {
+  text-align: center;
+  font-family: var(--font-serif);
+  font-size: 0.95rem;
+  color: #FAF2E3;
+  padding: 10px;
+  border-top: 1px dashed rgba(200, 150, 62, 0.25);
+}
+
+/* Responsive Rules for Lifetime Section */
+@media (max-width: 900px) {
+  .timer-orbs-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .timer-orbs-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .orb-number {
+    font-size: 2rem;
+  }
+  .lifetime-glass-card {
+    padding: 24px 16px;
+  }
+  .fs-timer-row {
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .fs-timer-colon {
+    display: none;
+  }
+  .fs-timer-card {
+    min-width: 65px;
+    padding: 8px 10px;
+  }
+  .fs-num {
+    font-size: 1.6rem;
+  }
+  .fs-eternity-title {
+    font-size: 1.5rem;
+  }
+  .percentage-val {
+    font-size: 1.4rem;
+  }
+}
+
+/* =========================================================================
+   8. SECTION 2: GIFTS & CARDS MEMORY VAULT (3D FLIP POLAROIDS)
+   ========================================================================= */
+.filter-bar {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 25px;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  background: linear-gradient(135deg, rgba(58, 14, 26, 0.9) 0%, rgba(36, 8, 16, 0.9) 100%);
+  border: 1.5px solid var(--gold-leaf);
+  color: #FFFDF8;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 0.92rem;
+  padding: 9px 22px;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 14px rgba(18, 4, 8, 0.35);
+}
+
+.filter-btn:hover, .filter-btn.active {
+  background: linear-gradient(135deg, var(--velvet-burgundy-light) 0%, var(--velvet-burgundy-dark) 100%);
+  color: var(--gold-bright);
+  border-color: var(--gold-leaf);
+  box-shadow: 0 6px 20px rgba(138, 30, 48, 0.5), 0 0 15px var(--gold-glow);
+}
+
+.interactive-hint {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 0.95rem;
+  color: var(--gold-bright);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.polaroid-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 30px;
+}
+
+/* 3D Flip Card Container */
+.polaroid-card {
+  perspective: 1200px;
+  height: 430px;
+  cursor: pointer;
+}
+
+.polaroid-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s cubic-bezier(0.2, 0.85, 0.4, 1);
+  transform-style: preserve-3d;
+}
+
+.polaroid-card.flipped .polaroid-inner {
+  transform: rotateY(180deg);
+}
+
+/* Front & Back Faces */
+.polaroid-front, .polaroid-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: 6px;
+  box-shadow: var(--shadow-polaroid);
+  border: 1px solid rgba(0,0,0,0.08);
+  background: #FFFFFF;
+  padding: 14px 14px 20px;
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow 0.3s ease;
+}
+
+.polaroid-card:hover .polaroid-front,
+.polaroid-card:hover .polaroid-back {
+  box-shadow: var(--shadow-polaroid-hover);
+}
+
+/* Front Side */
+.polaroid-tape {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 22px;
+  background: rgba(247, 210, 120, 0.6);
+  border: 1px dashed rgba(200, 150, 62, 0.5);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  z-index: 10;
+}
+
+.polaroid-img-wrapper {
+  position: relative;
+  width: 100%;
+  height: 255px;
+  overflow: hidden;
+  border-radius: 2px;
+  margin-top: 6px;
+}
+
+.polaroid-img-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.polaroid-tag-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(255, 255, 255, 0.95);
+  color: var(--velvet-burgundy);
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: var(--radius-pill);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+  border: 1px solid var(--gold-leaf);
+}
+
+.polaroid-caption {
+  margin-top: 14px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: space-between;
+}
+
+.polaroid-title {
+  font-family: var(--font-handwriting);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--velvet-burgundy-dark);
+  line-height: 1.2;
+}
+
+.polaroid-date {
+  font-size: 0.82rem;
+  color: var(--ink-muted);
+  margin-top: 4px;
+}
+
+.flip-prompt {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--velvet-crimson);
+  margin-top: 8px;
+}
+
+/* Back Side (Stationery Note) */
+.polaroid-back {
+  transform: rotateY(180deg);
+  background: #FAF1DE;
+  background-image: repeating-linear-gradient(
+    transparent, 
+    transparent 24px, 
+    rgba(200, 150, 62, 0.22) 24px, 
+    rgba(200, 150, 62, 0.22) 25px
+  );
+  padding: 24px 20px;
+  text-align: left;
+}
+
+.back-header {
+  border-bottom: 1.5px solid rgba(200, 150, 62, 0.35);
+  padding-bottom: 8px;
+  margin-bottom: 8px;
+}
+
+.back-title {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  color: var(--velvet-burgundy-dark);
+  font-weight: 700;
+}
+
+.back-meta {
+  font-size: 0.8rem;
+  color: var(--ink-muted);
+  margin-top: 2px;
+}
+
+.back-story {
+  font-size: 0.92rem;
+  color: var(--ink-espresso);
+  line-height: 1.65;
+  margin-bottom: 8px;
+}
+
+.back-detail {
+  background: rgba(106, 20, 34, 0.1);
+  border-left: 2.5px solid var(--velvet-burgundy);
+  padding: 6px 10px;
+  font-size: 0.84rem;
+  color: var(--velvet-burgundy);
+  margin-bottom: 10px;
+  border-radius: 0 4px 4px 0;
+}
+
+.unflip-btn {
+  background: none;
+  border: 1px solid var(--gold-leaf);
+  color: var(--velvet-burgundy);
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 6px 16px;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  margin-top: auto;
+  align-self: center;
+  transition: all 0.2s ease;
+}
+
+.unflip-btn:hover {
+  background: var(--velvet-burgundy);
+  color: #FFFFFF;
+}
+
+/* =========================================================================
+   8. SECTION 3: THE 141 HANDWRITTEN REASONS SCROLL
+   ========================================================================= */
+.scroll-control-panel {
+  max-width: 860px;
+  margin: 0 auto 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.scroll-search-box {
+  position: relative;
+  width: 100%;
+}
+
+.scroll-search-box .search-icon {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--gold-leaf);
+  font-size: 1.1rem;
+  pointer-events: none;
+}
+
+.scroll-search-box input {
+  width: 100%;
+  padding: 14px 48px 14px 50px;
+  background: rgba(36, 10, 18, 0.85);
+  backdrop-filter: blur(10px);
+  border: 1.5px solid var(--gold-leaf);
+  border-radius: var(--radius-pill);
+  color: #FFFDF8;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4), 0 0 15px rgba(230, 184, 92, 0.2);
+  transition: all 0.3s ease;
+}
+
+.scroll-search-box input:focus {
+  outline: none;
+  border-color: #FFECA8;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6), 0 0 25px var(--gold-glow);
+  background: rgba(46, 12, 22, 0.95);
+}
+
+.scroll-search-box input::placeholder {
+  color: #C8B39B;
+}
+
+.clear-search-btn {
+  position: absolute;
+  right: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: var(--gold-leaf);
+  font-size: 1.1rem;
+  cursor: pointer;
+  display: none;
+  padding: 4px;
+}
+
+.clear-search-btn.visible {
+  display: block;
+}
+
+.scroll-actions-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.scroll-stats-badge {
+  background: rgba(230, 184, 92, 0.15);
+  border: 1px solid var(--gold-leaf);
+  color: var(--gold-bright);
+  padding: 8px 20px;
+  border-radius: var(--radius-pill);
+  font-weight: 700;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.scroll-toggle-all-btn {
+  background: linear-gradient(135deg, #6A1422 0%, #4A0E18 100%);
+  color: #FFFDF8;
+  border: 1.5px solid var(--gold-leaf);
+  padding: 9px 24px;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 0.88rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 6px 18px rgba(18, 4, 8, 0.5), 0 0 12px var(--gold-glow);
+  transition: all 0.25s ease;
+}
+
+.scroll-toggle-all-btn:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(135deg, #8A1E30 0%, #5E121E 100%);
+  box-shadow: 0 8px 25px rgba(18, 4, 8, 0.6), 0 0 20px var(--gold-glow);
+}
+
+/* VIRTUAL CONTINUOUS PAPER SCROLL CONTAINER */
+.continuous-scroll-wrapper {
+  max-width: 860px;
+  margin: 0 auto;
+  position: relative;
+  filter: drop-shadow(0 25px 60px rgba(0, 0, 0, 0.65));
+}
+
+/* Turned Wood Spool Bars */
+.scroll-spool-bar {
+  display: flex;
+  align-items: center;
+  position: relative;
+  z-index: 10;
+}
+
+.spool-rod {
+  flex-grow: 1;
+  height: 20px;
+  background: linear-gradient(180deg, #5C2A18 0%, #3B170B 50%, #200B04 100%);
+  border-top: 1.5px solid #F7D278;
+  border-bottom: 2px solid #140502;
+  border-radius: 4px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
+}
+
+.spool-knot {
+  width: 28px;
+  height: 28px;
+  background: radial-gradient(circle, #F7D278 0%, #C8963E 60%, #5C2A18 100%);
+  border: 2px solid #FFECA8;
+  border-radius: 50%;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+}
+
+.spool-knot.left-knot {
+  margin-right: -6px;
+}
+
+.spool-knot.right-knot {
+  margin-left: -6px;
+}
+
+/* Serrated / Torn Deckled Edges */
+.paper-serrated-edge {
+  height: 14px;
+  width: calc(100% - 24px);
+  margin: 0 auto;
+  background: #FFFDF8;
+  background-image: radial-gradient(circle at 10px 0, transparent 8px, #FFFDF8 9px);
+  background-size: 16px 14px;
+  background-repeat: repeat-x;
+}
+
+.paper-serrated-edge.bottom-edge {
+  background-image: radial-gradient(circle at 10px 14px, transparent 8px, #FFFDF8 9px);
+  margin-bottom: -4px;
+}
+
+.scroll-paper-top-rip {
+  position: relative;
+  margin-bottom: -2px;
+}
+
+.scroll-paper-bottom-rip {
+  position: relative;
+  margin-top: -2px;
+}
+
+.scroll-footer-message {
+  text-align: center;
+  margin-top: 18px;
+  font-family: var(--font-handwriting);
+  font-size: 1.45rem;
+  color: var(--gold-bright);
+  text-shadow: 0 0 10px var(--gold-glow);
+}
+
+/* The Continuous Paper Strip */
+.continuous-paper-strip {
+  background: #FFFDF8;
+  background-image: repeating-linear-gradient(
+    transparent,
+    transparent 42px,
+    rgba(200, 150, 62, 0.12) 42px,
+    rgba(200, 150, 62, 0.12) 43px
+  );
+  border-left: 2px solid rgba(200, 150, 62, 0.4);
+  border-right: 2px solid rgba(200, 150, 62, 0.4);
+  box-shadow: inset 0 0 40px rgba(200, 150, 62, 0.12);
+  width: calc(100% - 24px);
+  margin: 0 auto;
+  padding: 10px 0;
+  position: relative;
+}
+
+/* Individual Clickable Row */
+.scroll-item-row {
+  padding: 18px 30px;
+  border-bottom: 1px dashed rgba(200, 150, 62, 0.28);
+  cursor: pointer;
+  transition: all 0.25s ease;
+  position: relative;
+}
+
+.scroll-item-row:hover {
+  background: rgba(247, 210, 120, 0.14);
+  padding-left: 36px;
+}
+
+.scroll-item-row.expanded {
+  background: rgba(247, 210, 120, 0.2);
+  border-bottom-color: var(--gold-leaf);
+}
+
+.scroll-item-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  width: 100%;
+}
+
+.scroll-item-left {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  flex-grow: 1;
+}
+
+.scroll-item-num {
+  font-family: var(--font-handwriting);
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: var(--velvet-burgundy);
+  min-width: 46px;
+  flex-shrink: 0;
+}
+
+.scroll-item-text {
+  font-family: var(--font-handwriting);
+  font-size: 1.65rem;
+  font-weight: 700;
+  color: var(--ink-espresso);
+  line-height: 1.35;
+}
+
+.scroll-item-pill {
+  flex-shrink: 0;
+  background: rgba(106, 20, 34, 0.08);
+  color: var(--velvet-burgundy);
+  border: 1px solid rgba(163, 35, 56, 0.35);
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: var(--radius-pill);
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  transition: all 0.25s ease;
+  white-space: nowrap;
+}
+
+.scroll-item-row:hover .scroll-item-pill {
+  background: var(--velvet-burgundy);
+  color: #FFFDF8;
+  border-color: var(--velvet-burgundy);
+  box-shadow: 0 2px 8px rgba(106, 20, 34, 0.3);
+}
+
+.scroll-item-row.expanded .scroll-item-pill {
+  background: #2E7D32;
+  color: #FFFFFF;
+  border-color: #2E7D32;
+}
+
+/* Expandable Reply Card */
+.scroll-reply-card {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transform: translateY(-8px);
+  transition: max-height 0.4s cubic-bezier(0.2, 0.9, 0.3, 1), opacity 0.3s ease, transform 0.3s ease, margin 0.3s ease;
+  margin-top: 0;
+}
+
+.scroll-item-row.expanded .scroll-reply-card {
+  max-height: 350px;
+  opacity: 1;
+  transform: translateY(0);
+  margin-top: 14px;
+}
+
+.scroll-reply-inner {
+  background: linear-gradient(135deg, #FFFFFF 0%, #FAF1DE 100%);
+  border-left: 4.5px solid var(--velvet-burgundy);
+  border-top: 1px solid rgba(200, 150, 62, 0.3);
+  border-right: 1px solid rgba(200, 150, 62, 0.3);
+  border-bottom: 1px solid rgba(200, 150, 62, 0.3);
+  border-radius: 4px 10px 10px 4px;
+  padding: 16px 22px;
+  box-shadow: 0 8px 20px rgba(18, 4, 8, 0.08), inset 0 0 15px rgba(247, 210, 120, 0.1);
+}
+
+.reply-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  border-bottom: 1px solid rgba(200, 150, 62, 0.25);
+  padding-bottom: 6px;
+}
+
+.reply-sender-title {
+  font-family: var(--font-serif);
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--velvet-burgundy);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.reply-sticker {
+  font-size: 1.3rem;
+}
+
+.reply-body-text {
+  font-family: var(--font-handwriting);
+  font-size: 1.55rem;
+  font-weight: 700;
+  color: var(--velvet-burgundy-dark);
+  line-height: 1.4;
+  margin: 0;
+}
+
+/* Paper Fold Crease Line (Authentic Fold Texture Every ~25 Items) */
+.paper-crease-shadow {
+  height: 6px;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.08) 0%, rgba(0, 0, 0, 0.02) 50%, rgba(255, 255, 255, 0.8) 100%);
+  margin: 4px 0;
+  pointer-events: none;
+}
+
+/* Empty search result notice */
+.scroll-empty-search {
+  text-align: center;
+  padding: 40px 20px;
+  font-family: var(--font-serif);
+  font-size: 1.2rem;
+  color: var(--ink-muted);
+}
+
+/* =========================================================================
+   9. SECTION 4: PHOTOS & VIDEOS MEMORIES REEL
+   ========================================================================= */
+.filmstrip-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 28px;
+}
+
+.film-card, .filmstrip-item {
+  background: #240A12;
+  border-radius: 8px;
+  padding: 12px 14px;
+  box-shadow: 0 12px 35px rgba(18, 4, 8, 0.5);
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1.5px solid rgba(230, 184, 92, 0.4);
+}
+
+.film-card:hover, .filmstrip-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 18px 45px rgba(18, 4, 8, 0.65), 0 0 20px var(--gold-glow);
+}
+
+.film-holes {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 2px 8px;
+}
+
+.hole {
+  width: 14px;
+  height: 8px;
+  background: #FAF1DE;
+  border-radius: 2px;
+  opacity: 0.7;
+}
+
+.film-media-box, .filmstrip-frame {
+  position: relative;
+  margin: 10px 0;
+  height: 220px;
+  border-radius: 4px;
+  overflow: hidden;
+  border: 2px solid #4A1220;
+  background: #000000;
+}
+
+.film-media-box img, .film-media-box video, .filmstrip-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.video-play-overlay, .filmstrip-play-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.3);
+  transition: background 0.3s ease;
+}
+
+.video-play-overlay:hover {
+  background: rgba(0, 0, 0, 0.15);
+}
+
+.play-icon-btn {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background: var(--velvet-burgundy-light);
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.6);
+  border: 2px solid var(--gold-bright);
+  transition: transform 0.2s ease;
+}
+
+.film-media-box:hover .play-icon-btn {
+  transform: scale(1.1);
+}
+
+.film-info, .filmstrip-info {
+  margin-top: 10px;
+  color: #EBDAC9;
+}
+
+.film-title, .filmstrip-title {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #FFFDF8;
+}
+
+.film-meta {
+  font-size: 0.82rem;
+  color: var(--gold-bright);
+  margin-top: 3px;
+}
+
+.film-caption, .filmstrip-desc {
+  font-family: var(--font-handwriting);
+  font-size: 1.3rem;
+  color: #FFF0B8;
+  margin-top: 6px;
+  line-height: 1.3;
+}
+
+/* =========================================================================
+   10. SECTION 4: BIRTHDAY LOVE LETTER
+   ========================================================================= */
+.envelope-wrapper {
+  max-width: 760px;
+  margin: 0 auto;
+  position: relative;
+  perspective: 1200px;
+}
+
+.parchment-envelope {
+  background: linear-gradient(135deg, #FAF1DE 0%, #F5E6CD 100%);
+  border: 2.5px solid var(--gold-leaf);
+  border-radius: 14px;
+  padding: 60px 35px 45px;
+  box-shadow: 0 20px 50px rgba(18, 4, 8, 0.5), 0 0 25px var(--gold-glow);
+  text-align: center;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.4s ease, opacity 0.5s ease, filter 0.5s ease;
+}
+
+.parchment-envelope:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 25px 60px rgba(18, 4, 8, 0.6), 0 0 35px var(--gold-glow);
+}
+
+.envelope-wrapper.revealing-letter .parchment-envelope {
+  transform: translateY(30px) scale(0.96);
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* 3D Triangular Envelope Flap */
+.envelope-flap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 52%;
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  background: linear-gradient(180deg, #F5E8CF 0%, #EADCBF 100%);
+  border-bottom: 2px solid rgba(200, 150, 62, 0.35);
+  transform-origin: top center;
+  transform-style: preserve-3d;
+  transition: transform 0.65s cubic-bezier(0.25, 1, 0.35, 1);
+  z-index: 5;
+  filter: drop-shadow(0 6px 12px rgba(18, 4, 8, 0.25));
+}
+
+.envelope-wrapper.flap-open .envelope-flap {
+  transform: rotateX(180deg);
+  filter: drop-shadow(0 -6px 12px rgba(18, 4, 8, 0.3));
+}
+
+/* Radiant Golden Light Beaming from Inside Envelope */
+.envelope-inner-glow {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  width: 260px;
+  height: 180px;
+  transform: translate(-50%, -50%) scale(0);
+  border-radius: 50%;
+  background: radial-gradient(circle, #FFFFFF 0%, #F7D278 45%, rgba(247, 210, 120, 0) 80%);
+  filter: blur(25px);
+  opacity: 0;
+  transition: transform 0.85s ease, opacity 0.85s ease;
+  pointer-events: none;
+  z-index: 4;
+}
+
+.envelope-wrapper.flap-open .envelope-inner-glow {
+  transform: translate(-50%, -50%) scale(2.6);
+  opacity: 0.95;
+}
+
+/* Ornate Royal Wax Seal Assembly */
+.wax-seal-wrapper {
+  position: relative;
+  width: 110px;
+  height: 110px;
+  margin: 0 auto 20px;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wax-seal-aura {
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 215, 0, 0.38) 0%, rgba(163, 35, 56, 0.2) 60%, transparent 80%);
+  filter: blur(15px);
+  pointer-events: none;
+  animation: sealAuraPulse 2.5s infinite alternate;
+}
+
+@keyframes sealAuraPulse {
+  0% { transform: scale(0.9); opacity: 0.6; }
+  100% { transform: scale(1.15); opacity: 1; }
+}
+
+.wax-seal {
+  position: relative;
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: transform 0.25s ease;
+}
+
+.wax-seal:hover {
+  transform: scale(1.08);
+}
+
+/* Violent Pre-Fracture Tremble */
+.envelope-wrapper.cracking .wax-seal {
+  animation: sealViolentTremble 0.28s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+@keyframes sealViolentTremble {
+  10%, 90% { transform: translate3d(-3px, 0, 0) rotate(-4deg); }
+  20%, 80% { transform: translate3d(4px, 0, 0) rotate(5deg); }
+  30%, 50%, 70% { transform: translate3d(-6px, 0, 0) rotate(-6deg); }
+  40%, 60% { transform: translate3d(6px, 0, 0) rotate(6deg); }
+}
+
+/* Left & Right Fractured Seal Halves */
+.wax-seal-half {
+  position: absolute;
+  top: 0;
+  width: 48px;
+  height: 96px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: radial-gradient(circle at 48px 48px, #C22A42 0%, #8A1E30 55%, #420C16 100%);
+  box-shadow: inset 0 2px 6px rgba(255, 255, 255, 0.35), 0 8px 25px rgba(50, 8, 16, 0.55);
+  transition: transform 0.65s cubic-bezier(0.15, 0.9, 0.25, 1), opacity 0.55s ease, filter 0.55s ease;
+}
+
+.seal-half-left {
+  left: 0;
+  border-radius: 48px 0 0 48px;
+  border: 3px solid #FFE7A0;
+  border-right: none;
+  align-items: flex-end;
+  padding-right: 4px;
+}
+
+.seal-half-right {
+  right: 0;
+  border-radius: 0 48px 48px 0;
+  border: 3px solid #FFE7A0;
+  border-left: none;
+  align-items: flex-start;
+  padding-left: 4px;
+}
+
+.seal-half-left .seal-heart,
+.seal-half-right .seal-heart {
+  font-size: 1.85rem;
+  line-height: 1;
+}
+
+.seal-half-left .seal-text,
+.seal-half-right .seal-text {
+  font-size: 0.68rem;
+  font-weight: 800;
+  color: #FFE6E9;
+  letter-spacing: 1px;
+}
+
+/* Glowing Golden Fracture Line */
+.seal-crack-glow {
+  position: absolute;
+  top: 0;
+  left: calc(50% - 1.5px);
+  width: 3px;
+  height: 100%;
+  background: #FFFFFF;
+  box-shadow: 0 0 12px #FFECA8, 0 0 25px #FFD700;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s ease;
+}
+
+.envelope-wrapper.cracking .seal-crack-glow {
+  opacity: 1;
+  animation: crackSparksFlash 0.28s ease-in-out;
+}
+
+@keyframes crackSparksFlash {
+  0% { opacity: 0; }
+  50% { opacity: 1; box-shadow: 0 0 25px #FFFFFF, 0 0 45px #FFD700, 0 0 70px #FF9000; }
+  100% { opacity: 1; }
+}
+
+/* Shattered State: 3D Violent Burst */
+.envelope-wrapper.shattered .seal-half-left {
+  transform: translate(-150px, -45px) rotate(-70deg) scale(0.6);
+  opacity: 0;
+  filter: blur(2.5px);
+  pointer-events: none;
+}
+
+.envelope-wrapper.shattered .seal-half-right {
+  transform: translate(150px, 45px) rotate(70deg) scale(0.6);
+  opacity: 0;
+  filter: blur(2.5px);
+  pointer-events: none;
+}
+
+/* High-Velocity Exploding Wax Shards */
+.wax-shards-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+  z-index: 20;
+}
+
+.wax-shard {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  background: radial-gradient(circle, #FFECA8 0%, #C22A42 50%, #6A1422 100%);
+  border: 1px solid #FFE7A0;
+  box-shadow: 0 0 12px rgba(255, 215, 0, 0.8), 0 0 20px rgba(163, 35, 56, 0.6);
+  pointer-events: none;
+  animation: shardFlyOut 0.75s cubic-bezier(0.1, 0.85, 0.2, 1) forwards;
+}
+
+@keyframes shardFlyOut {
+  0% {
+    transform: translate(0, 0) scale(1) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(var(--tx), var(--ty)) scale(0.2) rotate(var(--rot));
+    opacity: 0;
+  }
+}
+
+.envelope-front-text {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-family: var(--font-handwriting);
+  font-size: 1.65rem;
+  color: var(--velvet-burgundy-dark);
+}
+
+.envelope-seal-hint {
+  margin-top: 22px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--velvet-burgundy);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.85);
+  padding: 8px 22px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--gold-leaf);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Opulent Unfolding Letter Page */
+.letter-modal-content {
+  margin-top: 25px;
+  padding: 55px 45px;
+  position: relative;
+  border: 2.5px solid var(--gold-leaf);
+  box-shadow: 0 25px 70px rgba(18, 4, 8, 0.7), 0 0 35px rgba(230, 184, 92, 0.2);
+  transform-style: preserve-3d;
+}
+
+.letter-modal-content:not(.hidden) {
+  animation: letterScrollUnfurl 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.letter-modal-content.hidden {
+  display: none;
+}
+
+@keyframes letterScrollUnfurl {
+  0% { 
+    opacity: 0; 
+    transform: translateY(40px) scale(0.88) rotateX(15deg); 
+    filter: blur(4px); 
+  }
+  60% { 
+    opacity: 1; 
+    transform: translateY(-8px) scale(1.01) rotateX(-2deg); 
+    filter: blur(0); 
+  }
+  100% { 
+    opacity: 1; 
+    transform: translateY(0) scale(1) rotateX(0deg); 
+  }
+}
+
+.close-letter-btn {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--ink-muted);
+  cursor: pointer;
+}
+
+.close-letter-btn:hover {
+  color: var(--velvet-burgundy);
+}
+
+.letter-header {
+  margin-bottom: 25px;
+}
+
+.stamp-box {
+  display: inline-block;
+  border: 1.5px dashed var(--velvet-burgundy);
+  color: var(--velvet-burgundy);
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 5px 14px;
+  border-radius: 4px;
+  margin-bottom: 12px;
+}
+
+.letter-title {
+  font-family: var(--font-serif);
+  font-size: 2.2rem;
+  color: var(--velvet-burgundy-dark);
+}
+
+.letter-date {
+  font-size: 0.9rem;
+  color: var(--ink-muted);
+}
+
+.letter-body {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  font-size: 1.1rem;
+  line-height: 1.95;
+  color: var(--ink-espresso);
+}
+
+.letter-closing {
+  margin-top: 24px;
+  font-family: var(--font-serif);
+}
+
+.signature-name {
+  font-family: var(--font-handwriting);
+  font-size: 2.2rem;
+  color: var(--velvet-burgundy);
+}
+
+.letter-footer-stamps {
+  margin-top: 38px;
+  padding-top: 22px;
+  border-top: 1.5px solid var(--parchment-border);
+  display: flex;
+  justify-content: space-around;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--ink-muted);
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+/* =========================================================================
+   11. LIGHTBOX MODAL
+   ========================================================================= */
+.lightbox-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.lightbox-modal.hidden {
+  display: none;
+}
+
+.lightbox-backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(18, 4, 8, 0.88);
+  backdrop-filter: blur(10px);
+}
+
+.lightbox-dialog {
+  position: relative;
+  z-index: 10;
+  max-width: 800px;
+  width: 100%;
+  padding: 32px;
+  max-height: 90vh;
+  overflow-y: auto;
+  border: 2px solid var(--gold-leaf);
+}
+
+.lightbox-close-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--ink-muted);
+  cursor: pointer;
+}
+
+.lightbox-close-btn:hover {
+  color: var(--velvet-burgundy);
+}
+
+.lightbox-media-container, .lightbox-img-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.lightbox-media-container img, .lightbox-media-container video, .lightbox-img-wrapper img {
+  max-width: 100%;
+  max-height: 540px;
+  object-fit: contain;
+  border-radius: 6px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+}
+
+.lightbox-info {
+  margin-top: 18px;
+  text-align: center;
+}
+
+.lightbox-title {
+  font-family: var(--font-serif);
+  font-size: 1.6rem;
+  color: var(--velvet-burgundy-dark);
+}
+
+.lightbox-date {
+  font-size: 0.88rem;
+  color: var(--ink-muted);
+  margin-top: 4px;
+}
+
+.lightbox-desc {
+  font-family: var(--font-handwriting);
+  font-size: 1.45rem;
+  color: var(--velvet-burgundy);
+  margin-top: 8px;
+}
+
+/* =========================================================================
+   12. BOOK FOOTER
+   ========================================================================= */
+.book-footer {
+  background: #1C070E;
+  color: #D9C5B2;
+  border-top: 2px solid var(--gold-leaf);
+  padding: 55px 24px;
+  text-align: center;
+  position: relative;
+  z-index: 10;
+}
+
+.footer-content {
+  max-width: 650px;
+  margin: 0 auto;
+}
+
+.footer-flourish {
+  font-size: 1.8rem;
+  color: var(--gold-bright);
+  margin-bottom: 14px;
+}
+
+.footer-sub {
+  font-family: var(--font-handwriting);
+  font-size: 1.5rem;
+  color: var(--gold-bright);
+  margin-top: 8px;
+}
+
+/* =========================================================================
+   13. SECTION 3: 170 HANDWRITTEN REASONS (3D ROLLED SCROLL & CONTINUOUS STRIP)
+   ========================================================================= */
+
+/* -------------------------------------------------------------------------
+   STAGE 1: 3D ROLLED-UP PARCHMENT SCROLL (INITIAL STATE)
+   ------------------------------------------------------------------------- */
+.scroll-rolled-stage {
+  max-width: 700px;
+  margin: 30px auto 40px;
+  padding: 40px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  perspective: 1000px;
+}
+
+.scroll-rolled-stage.unrolling-out {
+  opacity: 0;
+  transform: scale(0.85) translateY(-20px);
+  pointer-events: none;
+}
+
+.scroll-rolled-stage.hidden-rolled {
+  display: none;
+}
+
+.rolled-scroll-pedestal {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.pedestal-shadow {
+  position: absolute;
+  bottom: 45px;
+  width: 82%;
+  height: 28px;
+  background: radial-gradient(ellipse at center, rgba(30, 10, 5, 0.45) 0%, rgba(30, 10, 5, 0.15) 50%, transparent 75%);
+  filter: blur(8px);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* 3D Rolled Paper Scroll Cylinder */
+.vintage-rolled-scroll-3d {
+  position: relative;
+  width: min(520px, 92vw);
+  height: 94px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 2;
+  transition: transform 0.35s cubic-bezier(0.2, 0.9, 0.3, 1), filter 0.35s ease;
+  filter: drop-shadow(0 12px 28px rgba(35, 15, 8, 0.35));
+}
+
+.vintage-rolled-scroll-3d:hover {
+  transform: translateY(-5px) scale(1.02);
+  filter: drop-shadow(0 18px 36px rgba(35, 15, 8, 0.45));
+}
+
+/* Spiral Curl Ends (Left and Right) */
+.scroll-curl-end {
+  width: 32px;
+  height: 94px;
+  border-radius: 50% 12% 12% 50% / 50%;
+  background: radial-gradient(ellipse at 40% 50%, #FAF0D8 0%, #E6CAA0 45%, #B38E5A 75%, #7A5528 100%);
+  border: 1.5px solid #D6B37E;
+  box-shadow: inset -2px 0 6px rgba(0,0,0,0.35), 0 3px 8px rgba(0,0,0,0.25);
+  position: relative;
+  flex-shrink: 0;
+  overflow: hidden;
+  z-index: 4;
+}
+
+.scroll-curl-end.curl-right {
+  border-radius: 12% 50% 50% 12% / 50%;
+  background: radial-gradient(ellipse at 60% 50%, #FAF0D8 0%, #E6CAA0 45%, #B38E5A 75%, #7A5528 100%);
+  box-shadow: inset 2px 0 6px rgba(0,0,0,0.35), 0 3px 8px rgba(0,0,0,0.25);
+}
+
+/* Concentric spiral rings on scroll ends */
+.curl-ring-1, .curl-ring-2, .curl-ring-3 {
+  position: absolute;
+  border-radius: 50%;
+  border: 1.5px solid rgba(138, 92, 45, 0.45);
+}
+
+.curl-ring-1 {
+  width: 78%;
+  height: 78%;
+  top: 11%;
+  left: 11%;
+}
+
+.curl-ring-2 {
+  width: 52%;
+  height: 52%;
+  top: 24%;
+  left: 24%;
+  border-color: rgba(138, 92, 45, 0.6);
+}
+
+.curl-ring-3 {
+  width: 26%;
+  height: 26%;
+  top: 37%;
+  left: 37%;
+  background: #5A3914;
+  border-color: rgba(60, 30, 10, 0.8);
+}
+
+/* Central Parchment Rolled Cylinder Body */
+.scroll-cylinder-body {
+  flex-grow: 1;
+  height: 88px;
+  background: linear-gradient(180deg, 
+    #FFFDF7 0%, 
+    #FAF2DE 15%, 
+    #F3E3BF 35%, 
+    #DECA9E 55%, 
+    #C4A977 75%, 
+    #F6EEDB 90%, 
+    #B5905D 100%
+  );
+  border-top: 1.5px solid #FFEBB8;
+  border-bottom: 2px solid #8A6535;
+  box-shadow: 
+    inset 0 10px 14px -6px rgba(255, 255, 255, 0.9),
+    inset 0 -12px 18px -6px rgba(60, 30, 10, 0.45);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+}
+
+/* Rolled paper layer seams overlapping */
+.scroll-paper-layer {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(138, 92, 45, 0.35) 15%, rgba(138, 92, 45, 0.65) 50%, rgba(138, 92, 45, 0.35) 85%, transparent 100%);
+  box-shadow: 0 1px 1px rgba(255, 255, 255, 0.65);
+}
+
+.scroll-paper-layer.layer-1 { top: 22%; }
+.scroll-paper-layer.layer-2 { top: 58%; }
+.scroll-paper-layer.layer-3 { top: 82%; }
+
+/* Silk Velvet Ribbon Wrap */
+.scroll-cylinder-ribbon {
+  position: absolute;
+  width: 68px;
+  height: 94px;
+  background: linear-gradient(90deg, 
+    #580D1A 0%, 
+    #8A1E30 25%, 
+    #B8324B 50%, 
+    #8A1E30 75%, 
+    #580D1A 100%
+  );
+  box-shadow: 
+    0 4px 12px rgba(0,0,0,0.4),
+    inset 0 2px 4px rgba(255,255,255,0.25),
+    inset 0 -2px 4px rgba(0,0,0,0.35);
+  border-radius: 3px;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 3px 0;
+  transition: all 0.5s ease;
+}
+
+.ribbon-gold-trim {
+  height: 2.5px;
+  width: 100%;
+  background: linear-gradient(90deg, #C8963E 0%, #FFDF85 50%, #C8963E 100%);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.3);
+}
+
+/* Hanging Wax Seal Button */
+.scroll-wax-seal-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 6;
+}
+
+.seal-hanging-twine {
+  position: absolute;
+  top: -24px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 3px;
+  height: 24px;
+  background: repeating-linear-gradient(180deg, #D4AF37 0px, #D4AF37 4px, #AA7C11 4px, #AA7C11 8px);
+  box-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+}
+
+.scroll-wax-seal-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  position: relative;
+  width: 82px;
+  height: 82px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #C22E46 0%, #8A1E30 55%, #4A0B17 100%);
+  box-shadow: 
+    0 8px 22px rgba(50, 10, 20, 0.55),
+    inset 0 2px 6px rgba(255, 255, 255, 0.4),
+    inset 0 -3px 8px rgba(0, 0, 0, 0.6);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.25s cubic-bezier(0.2, 0.9, 0.3, 1), box-shadow 0.25s ease;
+  user-select: none;
+}
+
+.scroll-wax-seal-btn:hover {
+  transform: scale(1.08);
+  box-shadow: 
+    0 12px 28px rgba(50, 10, 20, 0.7),
+    0 0 20px rgba(230, 50, 80, 0.35);
+}
+
+.seal-outer-rim {
+  position: absolute;
+  inset: 4px;
+  border-radius: 50%;
+  border: 1.5px dashed rgba(255, 220, 150, 0.45);
+}
+
+.seal-inner-stamp {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #FFFDF9;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.6);
+  z-index: 2;
+}
+
+.seal-stamp-icon {
+  font-size: 1.4rem;
+  line-height: 1;
+}
+
+.seal-stamp-title {
+  font-family: var(--font-serif);
+  font-weight: 800;
+  font-size: 0.85rem;
+  letter-spacing: 2px;
+  color: #FFEBB8;
+  margin-top: 2px;
+}
+
+.seal-stamp-sub {
+  font-family: var(--font-serif);
+  font-size: 0.62rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* Guidance Pill */
+.unroll-guidance-pill {
+  margin-top: 28px;
+  background: rgba(138, 30, 48, 0.08);
+  border: 1.5px solid rgba(200, 150, 62, 0.4);
+  padding: 8px 20px;
+  border-radius: 25px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--velvet-burgundy);
+  font-family: var(--font-serif);
+  font-size: 0.95rem;
+  font-weight: 600;
+  animation: pulseGently 2.5s infinite ease-in-out;
+  box-shadow: 0 4px 12px rgba(90, 40, 20, 0.08);
+}
+
+@keyframes pulseGently {
+  0%, 100% { transform: translateY(0); opacity: 0.9; }
+  50% { transform: translateY(-3px); opacity: 1; }
+}
+
+/* -------------------------------------------------------------------------
+   STAGE 2: THE UNROLLED CONTINUOUS PAPER STRIP
+   ------------------------------------------------------------------------- */
+.scroll-unrolled-stage {
+  transition: all 0.6s cubic-bezier(0.2, 0.9, 0.3, 1);
+}
+
+.scroll-unrolled-stage.hidden-scroll {
+  display: none;
+  opacity: 0;
+}
+
+.scroll-unrolled-stage.unfurling {
+  display: block;
+}
+
+.scroll-unrolled-stage.unfurling .scroll-control-panel {
+  animation: scrollToolbarSlideDown 0.6s cubic-bezier(0.2, 0.9, 0.3, 1) forwards;
+}
+
+@keyframes scrollToolbarSlideDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.scroll-unrolled-stage.unfurling .continuous-paper-roll-wrapper {
+  animation: paperUnrollGraceful 1.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  transform-origin: top center;
+  position: relative;
+}
+
+@keyframes paperUnrollGraceful {
+  0% {
+    opacity: 0.3;
+    clip-path: inset(0 0 94% 0 round 0 0 16px 16px);
+    transform: perspective(900px) rotateX(-20deg) translateY(-25px);
+    filter: drop-shadow(0 4px 10px rgba(25, 10, 5, 0.2));
+  }
+  50% {
+    opacity: 1;
+    clip-path: inset(0 0 35% 0 round 0 0 10px 10px);
+    transform: perspective(900px) rotateX(6deg) translateY(-6px);
+  }
+  80% {
+    clip-path: inset(0 0 4% 0 round 0 0 4px 4px);
+    transform: perspective(900px) rotateX(-2deg) translateY(1px);
+  }
+  100% {
+    opacity: 1;
+    clip-path: inset(0 0 0% 0 round 0 0 0 0);
+    transform: perspective(900px) rotateX(0deg) translateY(0);
+    filter: drop-shadow(0 16px 36px rgba(25, 10, 5, 0.32));
+  }
+}
+
+.scroll-unrolled-stage.unfurling .top-spool .spool-wooden-cylinder {
+  animation: topSpoolRoll 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+@keyframes topSpoolRoll {
+  0% { transform: rotate(-360deg); }
+  100% { transform: rotate(0deg); }
+}
+
+.scroll-unrolled-stage.unfurling .bottom-spool .spool-wooden-cylinder {
+  animation: bottomSpoolRoll 1.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes bottomSpoolRoll {
+  0% {
+    transform: rotate(720deg) scaleY(1.15);
+    filter: brightness(1.25);
+  }
+  100% {
+    transform: rotate(0deg) scaleY(1);
+    filter: brightness(1);
+  }
+}
+
+/* Toolbar Control Panel */
+.scroll-control-panel {
+  max-width: 580px;
+  margin: 0 auto 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  background: linear-gradient(135deg, rgba(254, 250, 240, 0.96), rgba(246, 235, 214, 0.96));
+  border: 1.5px solid var(--gold-foil);
+  border-radius: 12px;
+  padding: 18px 20px;
+  box-shadow: 0 8px 22px rgba(44, 24, 16, 0.12);
+}
+
+.scroll-search-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.scroll-search-box .search-icon {
+  position: absolute;
+  left: 14px;
+  color: var(--gold-leaf);
+  font-size: 1rem;
+  pointer-events: none;
+}
+
+#scroll-search-input {
+  width: 100%;
+  padding: 12px 42px 12px 42px;
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  color: var(--ink-espresso);
+  background: #FFFDF9;
+  border: 1.5px solid rgba(200, 150, 62, 0.4);
+  border-radius: 25px;
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.04);
+  transition: all 0.3s ease;
+}
+
+#scroll-search-input:focus {
+  outline: none;
+  border-color: var(--velvet-burgundy);
+  box-shadow: 0 0 0 3px rgba(138, 30, 48, 0.15);
+}
+
+.clear-search-btn {
+  position: absolute;
+  right: 12px;
+  background: rgba(138, 30, 48, 0.1);
+  color: var(--velvet-burgundy);
+  border: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  font-size: 0.8rem;
+  cursor: pointer;
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+
+.scroll-actions-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.scroll-stats-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(138, 30, 48, 0.08);
+  border: 1px solid rgba(138, 30, 48, 0.2);
+  color: var(--velvet-burgundy-dark);
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 0.92rem;
+  padding: 6px 14px;
+  border-radius: 18px;
+}
+
+.scroll-btn-cluster {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.scroll-toggle-all-btn {
+  background: linear-gradient(135deg, var(--velvet-burgundy), #540D1D);
+  color: #FFFDF9;
+  border: 1.5px solid var(--gold-leaf);
+  padding: 8px 18px;
+  border-radius: 20px;
+  font-family: var(--font-serif);
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0 4px 12px rgba(78, 12, 26, 0.3);
+  transition: all 0.25s ease;
+}
+
+.scroll-toggle-all-btn:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(135deg, #9C2237, #6A1422);
+}
+
+.scroll-jump-btn {
+  background: rgba(200, 150, 62, 0.18);
+  color: var(--velvet-burgundy);
+  border: 1.5px solid rgba(200, 150, 62, 0.55);
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-family: var(--font-serif);
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0 3px 8px rgba(70, 30, 15, 0.1);
+  transition: all 0.25s ease;
+}
+
+.scroll-jump-btn:hover {
+  background: rgba(200, 150, 62, 0.35);
+  color: var(--velvet-burgundy-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 12px rgba(70, 30, 15, 0.2);
+}
+
+.scroll-rollup-btn {
+  background: rgba(200, 150, 62, 0.15);
+  color: var(--velvet-burgundy);
+  border: 1.5px solid rgba(200, 150, 62, 0.5);
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-family: var(--font-serif);
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.25s ease;
+}
+
+.scroll-rollup-btn:hover {
+  background: rgba(200, 150, 62, 0.3);
+  transform: translateY(-2px);
+}
+
+/* -------------------------------------------------------------------------
+   AUTHENTIC NARROW CONTINUOUS PAPER ROLL (LOOKS LIKE A REAL PAPER STRIP)
+   ------------------------------------------------------------------------- */
+.continuous-paper-roll-wrapper {
+  /* Narrow strip proportion, matching her actual handwritten paper roll */
+  width: min(500px, 94vw);
+  margin: 0 auto;
+  position: relative;
+  filter: drop-shadow(0 16px 36px rgba(25, 10, 5, 0.32));
+}
+
+/* Turned Wooden Dowel Spools */
+.scroll-spool-assembly {
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  z-index: 5;
+}
+
+.spool-finial {
+  width: 26px;
+  height: 32px;
+  background: radial-gradient(circle at 35% 35%, #F4D06F 0%, #C8963E 55%, #6B4510 100%);
+  border: 1px solid #FFEAA8;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.5);
+  flex-shrink: 0;
+}
+
+.spool-finial.finial-left {
+  border-radius: 12px 4px 4px 12px;
+}
+
+.spool-finial.finial-right {
+  border-radius: 4px 12px 12px 4px;
+}
+
+.spool-wooden-cylinder {
+  flex-grow: 1;
+  height: 24px;
+  background: linear-gradient(180deg, #68341A 0%, #421D0D 45%, #2B1207 100%);
+  border-radius: 4px;
+  box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.25), 0 4px 10px rgba(0,0,0,0.45);
+  position: relative;
+  overflow: hidden;
+}
+
+.cylinder-paper-roll-shading {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 6%;
+  right: 6%;
+  background: linear-gradient(180deg, rgba(250, 240, 220, 0.3) 0%, transparent 60%, rgba(0, 0, 0, 0.4) 100%);
+}
+
+/* Realistic Torn Deckled Paper Edges */
+.paper-strip-torn-edge {
+  height: 14px;
+  background-color: #FAF2E3;
+  position: relative;
+  z-index: 4;
+}
+
+.paper-strip-torn-edge.edge-top {
+  clip-path: polygon(
+    0% 100%, 2.5% 0%, 5% 95%, 7.5% 5%, 10% 100%, 12.5% 0%, 15% 90%, 17.5% 8%, 20% 100%,
+    22.5% 5%, 25% 95%, 27.5% 0%, 30% 100%, 32.5% 8%, 35% 95%, 37.5% 0%, 40% 100%,
+    42.5% 5%, 45% 90%, 47.5% 0%, 50% 100%, 52.5% 8%, 55% 95%, 57.5% 0%, 60% 100%,
+    62.5% 5%, 65% 90%, 67.5% 0%, 70% 100%, 72.5% 8%, 75% 95%, 77.5% 0%, 80% 100%,
+    82.5% 5%, 85% 90%, 87.5% 0%, 90% 100%, 92.5% 8%, 95% 95%, 97.5% 0%, 100% 100%
+  );
+  margin-top: -6px;
+  margin-bottom: -1px;
+}
+
+.paper-strip-torn-edge.edge-bottom {
+  clip-path: polygon(
+    0% 0%, 2.5% 100%, 5% 5%, 7.5% 95%, 10% 0%, 12.5% 100%, 15% 10%, 17.5% 92%, 20% 0%,
+    22.5% 95%, 25% 5%, 27.5% 100%, 30% 0%, 32.5% 92%, 35% 5%, 37.5% 100%, 40% 0%,
+    42.5% 95%, 45% 10%, 47.5% 100%, 50% 0%, 52.5% 92%, 55% 5%, 57.5% 100%, 60% 0%,
+    62.5% 95%, 65% 10%, 67.5% 100%, 70% 0%, 72.5% 92%, 75% 5%, 77.5% 100%, 80% 0%,
+    82.5% 95%, 85% 10%, 87.5% 100%, 90% 0%, 92.5% 92%, 95% 5%, 97.5% 100%, 100% 0%
+  );
+  margin-top: -1px;
+  margin-bottom: -6px;
+}
+
+/* The Authentic Handwritten Paper Strip Body */
+.authentic-paper-strip-body {
+  background: #FAF2E3;
+  /* Lined notepad rule lines & realistic paper shading */
+  background-image: 
+    linear-gradient(90deg, rgba(160, 120, 70, 0.16) 0%, transparent 5%, transparent 95%, rgba(160, 120, 70, 0.16) 100%),
+    repeating-linear-gradient(180deg, transparent, transparent 39px, rgba(180, 140, 90, 0.08) 39px, rgba(180, 140, 90, 0.08) 40px);
+  padding: 24px 18px;
+  border-left: 1.5px dashed rgba(160, 120, 70, 0.35);
+  border-right: 1.5px dashed rgba(160, 120, 70, 0.35);
+  box-shadow: 
+    inset 10px 0 16px -8px rgba(70, 40, 15, 0.18),
+    inset -10px 0 16px -8px rgba(70, 40, 15, 0.18);
+  position: relative;
+}
+
+/* Realistic Accordion Fold Crease (Matching her real folded strip) */
+.paper-crease-divider {
+  position: relative;
+  height: 24px;
+  margin: 18px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.paper-crease-divider::before {
+  content: '';
+  position: absolute;
+  left: 4%;
+  right: 4%;
+  height: 1px;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(140, 90, 45, 0.5) 20%, 
+    rgba(140, 90, 45, 0.8) 50%, 
+    rgba(140, 90, 45, 0.5) 80%, 
+    transparent 100%
+  );
+  box-shadow: 0 1.5px 2px rgba(255, 255, 255, 0.85);
+}
+
+.paper-crease-tag {
+  background: #FAF2E3;
+  padding: 2px 12px;
+  font-family: var(--font-serif);
+  font-size: 0.72rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(138, 30, 48, 0.75);
+  border: 1px dashed rgba(180, 130, 60, 0.4);
+  border-radius: 10px;
+  position: relative;
+  z-index: 2;
+}
+
+/* Individual Reason Row (Ink line on paper) */
+.scroll-item-row {
+  border-radius: 8px;
+  margin-bottom: 10px;
+  background: rgba(255, 255, 255, 0.4);
+  border: 1px solid rgba(200, 160, 100, 0.25);
+  transition: all 0.22s ease;
+  overflow: hidden;
+}
+
+.scroll-item-row:hover {
+  background: rgba(255, 255, 255, 0.85);
+  border-color: var(--gold-leaf);
+  box-shadow: 0 3px 10px rgba(70, 35, 10, 0.08);
+  transform: translateX(3px);
+}
+
+.scroll-item-row.is-revealed {
+  background: #FFFDF9;
+  border-color: rgba(138, 30, 48, 0.4);
+  box-shadow: 0 5px 15px rgba(106, 20, 34, 0.1);
+}
+
+.scroll-item-clickable {
+  padding: 12px 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  user-select: none;
+}
+
+.scroll-item-left {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  flex-grow: 1;
+}
+
+/* Number pill on the strip */
+.scroll-num-badge {
+  flex-shrink: 0;
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--velvet-burgundy);
+  min-width: 28px;
+}
+
+.scroll-item-row.is-revealed .scroll-num-badge {
+  color: #B31B32;
+  font-weight: 800;
+}
+
+/* Her exact handwritten cursive text */
+.scroll-her-text {
+  font-family: var(--font-handwriting);
+  font-size: 1.55rem;
+  color: #160B06;
+  line-height: 1.35;
+  letter-spacing: 0.2px;
+  word-break: break-word;
+}
+
+.scroll-item-indicator {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--gold-leaf);
+  font-size: 0.82rem;
+  flex-shrink: 0;
+}
+
+.scroll-indicator-icon {
+  font-size: 0.82rem;
+  transition: transform 0.3s ease;
+}
+
+.scroll-item-row.is-revealed .scroll-indicator-icon {
+  transform: rotate(180deg);
+  color: var(--velvet-burgundy);
+}
+
+.scroll-click-hint {
+  font-family: var(--font-serif);
+  font-size: 0.72rem;
+  color: var(--ink-muted);
+  opacity: 0.75;
+}
+
+/* Reply Envelope Card (Revealed on Click) */
+.scroll-reply-card {
+  display: none;
+  border-top: 1px dashed rgba(180, 130, 60, 0.4);
+  background: linear-gradient(135deg, rgba(255, 253, 248, 0.98), rgba(248, 238, 218, 0.98));
+  padding: 14px 16px 16px;
+  position: relative;
+  animation: replySlideDown 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.scroll-item-row.is-revealed .scroll-reply-card {
+  display: block;
+}
+
+.reply-ribbon-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(138, 30, 48, 0.1);
+  border: 1px solid rgba(138, 30, 48, 0.22);
+  color: var(--velvet-burgundy);
+  font-family: var(--font-serif);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 2px 9px;
+  border-radius: 10px;
+  margin-bottom: 6px;
+}
+
+.reply-content-box {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.reply-message-text {
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  color: var(--ink-espresso);
+  line-height: 1.65;
+  flex-grow: 1;
+}
+
+.reply-reaction-emoji {
+  font-size: 1.8rem;
+  flex-shrink: 0;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.12));
+  transform: translateY(-2px);
+}
+
+/* Scroll Bottom Footer Tag */
+.scroll-footer-message {
+  text-align: center;
+  margin-top: 14px;
+  font-family: var(--font-serif);
+  font-size: 0.88rem;
+  letter-spacing: 1.5px;
+  color: var(--gold-bright);
+}
+
+.scroll-bottom-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 16px;
+  padding-bottom: 8px;
+}
+
+.scroll-bottom-jump-btn,
+.scroll-bottom-rollup-btn {
+  background: rgba(255, 253, 249, 0.94);
+  color: var(--velvet-burgundy);
+  border: 1.5px solid var(--gold-leaf);
+  padding: 8px 18px;
+  border-radius: 20px;
+  font-family: var(--font-serif);
+  font-size: 0.86rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0 4px 12px rgba(50, 20, 10, 0.12);
+  transition: all 0.22s ease;
+}
+
+.scroll-bottom-jump-btn:hover,
+.scroll-bottom-rollup-btn:hover {
+  background: #FFFDF9;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(50, 20, 10, 0.2);
+}
+
+/* Empty Search Results Message */
+.scroll-empty-search {
+  text-align: center;
+  padding: 35px 15px;
+  font-family: var(--font-serif);
+  color: var(--ink-muted);
+}
+
+.scroll-empty-search i {
+  font-size: 2rem;
+  color: var(--gold-leaf);
+  margin-bottom: 10px;
+  display: block;
+}
+
+@media (max-width: 600px) {
+  .continuous-paper-roll-wrapper {
+    width: 95vw;
+  }
+  .scroll-her-text {
+    font-size: 1.35rem;
+  }
+  .scroll-click-hint {
+    display: none;
+  }
+  .scroll-control-panel {
+    padding: 12px;
+  }
+  .scroll-actions-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .scroll-btn-cluster {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .scroll-bottom-actions {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 0 20px;
+  }
+}
+
+/* =========================================================================
+   PILLAR 1: MEDIEVAL FAIRYTALE ILLUMINATED MANUSCRIPT & DECKLED EDGES
+   ========================================================================= */
+
+/* Hand-Torn Deckled Paper Edges with Gilded Outer Borders */
+.folio-page-left {
+  box-shadow: inset 8px 0 16px rgba(18, 4, 8, 0.08), inset 0 0 2px rgba(200, 150, 62, 0.4);
+  border-left: 2px solid rgba(212, 175, 55, 0.45);
+}
+
+.folio-page-right {
+  box-shadow: inset -8px 0 16px rgba(18, 4, 8, 0.08), inset 0 0 2px rgba(200, 150, 62, 0.4);
+  border-right: 2px solid rgba(212, 175, 55, 0.45);
+}
+
+.storybook-folio {
+  box-shadow: 
+    0 25px 70px rgba(18, 4, 8, 0.75), 
+    inset 0 0 0 2px rgba(255, 230, 150, 0.5), 
+    inset 0 0 20px rgba(190, 140, 50, 0.25), 
+    0 0 35px rgba(200, 150, 62, 0.3) !important;
+}
+
+/* Washi Tape Floral Patterns */
+.polaroid-washi-tape {
+  background: repeating-linear-gradient(
+    45deg,
+    rgba(247, 210, 120, 0.75),
+    rgba(247, 210, 120, 0.75) 10px,
+    rgba(235, 185, 90, 0.75) 10px,
+    rgba(235, 185, 90, 0.75) 20px
+  ) !important;
+  border-left: 2px dashed rgba(200, 150, 62, 0.6);
+  border-right: 2px dashed rgba(200, 150, 62, 0.6);
+  border-top: none;
+  border-bottom: none;
+  transform: translateX(-50%) rotate(-1deg);
+}
+
+/* =========================================================================
+   PILLAR 2: DREAMY FLOATING ROSE PETALS & CELESTIAL STARDUST
+   ========================================================================= */
+.celestial-petals-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 5;
+}
+
+/* Warm 35mm Analog Film Grain & Golden-Hour Sepia Vignette */
+.polaroid-photo-box::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, transparent 65%, rgba(45, 15, 20, 0.28) 100%);
+  pointer-events: none;
+  box-shadow: inset 0 0 15px rgba(80, 40, 20, 0.25);
+}
+
+.polaroid-photo-box img {
+  filter: sepia(0.08) contrast(1.04) brightness(1.02);
+  transition: filter 0.3s ease;
+}
+
+.folio-polaroid-frame:hover .polaroid-photo-box img {
+  filter: sepia(0) contrast(1.06) brightness(1.04);
+}
+
+/* =========================================================================
+   PILLAR 3: PHYSICAL 3D WAX SEAL CRACKING & ENVELOPE OPENING
+   ========================================================================= */
+.wax-seal-wrapper {
+  position: absolute;
+  top: 48%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 25;
+  cursor: pointer;
+}
+
+.wax-seal {
+  position: relative;
+  width: 86px;
+  height: 86px;
+  border-radius: 50%;
+  display: flex;
+  box-shadow: 
+    0 8px 24px rgba(78, 12, 26, 0.65),
+    0 0 20px rgba(230, 184, 92, 0.4),
+    inset 0 3px 6px rgba(255, 255, 255, 0.45),
+    inset 0 -4px 8px rgba(35, 6, 12, 0.6);
+  transition: transform 0.25s ease;
+}
+
+.wax-seal:hover {
+  transform: scale(1.08);
+}
+
+.seal-outer-rim {
+  position: absolute;
+  inset: 4px;
+  border: 1.5px dashed rgba(255, 230, 150, 0.55);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.wax-seal-half {
+  flex: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  background: radial-gradient(circle at 40% 35%, #B3243B 0%, #751525 65%, #420814 100%);
+  transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.25, 1), opacity 0.4s ease;
+}
+
+.seal-half-left {
+  border-radius: 86px 0 0 86px;
+  border-right: 1px solid rgba(255, 215, 120, 0.3);
+}
+
+.seal-half-right {
+  border-radius: 0 86px 86px 0;
+  border-left: 1px solid rgba(255, 215, 120, 0.3);
+}
+
+.seal-monogram {
+  font-family: var(--font-serif);
+  font-size: 1.55rem;
+  font-weight: 800;
+  color: #FFE699;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+.seal-crest {
+  font-size: 0.85rem;
+  color: #F7D070;
+  opacity: 0.85;
+}
+
+/* Seal Fracture Tremble Animation */
+.envelope-wrapper.cracking .wax-seal {
+  animation: sealVibrateCrack 0.28s infinite ease-in-out;
+}
+
+@keyframes sealVibrateCrack {
+  0%, 100% { transform: scale(1.06) rotate(0deg); }
+  25% { transform: scale(1.08) rotate(-3deg) translate(-2px, 1px); }
+  75% { transform: scale(1.08) rotate(3deg) translate(2px, -1px); }
+}
+
+.envelope-wrapper.shattered .seal-half-left {
+  transform: translateX(-40px) rotate(-24deg) scale(0.8);
+  opacity: 0;
+}
+
+.envelope-wrapper.shattered .seal-half-right {
+  transform: translateX(40px) rotate(24deg) scale(0.8);
+  opacity: 0;
+}
+
+.envelope-wrapper.flap-open .envelope-flap {
+  transform: rotateX(180deg);
+}
+
+/* =========================================================================
+   PILLAR 4: CELESTIAL STAR MAP CARD (JANUARY 30, 2026 • 8:50 PM)
+   ========================================================================= */
+.celestial-starmap-card {
+  margin: 36px 0 32px;
+  background: radial-gradient(ellipse at center top, rgba(25, 18, 52, 0.88) 0%, rgba(10, 6, 24, 0.96) 100%);
+  border: 2px solid var(--gold-leaf);
+  border-radius: 18px;
+  padding: 26px 28px;
+  box-shadow: 
+    0 18px 50px rgba(10, 4, 18, 0.6),
+    inset 0 0 40px rgba(180, 140, 255, 0.08),
+    0 0 25px rgba(200, 150, 62, 0.25);
+  position: relative;
+  overflow: hidden;
+}
+
+.starmap-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  border-bottom: 1px solid rgba(200, 150, 62, 0.35);
+  padding-bottom: 16px;
+  margin-bottom: 18px;
+}
+
+.starmap-badge-group {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.starmap-icon {
+  font-size: 2.2rem;
+  filter: drop-shadow(0 0 10px rgba(247, 215, 136, 0.6));
+  animation: starPulseGlow 3s infinite ease-in-out;
+}
+
+.starmap-tag {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--gold-bright);
+}
+
+.starmap-title {
+  margin: 2px 0 0;
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  color: #FFFDF8;
+}
+
+.starmap-legend {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.legend-chip {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 0.76rem;
+  font-weight: 600;
+  padding: 5px 12px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #E8DCC4;
+}
+
+.legend-star {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.star-zenith {
+  background: #FFE27A;
+  box-shadow: 0 0 10px #FFD700, 0 0 20px #FF8C00;
+}
+
+.star-major {
+  background: #AEE2FF;
+  box-shadow: 0 0 8px #70C2FF;
+}
+
+.starmap-dome-container {
+  position: relative;
+  width: 100%;
+  height: 380px;
+  border-radius: 14px;
+  overflow: hidden;
+  background: radial-gradient(circle at 50% 50%, #100C24 0%, #080514 80%, #03020A 100%);
+  border: 1.5px solid rgba(200, 150, 62, 0.4);
+  box-shadow: inset 0 0 60px rgba(0, 0, 0, 0.85);
+}
+
+.starmap-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+  cursor: crosshair;
+}
+
+.starmap-dome-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.starmap-compass {
+  position: absolute;
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: rgba(200, 150, 62, 0.65);
+  letter-spacing: 1px;
+}
+
+.compass-n { top: 8px; left: 50%; transform: translateX(-50%); }
+.compass-s { bottom: 8px; left: 50%; transform: translateX(-50%); }
+.compass-e { right: 12px; top: 50%; transform: translateY(-50%); }
+.compass-w { left: 12px; top: 50%; transform: translateY(-50%); }
+
+.starmap-tooltip {
+  position: absolute;
+  background: rgba(18, 10, 32, 0.95);
+  border: 1.5px solid var(--gold-leaf);
+  border-radius: 10px;
+  padding: 10px 14px;
+  color: #FFFDF8;
+  font-size: 0.82rem;
+  line-height: 1.45;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.7), 0 0 15px rgba(247, 215, 136, 0.35);
+  pointer-events: none;
+  z-index: 10;
+  max-width: 250px;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.starmap-tooltip.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.starmap-caption {
+  margin-top: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 0.82rem;
+  color: #E6D2AA;
+  font-style: italic;
+  text-align: center;
+}
+

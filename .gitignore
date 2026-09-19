@@ -1,0 +1,36 @@
+# Temporary and scratch files
+*.py
+scratch/
+backup_pre_presentation/
+
+# Ignore raw camera dump files, keeping only curated web assets
+images/gallery/*
+!images/gallery/PXL_20260222_122155535.MP.jpg
+!images/gallery/PXL_20260221_111531294.MP.jpg
+!images/gallery/PXL_20260331_111056129.MP.jpg
+!images/gallery/IMG20260219085019.jpg
+!images/gallery/PXL_20260222_072348952.MP.jpg
+!images/gallery/IMG_2784.jpg
+!images/gallery/PXL_20260214_093053368.PORTRAIT.jpg
+!images/gallery/IMG_2788.jpg
+!images/gallery/PXL_20260202_145455961.jpg
+!images/gallery/IMG_2865.jpg
+!images/gallery/PXL_20260320_112021229.MP.jpg
+!images/gallery/PXL_20260314_110755956.MP.jpg
+!images/gallery/PXL_20260220_124150193.MP.jpg
+!images/gallery/PXL_20260220_130652804.MP.jpg
+!images/gallery/PXL_20260214_093015431.PORTRAIT.jpg
+!images/gallery/PXL_20260331_111108530.LS.mp4
+!images/gallery/PXL_20260209_124713037.jpg
+!images/gallery/PXL_20260201_142802819.MP.jpg
+!images/gallery/PXL_20260508_090848747.MP.jpg
+!images/gallery/PXL_20260219_084748556.mp4
+!images/gallery/PXL_20260417_113152486.MP.jpg
+
+images/keepsakes/*
+!images/keepsakes/keepsake_01.jpg
+!images/keepsakes/keepsake_02.jpg
+!images/keepsakes/keepsake_03.jpg
+!images/keepsakes/keepsake_04.jpg
+!images/keepsakes/keepsake_05.jpg
+!images/keepsakes/keepsake_06.jpg
