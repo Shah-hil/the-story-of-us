@@ -5801,3 +5801,751 @@ body.book-theme::before {
   text-align: center;
 }
 
+/* =========================================================================
+   COMPREHENSIVE MOBILE PRESENTATION & RESPONSIVENESS SUITE (PHONES & TABLETS)
+   ========================================================================= */
+
+@media (max-width: 768px) {
+  /* 1. Global Viewport & Container Reset */
+  html, body {
+    overflow-x: hidden !important;
+    max-width: 100vw !important;
+    font-size: 15px;
+  }
+
+  .book-main-content {
+    padding: 16px 12px 65px !important;
+    max-width: 100vw !important;
+    box-sizing: border-box !important;
+  }
+
+  .presentation-slide-section {
+    padding: 16px 0 50px !important;
+  }
+
+  .parchment-page-card {
+    padding: 22px 14px !important;
+    border-radius: 12px !important;
+    box-sizing: border-box !important;
+    max-width: 100% !important;
+  }
+
+  .parchment-title {
+    font-size: 1.85rem !important;
+    line-height: 1.22 !important;
+    margin-bottom: 8px !important;
+  }
+
+  .parchment-subtitle {
+    font-size: 0.92rem !important;
+    line-height: 1.5 !important;
+    padding: 0 4px !important;
+  }
+
+  .parchment-stamp {
+    font-size: 0.74rem !important;
+    padding: 4px 14px !important;
+    letter-spacing: 1.2px !important;
+    margin-bottom: 8px !important;
+  }
+
+  .vintage-divider {
+    font-size: 1.1rem !important;
+    letter-spacing: 4px !important;
+    margin-top: 10px !important;
+  }
+
+  /* 2. Floating Presentation Capsule Navigation (Touch Pill Dock) */
+  .book-nav {
+    top: 10px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    width: calc(100% - 16px) !important;
+    max-width: 100% !important;
+    padding: 6px 10px !important;
+    border-radius: 40px !important;
+    box-sizing: border-box !important;
+  }
+
+  .nav-container {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 8px !important;
+    width: 100% !important;
+  }
+
+  .nav-logo {
+    font-size: 0.88rem !important;
+    gap: 6px !important;
+    flex-shrink: 0 !important;
+  }
+
+  .logo-quill {
+    font-size: 1rem !important;
+  }
+
+  .nav-links {
+    display: flex !important;
+    gap: 5px !important;
+    align-items: center !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
+    padding: 2px 0 !important;
+  }
+
+  .nav-links::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  .nav-link {
+    padding: 5px 11px !important;
+    font-size: 0.74rem !important;
+    border-radius: 25px !important;
+    white-space: nowrap !important;
+    flex-shrink: 0 !important;
+  }
+
+  /* 3. Hero Presentation Runway */
+  .hero-presentation-track {
+    height: 160vh !important;
+  }
+
+  .hero-presentation-card {
+    padding: 16px 10px 20px !important;
+    box-sizing: border-box !important;
+  }
+
+  .hero-header-banner {
+    margin-bottom: 8px !important;
+  }
+
+  .hero-kicker {
+    font-size: 0.70rem !important;
+    padding: 3px 12px !important;
+    letter-spacing: 1.5px !important;
+    margin-bottom: 6px !important;
+  }
+
+  .hero-glamour-title {
+    font-size: 1.8rem !important;
+    line-height: 1.2 !important;
+    margin-bottom: 4px !important;
+  }
+
+  .hero-glamour-subtitle {
+    font-size: 0.96rem !important;
+    line-height: 1.35 !important;
+    max-width: 95vw !important;
+    padding: 0 8px !important;
+  }
+
+  .fs-book-wrapper {
+    width: min(84vw, 300px) !important;
+    max-height: 46vh !important;
+    margin: 0 auto !important;
+  }
+
+  .hero-scroll-prompt {
+    bottom: 8px !important;
+    font-size: 0.68rem !important;
+    gap: 4px !important;
+  }
+
+  .mouse-scroll-indicator {
+    width: 18px !important;
+    height: 28px !important;
+  }
+
+  /* 4. Presentation Milestones Bar */
+  .presentation-milestone-bar {
+    gap: 6px !important;
+    margin: 12px auto 8px !important;
+  }
+
+  .pres-chip {
+    padding: 5px 11px !important;
+    font-size: 0.74rem !important;
+    border-radius: 25px !important;
+    gap: 5px !important;
+  }
+
+  .pres-chip .chip-num {
+    font-size: 0.95rem !important;
+  }
+
+  .celebrate-pill-btn {
+    padding: 6px 14px !important;
+    font-size: 0.78rem !important;
+  }
+
+  /* 5. Chapter Ribbon Navigator */
+  .chapter-ribbon-bar {
+    padding: 10px 10px !important;
+    margin-bottom: 16px !important;
+    border-radius: 10px !important;
+  }
+
+  .ribbon-bar-header {
+    font-size: 0.78rem !important;
+    margin-bottom: 8px !important;
+  }
+
+  .chapter-index-chips {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
+    gap: 5px !important;
+    padding-bottom: 4px !important;
+  }
+
+  .chapter-index-chips::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  .chapter-chip {
+    padding: 5px 11px !important;
+    font-size: 0.72rem !important;
+    flex-shrink: 0 !important;
+    white-space: nowrap !important;
+  }
+
+  /* 6. Act I: The 18 Chapters Interactive Storybook Folio */
+  .storybook-folio-wrapper {
+    perspective: none !important;
+    width: 100% !important;
+  }
+
+  .storybook-folio {
+    display: flex !important;
+    flex-direction: column !important;
+    min-height: auto !important;
+    border-radius: 12px !important;
+    border-width: 2px !important;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6) !important;
+    transform: none !important;
+  }
+
+  .folio-spine-divider {
+    display: none !important;
+  }
+
+  .folio-flipper,
+  .folio-flutter-container {
+    display: none !important;
+  }
+
+  .folio-page {
+    padding: 18px 12px !important;
+    box-sizing: border-box !important;
+    width: 100% !important;
+  }
+
+  /* Left Folio Page (Keepsake Visual) */
+  .folio-page-left {
+    border-right: none !important;
+    border-bottom: 2px dashed rgba(200, 150, 62, 0.35) !important;
+    padding: 16px 10px 20px !important;
+  }
+
+  .folio-left-inner {
+    gap: 12px !important;
+  }
+
+  .folio-seal-header {
+    gap: 10px !important;
+    padding-bottom: 8px !important;
+  }
+
+  .wax-seal-badge {
+    width: 36px !important;
+    height: 36px !important;
+    flex-shrink: 0 !important;
+  }
+
+  .wax-seal-num {
+    font-size: 0.95rem !important;
+  }
+
+  .seal-meta-date {
+    font-size: 0.80rem !important;
+  }
+
+  .seal-meta-loc {
+    font-size: 0.74rem !important;
+  }
+
+  .folio-polaroid-frame {
+    min-width: 0 !important;
+    width: 100% !important;
+    max-width: 320px !important;
+    margin: 0 auto !important;
+    transform: none !important;
+    padding: 10px 10px 14px !important;
+    box-sizing: border-box !important;
+  }
+
+  .polaroid-photo-box {
+    max-height: 270px !important;
+    width: 100% !important;
+  }
+
+  .polaroid-photo-box img {
+    max-height: 260px !important;
+    width: 100% !important;
+    height: auto !important;
+    object-fit: contain !important;
+  }
+
+  .polaroid-handwritten-tag {
+    font-size: 1.15rem !important;
+    margin-top: 8px !important;
+    line-height: 1.2 !important;
+  }
+
+  .folio-quote-card {
+    padding: 10px 12px !important;
+    margin-top: 8px !important;
+    border-radius: 6px !important;
+  }
+
+  .quote-symbol-start, .quote-symbol-end {
+    font-size: 1.6rem !important;
+  }
+
+  .folio-quote-text {
+    font-size: 1.1rem !important;
+    line-height: 1.3 !important;
+  }
+
+  /* Right Folio Page (Illuminated Chapter Text) */
+  .folio-page-right {
+    padding: 20px 12px 18px !important;
+  }
+
+  .folio-chapter-banner {
+    margin-bottom: 12px !important;
+    padding-bottom: 8px !important;
+  }
+
+  .chapter-roman {
+    font-size: 0.78rem !important;
+    letter-spacing: 2px !important;
+  }
+
+  .chapter-ornament-divider {
+    font-size: 0.9rem !important;
+    margin: 2px 0 4px !important;
+  }
+
+  .folio-chapter-title {
+    font-size: 1.4rem !important;
+    line-height: 1.25 !important;
+  }
+
+  .folio-text-scrollbox {
+    max-height: none !important;
+    overflow: visible !important;
+    padding-right: 0 !important;
+    gap: 12px !important;
+  }
+
+  .illuminated-dropcap {
+    font-size: 2.3rem !important;
+    line-height: 0.88 !important;
+    padding: 4px 9px 3px 7px !important;
+    margin: 2px 10px 2px 0 !important;
+    border-radius: 6px !important;
+    border-width: 1.5px !important;
+  }
+
+  .story-p {
+    font-size: 0.98rem !important;
+    line-height: 1.75 !important;
+    letter-spacing: 0.15px !important;
+    color: #260E16 !important;
+  }
+
+  .folio-page-footer {
+    margin-top: 14px !important;
+    padding-top: 10px !important;
+    font-size: 0.78rem !important;
+  }
+
+  .folio-nav-toolbar {
+    flex-direction: column !important;
+    gap: 10px !important;
+    margin-top: 16px !important;
+  }
+
+  .folio-chapter-tracker {
+    order: -1 !important;
+    width: 100% !important;
+  }
+
+  .tracker-badge {
+    font-size: 0.75rem !important;
+    padding: 3px 12px !important;
+  }
+
+  .tracker-chapter-title {
+    font-size: 1rem !important;
+  }
+
+  .folio-nav-btn {
+    padding: 10px 16px !important;
+    font-size: 0.85rem !important;
+    border-radius: 30px !important;
+    justify-content: center !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .folio-keyboard-hint {
+    display: none !important;
+  }
+
+  /* 7. Korean Photobooth Box */
+  .korean-photobooth-box {
+    padding: 12px !important;
+  }
+
+  .photobooth-video-wrapper {
+    height: 200px !important;
+  }
+
+  .booth-korean {
+    font-size: 0.95rem !important;
+    padding: 2px 8px !important;
+  }
+
+  .booth-title {
+    font-size: 0.65rem !important;
+  }
+
+  /* 8. 80-Year Lifetime Milestones Section */
+  .lifetime-glass-card {
+    padding: 18px 12px !important;
+    border-radius: 14px !important;
+  }
+
+  .lifetime-header-row {
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+    gap: 10px !important;
+  }
+
+  .lifetime-anniversary-badge {
+    justify-content: center !important;
+  }
+
+  .anniversary-date {
+    font-size: 0.85rem !important;
+  }
+
+  .lifetime-fullscreen-btn {
+    font-size: 0.75rem !important;
+    padding: 6px 14px !important;
+  }
+
+  .timer-orbs-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 8px !important;
+    margin-bottom: 18px !important;
+  }
+
+  .orb-glass-body {
+    padding: 10px 4px !important;
+    min-height: 64px !important;
+    border-radius: 10px !important;
+  }
+
+  .orb-number {
+    font-size: 1.55rem !important;
+    line-height: 1.1 !important;
+  }
+
+  .orb-unit-label {
+    font-size: 0.60rem !important;
+    letter-spacing: 0.8px !important;
+  }
+
+  .orb-sub-text {
+    font-size: 0.62rem !important;
+    margin-top: 3px !important;
+    line-height: 1.2 !important;
+  }
+
+  .lifetime-stats-banner {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 6px !important;
+  }
+
+  .stat-pill {
+    font-size: 0.78rem !important;
+    padding: 7px 12px !important;
+    justify-content: center !important;
+  }
+
+  .milestones-header-title {
+    font-size: 0.95rem !important;
+    line-height: 1.3 !important;
+  }
+
+  .milestones-chips-grid {
+    gap: 6px !important;
+  }
+
+  .milestone-chip {
+    padding: 6px 12px !important;
+    font-size: 0.76rem !important;
+    border-radius: 20px !important;
+  }
+
+  .milestone-detail-card {
+    padding: 14px 12px !important;
+    border-radius: 10px !important;
+  }
+
+  /* 9. Keepsakes Memory Vault */
+  .filter-bar {
+    overflow-x: auto !important;
+    flex-wrap: nowrap !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
+    gap: 6px !important;
+    justify-content: flex-start !important;
+    padding: 2px 0 8px !important;
+  }
+
+  .filter-bar::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  .filter-btn {
+    padding: 6px 12px !important;
+    font-size: 0.76rem !important;
+    flex-shrink: 0 !important;
+    white-space: nowrap !important;
+    border-radius: 25px !important;
+  }
+
+  .interactive-hint {
+    font-size: 0.76rem !important;
+    padding: 6px 10px !important;
+  }
+
+  .polaroid-grid {
+    grid-template-columns: 1fr !important;
+    gap: 22px !important;
+    max-width: 340px !important;
+    margin: 0 auto !important;
+  }
+
+  /* 10. 170 Handwritten Reasons Scroll */
+  .vintage-rolled-scroll-3d {
+    transform: scale(0.85) !important;
+    margin: 0 auto !important;
+  }
+
+  .unroll-guidance-pill {
+    font-size: 0.76rem !important;
+    padding: 6px 14px !important;
+  }
+
+  .scroll-control-panel {
+    padding: 12px 10px !important;
+    border-radius: 10px !important;
+  }
+
+  .scroll-search-box input {
+    font-size: 0.80rem !important;
+    padding: 8px 12px 8px 32px !important;
+  }
+
+  .scroll-actions-row {
+    flex-direction: column !important;
+    gap: 8px !important;
+    align-items: stretch !important;
+  }
+
+  .scroll-stats-badge {
+    font-size: 0.76rem !important;
+    justify-content: center !important;
+  }
+
+  .scroll-btn-cluster {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 6px !important;
+  }
+
+  .scroll-btn-cluster button {
+    padding: 7px 10px !important;
+    font-size: 0.74rem !important;
+    justify-content: center !important;
+    border-radius: 20px !important;
+  }
+
+  .continuous-paper-roll-wrapper {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 auto !important;
+  }
+
+  .authentic-paper-strip-body {
+    padding: 18px 12px !important;
+  }
+
+  .scroll-her-text {
+    font-size: 1.15rem !important;
+    line-height: 1.4 !important;
+  }
+
+  .scroll-my-reply {
+    font-size: 0.92rem !important;
+    padding: 10px 12px !important;
+    line-height: 1.5 !important;
+  }
+
+  .scroll-footer-message {
+    padding: 14px 10px !important;
+    font-size: 0.82rem !important;
+  }
+
+  .scroll-bottom-actions {
+    flex-direction: column !important;
+    gap: 8px !important;
+    padding: 0 10px !important;
+  }
+
+  .scroll-bottom-jump-btn,
+  .scroll-bottom-rollup-btn {
+    padding: 8px 14px !important;
+    font-size: 0.78rem !important;
+    width: 100% !important;
+    justify-content: center !important;
+  }
+
+  /* 11. Photos & Video Memories Reel */
+  .filmstrip-grid {
+    grid-template-columns: 1fr !important;
+    gap: 20px !important;
+    max-width: 340px !important;
+    margin: 0 auto !important;
+  }
+
+  .filmstrip-frame {
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .filmstrip-frame img,
+  .filmstrip-frame video {
+    width: 100% !important;
+    max-height: 270px !important;
+    object-fit: contain !important;
+  }
+
+  .filmstrip-caption {
+    font-size: 0.82rem !important;
+    padding: 10px 12px !important;
+  }
+
+  /* 12. Birthday Love Letter Envelope */
+  .parchment-envelope {
+    width: 92vw !important;
+    max-width: 320px !important;
+    height: 205px !important;
+    margin: 0 auto !important;
+  }
+
+  .wax-seal {
+    width: 64px !important;
+    height: 64px !important;
+  }
+
+  .envelope-front-text {
+    font-size: 0.76rem !important;
+  }
+
+  .envelope-seal-hint {
+    font-size: 0.72rem !important;
+  }
+
+  .letter-modal-content {
+    padding: 22px 14px 18px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .letter-title {
+    font-size: 1.35rem !important;
+  }
+
+  .letter-body p {
+    font-size: 0.95rem !important;
+    line-height: 1.75 !important;
+  }
+
+  .signature-name {
+    font-size: 1.4rem !important;
+  }
+
+  .letter-footer-stamps {
+    flex-direction: column !important;
+    gap: 6px !important;
+    font-size: 0.75rem !important;
+  }
+
+  /* 13. Acoustic Music Widget on Mobile */
+  .music-widget {
+    bottom: 12px !important;
+    right: 12px !important;
+    z-index: 920 !important;
+  }
+
+  .music-btn {
+    padding: 7px 13px !important;
+    font-size: 0.74rem !important;
+    border-radius: 30px !important;
+    gap: 6px !important;
+  }
+
+  /* 14. Lightbox Dialog on Mobile */
+  .lightbox-dialog {
+    width: 94vw !important;
+    padding: 16px 10px !important;
+    max-height: 90vh !important;
+  }
+}
+
+/* Extra Compact Tweaks for Very Narrow Screens (<= 400px) */
+@media (max-width: 400px) {
+  .nav-logo .logo-text {
+    display: none !important;
+  }
+
+  .parchment-title {
+    font-size: 1.65rem !important;
+  }
+
+  .hero-glamour-title {
+    font-size: 1.6rem !important;
+  }
+
+  .timer-orbs-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  .orb-number {
+    font-size: 1.45rem !important;
+  }
+}
+
