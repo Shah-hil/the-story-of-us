@@ -19,7 +19,7 @@ const LIFETIME_CONFIG = {
   // Romantic Loading Status Messages (Rotate periodically)
   loadingMessages: [
     "Loading 80 years of inside jokes, warm forehead kisses, and late-night calls...",
-    "Buffering infinite cuddles, shared coffees, and endless laughs together...",
+    "Buffering infinite cuddles, shared meals, and endless laughs together...",
     "Allocating memory for a million more sunset walks and cozy hugs...",
     "Synchronizing two hearts beat for beat across 80 beautiful years...",
     "Rendering a lifetime of dreams, home-cooked dinners, and holding hands...",

@@ -775,7 +775,7 @@ function performMultiPageFlutter(targetIndex, direction) {
 
   setTimeout(() => {
     currentChapterIndex = targetIndex;
-    displayChapter(currentChapterIndex, true);
+    displayChapter(currentChapterIndex, false);
     if (flutterContainer) {
       flutterContainer.innerHTML = '';
       flutterContainer.classList.remove('active');
@@ -783,6 +783,33 @@ function performMultiPageFlutter(targetIndex, direction) {
     updateChapterControls();
     isPageTurning = false;
   }, 680);
+}
+
+function updateChapterControls() {
+  const prevBtn = document.getElementById('btn-prev-chapter');
+  const nextBtn = document.getElementById('btn-next-chapter');
+  const trackerNum = document.getElementById('tracker-chapter-num');
+  const trackerTitle = document.getElementById('tracker-chapter-title');
+  const ch = STORY_CHAPTERS[currentChapterIndex];
+
+  if (prevBtn) prevBtn.disabled = (currentChapterIndex === 0);
+  if (nextBtn) nextBtn.disabled = (currentChapterIndex >= STORY_CHAPTERS.length - 1);
+
+  if (ch) {
+    if (trackerNum) trackerNum.innerText = `Chapter ${ch.chapterNumber} of 18`;
+    if (trackerTitle) trackerTitle.innerText = `${ch.sticker || '✨'} ${ch.tag}`;
+  }
+
+  // Update chapter index ribbon chips active state
+  document.querySelectorAll('.chapter-chip').forEach((chip, i) => {
+    chip.classList.toggle('active', i === currentChapterIndex);
+  });
+
+  // Smoothly scroll active chapter chip into view in the ribbon bar
+  const activeChip = document.querySelector(`.chapter-chip[data-index="${currentChapterIndex}"]`);
+  if (activeChip) {
+    activeChip.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+  }
 }
 
 function displayChapter(index, autoScroll = false) {
@@ -841,8 +868,9 @@ function displayChapter(index, autoScroll = false) {
     const folioSection = document.getElementById('our-story');
     if (folioSection) {
       const rect = folioSection.getBoundingClientRect();
-      if (rect.top < 0 || rect.top > 250) {
-        window.scrollTo({ top: folioSection.offsetTop - 80, behavior: 'smooth' });
+      if (rect.top < -50 || rect.top > 300) {
+        const targetY = rect.top + window.pageYOffset - 80;
+        window.scrollTo({ top: targetY, behavior: 'smooth' });
       }
     }
   }
@@ -2208,7 +2236,7 @@ function initNavScroll() {
 /* -------------------------------------------------------------------------
    10. SECTION 3: 170 HANDWRITTEN REASONS (3D ROLLED SCROLL & CONTINUOUS STRIP)
    ------------------------------------------------------------------------- */
-let allScrollExpanded = false;
+let allScrollExpanded = true;
 let isScrollUnrolled = false;
 let hasAutoUnrolledOnScroll = false;
 
