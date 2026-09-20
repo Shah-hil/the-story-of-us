@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initRedThreadOfFate();
 });
 
-const ASSET_CACHE_KEY = '20260920_v31';
+const ASSET_CACHE_KEY = '20260920_v32';
 
 function getMediaUrl(url) {
   if (!url) return '';
@@ -83,7 +83,7 @@ function initPresentationHero() {
 
   let hasStartedMusic = false;
 
-  // 1. GSAP ScrollTrigger implementation (matching lxlcreative.co.uk)
+  // 1. GSAP ScrollTrigger implementation (Page turns FIRST, then card scales & docks)
   if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
     gsap.registerPlugin(ScrollTrigger);
     if (typeof ScrollTrigger.clearScrollMemory === 'function') {
@@ -100,7 +100,7 @@ function initPresentationHero() {
         end: 'bottom bottom',
         scrub: 0.6,
         onUpdate: (self) => {
-          if (self.progress > 0.12 && !hasStartedMusic && !musicPlaying) {
+          if (self.progress > 0.08 && !hasStartedMusic && !musicPlaying) {
             hasStartedMusic = true;
             playAcousticMelody();
           }
@@ -108,74 +108,74 @@ function initPresentationHero() {
       }
     });
 
-    // Step A: Hero Card shrinks from 1.0 to 0.72 ("gets small") with rounded gilded edges
+    // Step A: Scroll prompt fades out right away
+    if (heroPrompt) {
+      tl.to(heroPrompt, {
+        opacity: 0,
+        y: 10,
+        duration: 0.10,
+        ease: 'power1.in'
+      }, 0);
+    }
+
+    // Step B: Leather wrap strap unlocks and slides off smoothly (0.00 -> 0.15)
+    if (bookRibbon) {
+      tl.to(bookRibbon, {
+        x: 75,
+        rotation: 15,
+        opacity: 0,
+        duration: 0.15,
+        ease: 'power2.in'
+      }, 0);
+    }
+
+    // Step C: Book page turns open FIRST (0.02 -> 0.45) while heroCard remains at full scale(1)!
+    if (bookCover) {
+      tl.to(bookCover, {
+        rotateY: -180,
+        boxShadow: '-35px 35px 80px rgba(0, 0, 0, 0.85)',
+        duration: 0.43,
+        ease: 'power2.inOut'
+      }, 0.02);
+    }
+
+    // Step D: Candlelight bloom inside the turning pages (0.10 -> 0.45)
+    if (bookRadiance) {
+      tl.to(bookRadiance, {
+        scale: 6,
+        opacity: 0.85,
+        filter: 'blur(30px)',
+        duration: 0.35,
+        ease: 'power1.out'
+      }, 0.10);
+    }
+
+    // Step E: ONLY AFTER the book turns open, hero card scales down to targetScale (0.48 -> 0.80)
     tl.to(heroCard, {
       scale: targetScale,
       borderRadius: 28,
       borderColor: 'rgba(230, 184, 92, 0.45)',
       boxShadow: '0 45px 120px rgba(0, 0, 0, 0.95), 0 0 50px rgba(230, 184, 92, 0.25)',
       ease: 'power2.inOut',
-      duration: 0.55
-    }, 0);
+      duration: 0.32
+    }, 0.48);
 
-    // Step B: Header banner condenses gracefully
+    // Step F: Header banner condenses gently as card frames down (0.50 -> 0.78)
     if (heroHeader) {
       tl.to(heroHeader, {
         y: -15,
         opacity: 0.85,
-        duration: 0.4,
+        duration: 0.28,
         ease: 'power1.out'
-      }, 0);
+      }, 0.50);
     }
 
-    // Step C: Scroll prompt fades out early
-    if (heroPrompt) {
-      tl.to(heroPrompt, {
-        opacity: 0,
-        y: 10,
-        duration: 0.2,
-        ease: 'power1.in'
-      }, 0.05);
-    }
-
-    // Step D: Leather wrap strap slides off
-    if (bookRibbon) {
-      tl.to(bookRibbon, {
-        x: 75,
-        rotation: 15,
-        opacity: 0,
-        duration: 0.35,
-        ease: 'power2.in'
-      }, 0.25);
-    }
-
-    // Step E: 3D Leather Cover turns open 180 degrees
-    if (bookCover) {
-      tl.to(bookCover, {
-        rotateY: -180,
-        boxShadow: '-35px 35px 80px rgba(0, 0, 0, 0.85)',
-        duration: 0.65,
-        ease: 'power2.inOut'
-      }, 0.3);
-    }
-
-    // Step F: Soft golden bloom inside the book
-    if (bookRadiance) {
-      tl.to(bookRadiance, {
-        scale: 6,
-        opacity: 0.85,
-        filter: 'blur(30px)',
-        duration: 0.45,
-        ease: 'power1.out'
-      }, 0.5);
-    }
-
-    // Step G: Navigation docks into view as book finishes opening
+    // Step G: Navigation docks into view as presentation concludes (0.65 -> 0.85)
     if (mainNav) {
       tl.fromTo(mainNav,
         { opacity: 0, y: -25 },
-        { opacity: 1, y: 0, duration: 0.25, ease: 'power1.out' },
-        0.75
+        { opacity: 1, y: 0, duration: 0.20, ease: 'power1.out' },
+        0.65
       );
     }
   } else {
@@ -188,12 +188,33 @@ function initPresentationHero() {
       const progress = Math.min(1, Math.max(0, -rect.top / trackHeight));
       const isDesktop = window.innerWidth > 768;
       const targetScale = isDesktop ? 0.72 : 0.88;
-      const currentScale = 1 - (1 - targetScale) * Math.min(1, progress * 1.6);
-      const currentRadius = Math.min(28, progress * 40);
+
+      // Ribbon slides off early (0.00 - 0.15)
+      if (bookRibbon) {
+        const ribbonP = Math.min(1, Math.max(0, progress / 0.15));
+        bookRibbon.style.transform = `translateY(-50%) translateX(${ribbonP * 75}px) rotate(${ribbonP * 15}deg)`;
+        bookRibbon.style.opacity = `${1 - ribbonP}`;
+      }
+
+      // 1st the page of the book turns open (0.02 - 0.45)
+      if (bookCover) {
+        const coverP = Math.min(1, Math.max(0, (progress - 0.02) / 0.43));
+        const bookRot = coverP * 180;
+        bookCover.style.transform = `rotateY(-${bookRot}deg)`;
+      }
+
+      if (heroPrompt) {
+        heroPrompt.style.opacity = `${Math.max(0, 1 - progress * 8)}`;
+      }
+
+      // ONLY AFTER cover is open, hero card scales down (0.48 - 0.80)
+      const scaleP = Math.min(1, Math.max(0, (progress - 0.48) / 0.32));
+      const currentScale = 1 - (1 - targetScale) * scaleP;
+      const currentRadius = scaleP * 28;
 
       heroCard.style.transform = `scale(${currentScale})`;
       heroCard.style.borderRadius = `${currentRadius}px`;
-      if (progress > 0.1) {
+      if (scaleP > 0.05) {
         heroCard.style.borderColor = 'rgba(230, 184, 92, 0.45)';
         heroCard.style.boxShadow = '0 45px 120px rgba(0, 0, 0, 0.95), 0 0 50px rgba(230, 184, 92, 0.25)';
       } else {
@@ -201,22 +222,14 @@ function initPresentationHero() {
         heroCard.style.boxShadow = 'none';
       }
 
-      if (bookCover) {
-        const bookRot = Math.min(180, Math.max(0, (progress - 0.25) / 0.6 * 180));
-        bookCover.style.transform = `rotateY(-${bookRot}deg)`;
+      // Nav docks (0.65 - 0.85)
+      if (mainNav) {
+        const navP = Math.min(1, Math.max(0, (progress - 0.65) / 0.20));
+        mainNav.style.opacity = `${navP}`;
+        mainNav.style.transform = `translateY(${-25 * (1 - navP)}px)`;
       }
 
-      if (bookRibbon) {
-        const ribbonP = Math.min(1, Math.max(0, (progress - 0.15) / 0.3));
-        bookRibbon.style.transform = `translateY(-50%) translateX(${ribbonP * 75}px) rotate(${ribbonP * 15}deg)`;
-        bookRibbon.style.opacity = `${1 - ribbonP}`;
-      }
-
-      if (heroPrompt) {
-        heroPrompt.style.opacity = `${Math.max(0, 1 - progress * 4)}`;
-      }
-
-      if (progress > 0.12 && !hasStartedMusic && !musicPlaying) {
+      if (progress > 0.08 && !hasStartedMusic && !musicPlaying) {
         hasStartedMusic = true;
         playAcousticMelody();
       }
@@ -232,12 +245,19 @@ function initPresentationHero() {
     playBookOpenSound();
     if (!musicPlaying) playAcousticMelody();
 
-    const targetY = heroTrack.offsetTop + heroTrack.offsetHeight - window.innerHeight;
+    const targetY = heroTrack.offsetTop + Math.round(heroTrack.offsetHeight * 0.82);
     window.scrollTo({ top: targetY, behavior: 'smooth' });
   };
 
   if (stage) {
     stage.addEventListener('click', handleStageClick);
+  }
+  const bookWrapper = document.querySelector('.fs-book-wrapper');
+  if (bookWrapper) {
+    bookWrapper.addEventListener('click', handleStageClick);
+  }
+  if (heroPrompt) {
+    heroPrompt.addEventListener('click', handleStageClick);
   }
 }
 
@@ -2597,6 +2617,11 @@ function unrollPaperScroll(options = {}) {
       unrolledStage.classList.remove('hidden-scroll', 'rolling-up');
       unrolledStage.classList.add('unfurling');
     }
+    if (typeof globalRebuildThread === 'function') {
+      setTimeout(globalRebuildThread, 150);
+      setTimeout(globalRebuildThread, 450);
+      setTimeout(globalRebuildThread, 800);
+    }
   }, 240);
 }
 
@@ -2633,6 +2658,11 @@ function rollUpPaperScroll() {
         rolledStage.classList.remove('rolling-in');
       }, 500);
     }
+
+    if (typeof globalRebuildThread === 'function') {
+      setTimeout(globalRebuildThread, 150);
+      setTimeout(globalRebuildThread, 450);
+    }
   }, 320);
 }
 
@@ -2663,6 +2693,9 @@ function renderReasonsScroll(query = '') {
         <p>Try searching for words like "worm", "waffles", "crowd", "safe", or "142".</p>
       </div>
     `;
+    if (typeof globalRebuildThread === 'function') {
+      setTimeout(globalRebuildThread, 100);
+    }
     return;
   }
 
@@ -2711,6 +2744,9 @@ function renderReasonsScroll(query = '') {
 
   container.innerHTML = html;
   updateScrollCounter();
+  if (typeof globalRebuildThread === 'function') {
+    setTimeout(globalRebuildThread, 100);
+  }
 }
 
 function handleScrollItemClick(id) {
@@ -2725,6 +2761,9 @@ function handleScrollItemClick(id) {
   }
 
   updateScrollCounter();
+  if (typeof globalRebuildThread === 'function') {
+    setTimeout(globalRebuildThread, 120);
+  }
 }
 
 function toggleAllScrollItems() {
@@ -2760,6 +2799,9 @@ function toggleAllScrollItems() {
   }
 
   updateScrollCounter();
+  if (typeof globalRebuildThread === 'function') {
+    setTimeout(globalRebuildThread, 200);
+  }
 }
 
 function updateScrollCounter() {
@@ -3159,7 +3201,7 @@ function initRedThreadOfFate() {
     const storyHeader = document.querySelector('#our-story .parchment-stamp') || document.getElementById('our-story');
     const lifetimeAnchor = document.querySelector('#lifetime-loader .lifetime-anniversary-badge') || document.getElementById('lifetime-loader');
     const memoriesHeader = document.querySelector('#memories-vault .parchment-stamp') || document.getElementById('memories-vault');
-    const scrollSeal = document.querySelector('#reasons-scroll .scroll-wax-seal-btn') || document.querySelector('#reasons-scroll .parchment-stamp') || document.getElementById('reasons-scroll');
+    const scrollAnchor = document.querySelector('#reasons-scroll .parchment-stamp') || document.getElementById('reasons-scroll');
     const mediaHeader = document.querySelector('#media-reel .parchment-stamp') || document.getElementById('media-reel');
     const envelopeSeal = document.querySelector('#envelope-wrapper #wax-seal') || document.getElementById('envelope-wrapper');
 
@@ -3189,7 +3231,7 @@ function initRedThreadOfFate() {
     const p1 = getAnchorCenter(storyHeader, 0.45, 3300);
     const p2 = getAnchorCenter(lifetimeAnchor, 0.52, 4500);
     const p3 = getAnchorCenter(memoriesHeader, 0.48, 5600);
-    const p4 = getAnchorCenter(scrollSeal, 0.5, 6800);
+    const p4 = getAnchorCenter(scrollAnchor, 0.5, 6800);
     const p5 = getAnchorCenter(mediaHeader, 0.52, 8500);
     const p6 = getAnchorCenter(envelopeSeal, 0.5, docHeight - 350);
     threadStartY = p0.y;
@@ -3200,7 +3242,7 @@ function initRedThreadOfFate() {
       { pt: p1, label: 'Act I Story', el: storyHeader },
       { pt: p2, label: '80 Years Lifetime', el: lifetimeAnchor },
       { pt: p3, label: 'Keepsakes Vault', el: memoriesHeader },
-      { pt: p4, label: '170 Reasons', el: scrollSeal },
+      { pt: p4, label: '170 Reasons', el: scrollAnchor },
       { pt: p5, label: 'Memories Reel', el: mediaHeader },
       { pt: p6, label: 'Final Love Letter', el: envelopeSeal }
     ];
@@ -3372,6 +3414,22 @@ function initRedThreadOfFate() {
   window.addEventListener('resize', () => {
     buildThreadPath();
   });
+
+  if (window.ResizeObserver) {
+    let lastHeight = document.body.scrollHeight;
+    let roTimer = null;
+    const ro = new ResizeObserver(() => {
+      const curH = document.body.scrollHeight;
+      if (Math.abs(curH - lastHeight) > 60) {
+        lastHeight = curH;
+        clearTimeout(roTimer);
+        roTimer = setTimeout(() => {
+          buildThreadPath();
+        }, 120);
+      }
+    });
+    ro.observe(document.body);
+  }
 
   setTimeout(buildThreadPath, 250);
 }

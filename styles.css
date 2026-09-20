@@ -150,7 +150,7 @@ body.book-theme::before {
 .hero-presentation-track {
   position: relative;
   width: 100%;
-  height: 220vh; /* Smooth scrollytelling runway */
+  height: 240vh; /* Smooth scrollytelling runway */
   margin: 0;
   padding: 0;
   z-index: 10;
@@ -328,7 +328,7 @@ body.book-theme::before {
 
 @media (max-width: 768px) {
   .hero-presentation-track {
-    height: 180vh;
+    height: 210vh;
   }
   .hero-presentation-card {
     padding: 16px 12px 24px;
