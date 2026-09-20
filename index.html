@@ -36,7 +36,7 @@
   </script>
 
   <!-- Custom Styles with cache-busting -->
-  <link rel="stylesheet" href="styles.css?v=20260920_v26">
+  <link rel="stylesheet" href="styles.css?v=20260920_v27">
 </head>
 <body class="book-theme">
 
@@ -48,6 +48,42 @@
     <div class="dreamy-firefly-glow glow-1"></div>
     <div class="dreamy-firefly-glow glow-2"></div>
     <div class="dreamy-firefly-glow glow-3"></div>
+  </div>
+
+  <!-- THE RED THREAD OF FATE (KUMIHIMO - YOUR NAME INSPIRATION) -->
+  <div class="red-thread-container" id="red-thread-container" aria-hidden="true">
+    <svg class="red-thread-svg" id="red-thread-svg">
+      <defs>
+        <linearGradient id="kumihimoGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stop-color="#FF2A55" />
+          <stop offset="20%" stop-color="#E63946" />
+          <stop offset="45%" stop-color="#FF4D6D" />
+          <stop offset="65%" stop-color="#F77F00" />
+          <stop offset="85%" stop-color="#E63946" />
+          <stop offset="100%" stop-color="#FF2A55" />
+        </linearGradient>
+        <filter id="kumihimoGlow" x="-30%" y="-30%" width="160%" height="160%">
+          <feGaussianBlur stdDeviation="3.5" result="blur1" />
+          <feGaussianBlur stdDeviation="7" result="blur2" />
+          <feMerge>
+            <feMergeNode in="blur2" />
+            <feMergeNode in="blur1" />
+            <feMergeNode in="SourceGraphic" />
+          </feMerge>
+        </filter>
+      </defs>
+      <!-- Ambient Glow Underlay -->
+      <path id="red-thread-glow-path" class="thread-glow-line" d="" />
+      <!-- Core Braided Silk Cord -->
+      <path id="red-thread-core-path" class="thread-core-line" d="" />
+    </svg>
+    <!-- Guiding Comet Spark at the Tip of the Thread -->
+    <div class="thread-leading-spark" id="thread-leading-spark">
+      <div class="spark-core"></div>
+      <div class="spark-halo"></div>
+      <div class="spark-stardust stardust-1"></div>
+      <div class="spark-stardust stardust-2"></div>
+    </div>
   </div>
 
   <!-- PRESENTATION HERO SCROLL-TRACK (Inspired by LxL Creative) -->
@@ -451,9 +487,21 @@
         <span><strong>Interactive Keepsakes:</strong> Tap any Polaroid to turn it over and read the memory notes on the back!</span>
       </div>
 
-      <!-- Polaroid Cards Grid (Populated by JS) -->
-      <div class="polaroid-grid" id="memories-grid">
-        <!-- Dynamically rendered polaroids -->
+      <!-- Horizontal Keepsakes Carousel Wrapper -->
+      <div class="horizontal-carousel-wrapper" id="memories-carousel-wrapper">
+        <button class="carousel-nav-arrow carousel-nav-prev" onclick="scrollKeepsakesCarousel(-340)" title="Previous Keepsake (Scroll Left)">
+          <i class="fa-solid fa-chevron-left"></i>
+        </button>
+        <!-- Polaroid Cards Track (Populated by JS) -->
+        <div class="polaroid-grid horizontal-scroll-track" id="memories-grid">
+          <!-- Dynamically rendered polaroids -->
+        </div>
+        <button class="carousel-nav-arrow carousel-nav-next" onclick="scrollKeepsakesCarousel(340)" title="Next Keepsake (Scroll Right)">
+          <i class="fa-solid fa-chevron-right"></i>
+        </button>
+      </div>
+      <div class="carousel-scroll-hint">
+        <i class="fa-solid fa-arrows-left-right"></i> <span>Scroll or swipe horizontally to view all keepsakes</span>
       </div>
     </section>
 
@@ -543,7 +591,7 @@
 
             <div class="scroll-btn-cluster">
               <button class="scroll-toggle-all-btn" id="scroll-toggle-all-btn">
-                <i class="fa-solid fa-envelope"></i> <span id="toggle-all-label">Collapse All Replies</span>
+                <i class="fa-solid fa-envelope-open-text"></i> <span id="toggle-all-label">Expand All Replies</span>
               </button>
               <button class="scroll-jump-btn" id="scroll-jump-btn" title="Quickly jump to bottom or top of the scroll">
                 <i class="fa-solid fa-arrow-down"></i> <span id="jump-btn-label">To Bottom</span>
@@ -621,9 +669,21 @@
         <div class="vintage-divider">❧ ─── ❦ ─── ☙</div>
       </div>
 
-      <!-- Filmstrip Media Grid -->
-      <div class="filmstrip-grid" id="media-reel-container">
-        <!-- Dynamically rendered media -->
+      <!-- Horizontal Filmstrip Memories Carousel Wrapper -->
+      <div class="horizontal-carousel-wrapper" id="media-carousel-wrapper">
+        <button class="carousel-nav-arrow carousel-nav-prev" onclick="scrollMediaCarousel(-360)" title="Previous Memory (Scroll Left)">
+          <i class="fa-solid fa-chevron-left"></i>
+        </button>
+        <!-- Filmstrip Media Track (Populated by JS) -->
+        <div class="filmstrip-grid horizontal-scroll-track" id="media-reel-container">
+          <!-- Dynamically rendered media -->
+        </div>
+        <button class="carousel-nav-arrow carousel-nav-next" onclick="scrollMediaCarousel(360)" title="Next Memory (Scroll Right)">
+          <i class="fa-solid fa-chevron-right"></i>
+        </button>
+      </div>
+      <div class="carousel-scroll-hint">
+        <i class="fa-solid fa-arrows-left-right"></i> <span>Scroll or swipe horizontally to view all memories</span>
       </div>
     </section>
 
@@ -790,13 +850,13 @@
   </footer>
 
   <!-- Include Data Configuration Files -->
-  <script src="storyData.js?v=20260920_v26"></script>
-  <script src="memoriesData.js?v=20260920_v26"></script>
-  <script src="scrollData.js?v=20260920_v26"></script>
-  <script src="mediaData.js?v=20260920_v26"></script>
-  <script src="lifetimeData.js?v=20260920_v26"></script>
+  <script src="storyData.js?v=20260920_v27"></script>
+  <script src="memoriesData.js?v=20260920_v27"></script>
+  <script src="scrollData.js?v=20260920_v27"></script>
+  <script src="mediaData.js?v=20260920_v27"></script>
+  <script src="lifetimeData.js?v=20260920_v27"></script>
 
   <!-- Core App Controller -->
-  <script src="app.js?v=20260920_v26"></script>
+  <script src="app.js?v=20260920_v27"></script>
 </body>
 </html>

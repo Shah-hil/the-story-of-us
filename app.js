@@ -37,9 +37,10 @@ document.addEventListener('DOMContentLoaded', () => {
   initEnvelope();
   initLightbox();
   initNavScroll();
+  initRedThreadOfFate();
 });
 
-const ASSET_CACHE_KEY = '20260920_v26';
+const ASSET_CACHE_KEY = '20260920_v27';
 
 function getMediaUrl(url) {
   if (!url) return '';
@@ -2371,7 +2372,7 @@ function initNavScroll() {
 /* -------------------------------------------------------------------------
    10. SECTION 3: 170 HANDWRITTEN REASONS (3D ROLLED SCROLL & CONTINUOUS STRIP)
    ------------------------------------------------------------------------- */
-let allScrollExpanded = true;
+let allScrollExpanded = false;
 let isScrollUnrolled = false;
 let hasAutoUnrolledOnScroll = false;
 
@@ -2919,5 +2920,191 @@ window.addEventListener('resize', () => {
   }
 });
 
+/* -------------------------------------------------------------------------
+   12. HORIZONTAL CAROUSEL NAVIGATION CONTROLS
+   ------------------------------------------------------------------------- */
+function scrollKeepsakesCarousel(delta) {
+  const track = document.getElementById('memories-grid');
+  if (track) {
+    track.scrollBy({ left: delta, behavior: 'smooth' });
+  }
+}
 
+function scrollMediaCarousel(delta) {
+  const track = document.getElementById('media-reel-container');
+  if (track) {
+    track.scrollBy({ left: delta, behavior: 'smooth' });
+  }
+}
 
+/* -------------------------------------------------------------------------
+   13. THE RED THREAD OF FATE (MUSUBI / "YOUR NAME" KUMIHIMO CORD)
+   Starts at the book's bookmark ribbon, gracefully curls and weaves down
+   through the entire journey, guiding the viewer and illuminating key moments.
+   ------------------------------------------------------------------------- */
+function initRedThreadOfFate() {
+  const container = document.getElementById('red-thread-container');
+  const svg = document.getElementById('red-thread-svg');
+  const glowPath = document.getElementById('red-thread-glow-path');
+  const corePath = document.getElementById('red-thread-core-path');
+  const spark = document.getElementById('thread-leading-spark');
+
+  if (!container || !svg || !glowPath || !corePath || !spark) return;
+
+  let pathTotalLength = 0;
+  let waypoints = [];
+
+  function buildThreadPath() {
+    const docWidth = document.documentElement.clientWidth || window.innerWidth;
+    const docHeight = Math.max(
+      document.body.scrollHeight,
+      document.documentElement.scrollHeight,
+      document.body.offsetHeight,
+      document.documentElement.offsetHeight
+    );
+
+    svg.setAttribute('viewBox', `0 0 ${docWidth} ${docHeight}`);
+    svg.style.width = `${docWidth}px`;
+    svg.style.height = `${docHeight}px`;
+
+    // Discover milestone anchors down the page
+    const ribbonEl = document.querySelector('.cover-bottom-ribbon') || document.getElementById('book-ribbon') || document.getElementById('hero-card');
+    const storyHeader = document.querySelector('#our-story .parchment-stamp') || document.getElementById('our-story');
+    const lifetimeAnchor = document.querySelector('#lifetime-loader .lifetime-anniversary-badge') || document.getElementById('lifetime-loader');
+    const memoriesHeader = document.querySelector('#memories-vault .parchment-stamp') || document.getElementById('memories-vault');
+    const scrollSeal = document.querySelector('#reasons-scroll .scroll-wax-seal-btn') || document.querySelector('#reasons-scroll .parchment-stamp') || document.getElementById('reasons-scroll');
+    const mediaHeader = document.querySelector('#media-reel .parchment-stamp') || document.getElementById('media-reel');
+    const envelopeSeal = document.querySelector('#envelope-wrapper #wax-seal') || document.getElementById('envelope-wrapper');
+
+    function getAnchorCenter(el, fallbackXRatio, fallbackY) {
+      if (!el) return { x: docWidth * fallbackXRatio, y: fallbackY, el: null };
+      const rect = el.getBoundingClientRect();
+      const scrollY = window.pageYOffset || document.documentElement.scrollTop;
+      const scrollX = window.pageXOffset || document.documentElement.scrollLeft;
+      return {
+        x: rect.left + scrollX + rect.width / 2,
+        y: rect.top + scrollY + rect.height / 2,
+        el: el
+      };
+    }
+
+    // Measure milestone coordinates
+    const p0 = getAnchorCenter(ribbonEl, 0.5, 600);
+    const p1 = getAnchorCenter(storyHeader, 0.45, 3300);
+    const p2 = getAnchorCenter(lifetimeAnchor, 0.52, 4500);
+    const p3 = getAnchorCenter(memoriesHeader, 0.48, 5600);
+    const p4 = getAnchorCenter(scrollSeal, 0.5, 6800);
+    const p5 = getAnchorCenter(mediaHeader, 0.52, 8500);
+    const p6 = getAnchorCenter(envelopeSeal, 0.5, docHeight - 350);
+
+    waypoints = [
+      { pt: p0, label: 'Origin Bookmark', el: ribbonEl },
+      { pt: p1, label: 'Act I Story', el: storyHeader },
+      { pt: p2, label: '80 Years Lifetime', el: lifetimeAnchor },
+      { pt: p3, label: 'Keepsakes Vault', el: memoriesHeader },
+      { pt: p4, label: '170 Reasons', el: scrollSeal },
+      { pt: p5, label: 'Memories Reel', el: mediaHeader },
+      { pt: p6, label: 'Final Love Letter', el: envelopeSeal }
+    ];
+
+    // Generate flowing serpentine Bézier path with elegant organic loops
+    let d = `M ${p0.x} ${p0.y} `;
+
+    // Curl from Book Cover down to Act I
+    const midY01 = (p0.y + p1.y) / 2;
+    const waveWidth = Math.min(180, docWidth * 0.18);
+    d += `C ${p0.x + waveWidth} ${p0.y + 200}, ${docWidth * 0.88} ${midY01 - 300}, ${docWidth * 0.82} ${midY01} `;
+    d += `C ${docWidth * 0.76} ${midY01 + 300}, ${p1.x + 120} ${p1.y - 250}, ${p1.x} ${p1.y} `;
+
+    // Loop through 80 Years Lifetime Loader
+    const midY12 = (p1.y + p2.y) / 2;
+    d += `C ${p1.x - 140} ${p1.y + 200}, ${docWidth * 0.14} ${midY12 - 200}, ${docWidth * 0.16} ${midY12} `;
+    d += `C ${docWidth * 0.18} ${midY12 + 200}, ${p2.x - 100} ${p2.y - 200}, ${p2.x} ${p2.y} `;
+
+    // Weave around Keepsakes
+    const midY23 = (p2.y + p3.y) / 2;
+    d += `C ${p2.x + 160} ${p2.y + 180}, ${docWidth * 0.86} ${midY23 - 250}, ${docWidth * 0.84} ${midY23} `;
+    d += `C ${docWidth * 0.82} ${midY23 + 250}, ${p3.x + 90} ${p3.y - 180}, ${p3.x} ${p3.y} `;
+
+    // Wave into 170 Reasons Scroll
+    const midY34 = (p3.y + p4.y) / 2;
+    d += `C ${p3.x - 130} ${p3.y + 160}, ${docWidth * 0.12} ${midY34 - 200}, ${docWidth * 0.15} ${midY34} `;
+    d += `C ${docWidth * 0.18} ${midY34 + 200}, ${p4.x - 80} ${p4.y - 160}, ${p4.x} ${p4.y} `;
+
+    // Glide around Media Reel
+    const midY45 = (p4.y + p5.y) / 2;
+    d += `C ${p4.x + 150} ${p4.y + 180}, ${docWidth * 0.88} ${midY45 - 220}, ${docWidth * 0.85} ${midY45} `;
+    d += `C ${docWidth * 0.82} ${midY45 + 220}, ${p5.x + 100} ${p5.y - 180}, ${p5.x} ${p5.y} `;
+
+    // Descend into Final Love Letter Envelope Wax Seal
+    const midY56 = (p5.y + p6.y) / 2;
+    d += `C ${p5.x - 140} ${p5.y + 180}, ${docWidth * 0.16} ${midY56 - 150}, ${docWidth * 0.2} ${midY56} `;
+    d += `C ${docWidth * 0.25} ${midY56 + 150}, ${p6.x - 60} ${p6.y - 140}, ${p6.x} ${p6.y} `;
+
+    // Delicate Kumihimo knot loop around the seal
+    d += `C ${p6.x + 35} ${p6.y + 35}, ${p6.x + 35} ${p6.y - 35}, ${p6.x} ${p6.y} `;
+
+    glowPath.setAttribute('d', d);
+    corePath.setAttribute('d', d);
+
+    pathTotalLength = corePath.getTotalLength();
+    glowPath.style.strokeDasharray = `${pathTotalLength} ${pathTotalLength}`;
+    corePath.style.strokeDasharray = `${pathTotalLength} ${pathTotalLength}`;
+    glowPath.style.strokeDashoffset = `${pathTotalLength}`;
+    corePath.style.strokeDashoffset = `${pathTotalLength}`;
+
+    updateThreadOnScroll();
+  }
+
+  let ticking = false;
+
+  function updateThreadOnScroll() {
+    if (pathTotalLength <= 0) return;
+
+    const scrollY = window.pageYOffset || document.documentElement.scrollTop;
+    const maxScroll = (document.documentElement.scrollHeight || document.body.scrollHeight) - window.innerHeight;
+    if (maxScroll <= 0) return;
+
+    // Thread starts growing as soon as user begins scrolling down from the book
+    const scrollProgress = Math.min(1, Math.max(0, scrollY / maxScroll));
+    // Accelerate thread slightly so it leads the viewer
+    const threadProgress = Math.min(1, Math.max(0, Math.pow(scrollProgress, 0.92) * 1.05));
+    const currentLength = pathTotalLength * threadProgress;
+
+    const offset = Math.max(0, pathTotalLength - currentLength);
+    glowPath.style.strokeDashoffset = offset;
+    corePath.style.strokeDashoffset = offset;
+
+    // Position guiding comet spark at current thread tip
+    if (currentLength > 15) {
+      spark.classList.add('active');
+      const pt = corePath.getPointAtLength(currentLength);
+      spark.style.transform = `translate3d(${pt.x}px, ${pt.y}px, 0)`;
+
+      // Illuminate milestones as the thread touches or passes them
+      waypoints.forEach(wp => {
+        if (wp.el && pt.y >= wp.pt.y - 120) {
+          wp.el.classList.add('thread-illuminated');
+        }
+      });
+    } else {
+      spark.classList.remove('active');
+    }
+  }
+
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        updateThreadOnScroll();
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }, { passive: true });
+
+  window.addEventListener('resize', () => {
+    buildThreadPath();
+  });
+
+  setTimeout(buildThreadPath, 250);
+}
