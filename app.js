@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initRedThreadOfFate();
 });
 
-const ASSET_CACHE_KEY = '20260920_v27';
+const ASSET_CACHE_KEY = '20260920_v28';
 
 function getMediaUrl(url) {
   if (!url) return '';
@@ -857,10 +857,12 @@ function updateChapterControls() {
     chip.classList.toggle('active', chipIdx === currentChapterIndex);
   });
 
-  // Smoothly scroll active chapter chip into view in the ribbon bar
+  // Smoothly scroll active chapter chip into view ONLY within the horizontal ribbon bar (never scrolling the window)
   const activeChip = document.querySelector(`.chapter-chip[data-index="${currentChapterIndex}"]`);
-  if (activeChip) {
-    activeChip.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+  const chipsRibbon = document.getElementById('story-nav-chips');
+  if (activeChip && chipsRibbon) {
+    const targetLeft = activeChip.offsetLeft - (chipsRibbon.clientWidth / 2) + (activeChip.clientWidth / 2);
+    chipsRibbon.scrollTo({ left: Math.max(0, targetLeft), behavior: 'smooth' });
   }
 }
 
@@ -2324,7 +2326,11 @@ function initNavScroll() {
         const isMatch = (link.getAttribute('href') === `#${currentId}`);
         link.classList.toggle('active', isMatch);
         if (isMatch) {
-          link.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+          const navLinksContainer = link.closest('.nav-links');
+          if (navLinksContainer) {
+            const targetLeft = link.offsetLeft - (navLinksContainer.clientWidth / 2) + (link.clientWidth / 2);
+            navLinksContainer.scrollTo({ left: Math.max(0, targetLeft), behavior: 'smooth' });
+          }
         }
       });
     }
@@ -2346,7 +2352,11 @@ function initNavScroll() {
       // Immediately highlight clicked link
       navLinks.forEach(l => l.classList.remove('active'));
       link.classList.add('active');
-      link.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      const navLinksContainer = link.closest('.nav-links');
+      if (navLinksContainer) {
+        const targetLeft = link.offsetLeft - (navLinksContainer.clientWidth / 2) + (link.clientWidth / 2);
+        navLinksContainer.scrollTo({ left: Math.max(0, targetLeft), behavior: 'smooth' });
+      }
 
       isManualNavClick = true;
       clearTimeout(manualNavTimeout);
@@ -2953,6 +2963,8 @@ function initRedThreadOfFate() {
 
   let pathTotalLength = 0;
   let waypoints = [];
+  let threadStartY = 600;
+  let threadEndY = 10000;
 
   function buildThreadPath() {
     const docWidth = document.documentElement.clientWidth || window.innerWidth;
@@ -2996,6 +3008,8 @@ function initRedThreadOfFate() {
     const p4 = getAnchorCenter(scrollSeal, 0.5, 6800);
     const p5 = getAnchorCenter(mediaHeader, 0.52, 8500);
     const p6 = getAnchorCenter(envelopeSeal, 0.5, docHeight - 350);
+    threadStartY = p0.y;
+    threadEndY = p6.y;
 
     waypoints = [
       { pt: p0, label: 'Origin Bookmark', el: ribbonEl },
@@ -3062,33 +3076,43 @@ function initRedThreadOfFate() {
     if (pathTotalLength <= 0) return;
 
     const scrollY = window.pageYOffset || document.documentElement.scrollTop;
-    const maxScroll = (document.documentElement.scrollHeight || document.body.scrollHeight) - window.innerHeight;
-    if (maxScroll <= 0) return;
 
-    // Thread starts growing as soon as user begins scrolling down from the book
-    const scrollProgress = Math.min(1, Math.max(0, scrollY / maxScroll));
-    // Accelerate thread slightly so it leads the viewer
-    const threadProgress = Math.min(1, Math.max(0, Math.pow(scrollProgress, 0.92) * 1.05));
-    const currentLength = pathTotalLength * threadProgress;
+    // Position thread tip so it stays naturally in the user's visible viewport
+    const visibleY = scrollY + (window.innerHeight * 0.72);
+    const startY = threadStartY;
+    const endY = threadEndY;
 
+    let progress = 0;
+    if (visibleY > startY) {
+      progress = Math.min(1, Math.max(0, (visibleY - startY) / (endY - startY)));
+    }
+
+    const currentLength = pathTotalLength * progress;
     const offset = Math.max(0, pathTotalLength - currentLength);
     glowPath.style.strokeDashoffset = offset;
     corePath.style.strokeDashoffset = offset;
 
     // Position guiding comet spark at current thread tip
-    if (currentLength > 15) {
+    if (currentLength > 20 && progress > 0.01) {
       spark.classList.add('active');
       const pt = corePath.getPointAtLength(currentLength);
       spark.style.transform = `translate3d(${pt.x}px, ${pt.y}px, 0)`;
 
-      // Illuminate milestones as the thread touches or passes them
+      // Softly illuminate milestone text as the thread gently passes by
       waypoints.forEach(wp => {
-        if (wp.el && pt.y >= wp.pt.y - 120) {
-          wp.el.classList.add('thread-illuminated');
+        if (wp.el) {
+          if (pt.y >= wp.pt.y - 60) {
+            wp.el.classList.add('thread-illuminated');
+          } else {
+            wp.el.classList.remove('thread-illuminated');
+          }
         }
       });
     } else {
       spark.classList.remove('active');
+      waypoints.forEach(wp => {
+        if (wp.el) wp.el.classList.remove('thread-illuminated');
+      });
     }
   }
 
