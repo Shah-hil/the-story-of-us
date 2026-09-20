@@ -505,13 +505,48 @@ function playJoySound() {
   });
 }
 
+function triggerGoldenConfetti() {
+  if (typeof confetti !== 'function') return;
+
+  // Center golden & romantic velvet confetti burst
+  confetti({
+    particleCount: 75,
+    spread: 85,
+    origin: { y: 0.6 },
+    colors: ['#FFECA8', '#FFD700', '#F7D278', '#A32338', '#FFFFFF', '#FF6B8B']
+  });
+
+  // Staggered side cannon bursts
+  setTimeout(() => {
+    confetti({
+      particleCount: 45,
+      angle: 60,
+      spread: 60,
+      origin: { x: 0.1, y: 0.7 },
+      colors: ['#FF6B8B', '#FFD700', '#FFECA8', '#FF3366']
+    });
+    confetti({
+      particleCount: 45,
+      angle: 120,
+      spread: 60,
+      origin: { x: 0.9, y: 0.7 },
+      colors: ['#FF6B8B', '#FFD700', '#FFECA8', '#FF3366']
+    });
+  }, 160);
+}
+
 function initCelebrationButton() {
   const btn = document.getElementById('celebrate-btn');
   if (!btn) return;
 
-  btn.addEventListener('click', () => {
+  btn.addEventListener('click', (e) => {
+    e.preventDefault();
     triggerGoldenConfetti();
-    playJoySound();
+    try {
+      playJoySound();
+    } catch (err) {
+      console.log('AudioContext notification:', err);
+    }
   });
 }
 

@@ -2,6 +2,8 @@
 *.py
 scratch/
 backup_pre_presentation/
+the-story-of-us-online/
+
 
 # Ignore raw camera dump files, keeping only curated web assets
 images/gallery/*
