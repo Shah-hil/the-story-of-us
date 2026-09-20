@@ -2491,7 +2491,7 @@ function renderReasonsScroll(query = '') {
             <span class="scroll-her-text">"${escapeHtml(item.text)}"</span>
           </div>
           <div class="scroll-item-indicator">
-            <span class="scroll-click-hint">Tap to reply</span>
+            <span class="scroll-click-hint">Reply 💌</span>
             <i class="fa-solid fa-chevron-down scroll-indicator-icon"></i>
           </div>
         </div>

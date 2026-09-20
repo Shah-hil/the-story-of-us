@@ -3839,67 +3839,7 @@ body.book-theme::before {
   border-color: #2E7D32;
 }
 
-/* Expandable Reply Card */
-.scroll-reply-card {
-  max-height: 0;
-  opacity: 0;
-  overflow: hidden;
-  transform: translateY(-8px);
-  transition: max-height 0.4s cubic-bezier(0.2, 0.9, 0.3, 1), opacity 0.3s ease, transform 0.3s ease, margin 0.3s ease;
-  margin-top: 0;
-}
-
-.scroll-item-row.expanded .scroll-reply-card {
-  max-height: 350px;
-  opacity: 1;
-  transform: translateY(0);
-  margin-top: 14px;
-}
-
-.scroll-reply-inner {
-  background: linear-gradient(135deg, #FFFFFF 0%, #FAF1DE 100%);
-  border-left: 4.5px solid var(--velvet-burgundy);
-  border-top: 1px solid rgba(200, 150, 62, 0.3);
-  border-right: 1px solid rgba(200, 150, 62, 0.3);
-  border-bottom: 1px solid rgba(200, 150, 62, 0.3);
-  border-radius: 4px 10px 10px 4px;
-  padding: 16px 22px;
-  box-shadow: 0 8px 20px rgba(18, 4, 8, 0.08), inset 0 0 15px rgba(247, 210, 120, 0.1);
-}
-
-.reply-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 8px;
-  border-bottom: 1px solid rgba(200, 150, 62, 0.25);
-  padding-bottom: 6px;
-}
-
-.reply-sender-title {
-  font-family: var(--font-serif);
-  font-size: 0.9rem;
-  font-weight: 700;
-  color: var(--velvet-burgundy);
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
-}
-
-.reply-sticker {
-  font-size: 1.3rem;
-}
-
-.reply-body-text {
-  font-family: var(--font-handwriting);
-  font-size: 1.55rem;
-  font-weight: 700;
-  color: var(--velvet-burgundy-dark);
-  line-height: 1.4;
-  margin: 0;
-}
+/* Authentic Reply Cards styled in Section 3 below */
 
 /* Paper Fold Crease Line (Authentic Fold Texture Every ~25 Items) */
 .paper-crease-shadow {
@@ -5325,49 +5265,55 @@ body.book-theme::before {
   opacity: 0.75;
 }
 
-/* Reply Envelope Card (Revealed on Click) */
+/* Authentic Reply Card for Each Handwritten Note */
 .scroll-reply-card {
-  display: none;
+  display: block !important;
+  max-height: none !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  overflow: visible !important;
+  transform: none !important;
   border-top: 1px dashed rgba(180, 130, 60, 0.4);
-  background: linear-gradient(135deg, rgba(255, 253, 248, 0.98), rgba(248, 238, 218, 0.98));
-  padding: 14px 16px 16px;
+  background: linear-gradient(135deg, rgba(255, 253, 248, 0.98), rgba(250, 242, 226, 0.98));
+  padding: 12px 18px 15px;
   position: relative;
-  animation: replySlideDown 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  border-radius: 0 0 10px 10px;
 }
 
-.scroll-item-row.is-revealed .scroll-reply-card {
-  display: block;
+.scroll-item-row:not(.is-revealed) .scroll-reply-card {
+  display: none !important;
 }
 
 .reply-ribbon-tag {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background: rgba(138, 30, 48, 0.1);
-  border: 1px solid rgba(138, 30, 48, 0.22);
+  background: rgba(138, 30, 48, 0.12);
+  border: 1px solid rgba(138, 30, 48, 0.25);
   color: var(--velvet-burgundy);
   font-family: var(--font-serif);
-  font-size: 0.75rem;
+  font-size: 0.76rem;
   font-weight: 700;
   letter-spacing: 1px;
   text-transform: uppercase;
-  padding: 2px 9px;
-  border-radius: 10px;
-  margin-bottom: 6px;
+  padding: 3px 10px;
+  border-radius: 12px;
+  margin-bottom: 8px;
 }
 
 .reply-content-box {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-between;
-  gap: 12px;
+  gap: 14px;
 }
 
 .reply-message-text {
   font-family: var(--font-serif);
-  font-size: 1rem;
-  color: var(--ink-espresso);
-  line-height: 1.65;
+  font-size: 1.05rem;
+  color: #2D0C16;
+  font-weight: 600;
+  line-height: 1.55;
   flex-grow: 1;
 }
 
@@ -5375,7 +5321,7 @@ body.book-theme::before {
   font-size: 1.8rem;
   flex-shrink: 0;
   filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.12));
-  transform: translateY(-2px);
+  transform: translateY(-1px);
 }
 
 /* Scroll Bottom Footer Tag */
