@@ -678,7 +678,7 @@ function performSinglePageTurn(targetIndex, direction) {
     flipper.className = 'folio-flipper flipper-right-start flipping-forward';
 
     setTimeout(() => {
-      // 4. Halfway through, update left page underneath
+      // 4. Halfway through, update left page underneath and sync chapter controls
       leftPage.innerHTML = generateLeftPageHtml(targetIndex);
       const polaroidImg = leftPage.querySelector('.polaroid-photo-box img');
       if (polaroidImg) {
@@ -688,6 +688,8 @@ function performSinglePageTurn(targetIndex, direction) {
           polaroidImg.addEventListener('load', () => applyDynamicPhotoFraming(polaroidImg), { once: true });
         }
       }
+      currentChapterIndex = targetIndex;
+      updateChapterControls();
     }, 320);
 
     setTimeout(() => {
@@ -695,8 +697,6 @@ function performSinglePageTurn(targetIndex, direction) {
       flipper.className = 'folio-flipper';
       flipperFront.innerHTML = '';
       flipperBack.innerHTML = '';
-      currentChapterIndex = targetIndex;
-      updateChapterControls();
       isPageTurning = false;
     }, 650);
 
@@ -721,14 +721,14 @@ function performSinglePageTurn(targetIndex, direction) {
 
     setTimeout(() => {
       rightPage.innerHTML = generateRightPageHtml(targetIndex);
+      currentChapterIndex = targetIndex;
+      updateChapterControls();
     }, 320);
 
     setTimeout(() => {
       flipper.className = 'folio-flipper';
       flipperFront.innerHTML = '';
       flipperBack.innerHTML = '';
-      currentChapterIndex = targetIndex;
-      updateChapterControls();
       isPageTurning = false;
     }, 650);
   }
@@ -758,20 +758,21 @@ function performMultiPageFlutter(targetIndex, direction) {
   // Rapid counter step animation for intermediate chapters
   const steps = 4;
   const stepDiff = (targetIndex - currentChapterIndex) / steps;
-  let curStep = 0;
+  let curStep = 1;
 
-  const stepInterval = setInterval(() => {
-    curStep++;
-    const intermediateIdx = Math.round(currentChapterIndex + stepDiff * curStep);
-    const intermediateCh = STORY_CHAPTERS[intermediateIdx];
-    if (intermediateCh && trackerNum && trackerTitle) {
-      trackerNum.innerText = `Turning to Chapter ${intermediateCh.chapterNumber}...`;
-      trackerTitle.innerText = `${intermediateCh.sticker || '📖'} ${intermediateCh.tag}`;
+  const flutterInterval = setInterval(() => {
+    if (curStep < steps) {
+      const intermediateIdx = Math.round(currentChapterIndex + stepDiff * curStep);
+      const ch = STORY_CHAPTERS[intermediateIdx];
+      if (ch) {
+        if (trackerNum) trackerNum.innerText = `Chapter ${String(ch.chapterNumber).padStart(2, '0')} of 18`;
+        if (trackerTitle) trackerTitle.innerText = `${ch.sticker || '✨'} ${ch.tag || ch.title}`;
+      }
+      curStep++;
+    } else {
+      clearInterval(flutterInterval);
     }
-    if (curStep >= steps) {
-      clearInterval(stepInterval);
-    }
-  }, 130);
+  }, 120);
 
   setTimeout(() => {
     currentChapterIndex = targetIndex;
@@ -792,17 +793,29 @@ function updateChapterControls() {
   const trackerTitle = document.getElementById('tracker-chapter-title');
   const ch = STORY_CHAPTERS[currentChapterIndex];
 
-  if (prevBtn) prevBtn.disabled = (currentChapterIndex === 0);
-  if (nextBtn) nextBtn.disabled = (currentChapterIndex >= STORY_CHAPTERS.length - 1);
+  if (prevBtn) {
+    prevBtn.disabled = (currentChapterIndex === 0);
+    prevBtn.classList.toggle('disabled', currentChapterIndex === 0);
+  }
+  if (nextBtn) {
+    nextBtn.disabled = (currentChapterIndex >= STORY_CHAPTERS.length - 1);
+    nextBtn.classList.toggle('disabled', currentChapterIndex >= STORY_CHAPTERS.length - 1);
+  }
 
   if (ch) {
-    if (trackerNum) trackerNum.innerText = `Chapter ${ch.chapterNumber} of 18`;
-    if (trackerTitle) trackerTitle.innerText = `${ch.sticker || '✨'} ${ch.tag}`;
+    if (trackerNum) {
+      const numFormatted = String(ch.chapterNumber).padStart(2, '0');
+      trackerNum.innerText = `Chapter ${numFormatted} of 18`;
+    }
+    if (trackerTitle) {
+      trackerTitle.innerText = `${ch.sticker || '✨'} ${ch.tag || ch.title}`;
+    }
   }
 
   // Update chapter index ribbon chips active state
-  document.querySelectorAll('.chapter-chip').forEach((chip, i) => {
-    chip.classList.toggle('active', i === currentChapterIndex);
+  document.querySelectorAll('.chapter-chip').forEach((chip) => {
+    const chipIdx = parseInt(chip.getAttribute('data-index'), 10);
+    chip.classList.toggle('active', chipIdx === currentChapterIndex);
   });
 
   // Smoothly scroll active chapter chip into view in the ribbon bar
@@ -822,8 +835,8 @@ function displayChapter(index, autoScroll = false) {
   const trackerTitle = document.getElementById('tracker-chapter-title');
 
   // Update Toolbar Tracker
-  if (trackerNum) trackerNum.innerText = `Chapter ${ch.chapterNumber} of 18`;
-  if (trackerTitle) trackerTitle.innerText = `${ch.sticker || '✨'} ${ch.tag}`;
+  if (trackerNum) trackerNum.innerText = `Chapter ${String(ch.chapterNumber).padStart(2, '0')} of 18`;
+  if (trackerTitle) trackerTitle.innerText = `${ch.sticker || '✨'} ${ch.tag || ch.title}`;
 
   // Highlight active chip
   document.querySelectorAll('.chapter-chip').forEach((chip, i) => {
@@ -1112,21 +1125,6 @@ function generateRightPageHtml(index) {
       </div>
     </div>
   `;
-}
-
-function updateChapterControls() {
-  const prevBtn = document.getElementById('btn-prev-chapter');
-  const nextBtn = document.getElementById('btn-next-chapter');
-
-  if (prevBtn) {
-    prevBtn.disabled = currentChapterIndex === 0;
-    prevBtn.classList.toggle('disabled', currentChapterIndex === 0);
-  }
-
-  if (nextBtn) {
-    nextBtn.disabled = currentChapterIndex === STORY_CHAPTERS.length - 1;
-    nextBtn.classList.toggle('disabled', currentChapterIndex === STORY_CHAPTERS.length - 1);
-  }
 }
 
 function playPageTurnSound() {
@@ -2364,22 +2362,6 @@ function initReasonsScroll() {
   }
 
   updateScrollCounter();
-
-  // Scroll-triggered unrolling when scrolling down into view for the first time
-  const rolledBundleTarget = document.getElementById('scroll-rolled-stage') || document.getElementById('reasons-scroll');
-  if (rolledBundleTarget && 'IntersectionObserver' in window) {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting && !hasAutoUnrolledOnScroll && !isScrollUnrolled) {
-          hasAutoUnrolledOnScroll = true;
-          unrollPaperScroll({ autoTriggered: true });
-        }
-      });
-    }, {
-      threshold: 0.3
-    });
-    observer.observe(rolledBundleTarget);
-  }
 }
 
 function unrollPaperScroll(options = {}) {
