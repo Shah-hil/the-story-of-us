@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initRedThreadOfFate();
 });
 
-const ASSET_CACHE_KEY = '20260920_v29';
+const ASSET_CACHE_KEY = '20260920_v30';
 
 function getMediaUrl(url) {
   if (!url) return '';
@@ -2045,6 +2045,9 @@ function initEnvelope() {
     // 1. Play realistic wax crack & fracture sound
     playWaxCrackSound();
 
+    // Dismantle the Red Thread of Fate into starry particles & hearts!
+    dismantleRedThreadOfFate();
+
     // 2. Stage 1: Pre-fracture violent tremble and golden crack flash
     envelopeWrapper.classList.add('cracking');
 
@@ -2094,6 +2097,9 @@ function initEnvelope() {
       // Reset all envelope classes for replayability
       envelopeWrapper.classList.remove('cracking', 'shattered', 'flap-open', 'revealing-letter');
       if (shardsContainer) shardsContainer.innerHTML = '';
+
+      // Reset thread for replayability
+      resetRedThreadOfFate();
     });
   }
 }
@@ -2952,6 +2958,160 @@ function scrollMediaCarousel(delta) {
    Starts at the book's bookmark ribbon, gracefully curls and weaves down
    through the entire journey, guiding the viewer and illuminating key moments.
    ------------------------------------------------------------------------- */
+let isThreadDismantled = false;
+let globalRedThreadUpdate = null;
+
+function dismantleRedThreadOfFate() {
+  if (isThreadDismantled) return;
+  isThreadDismantled = true;
+
+  const container = document.getElementById('red-thread-container');
+  const corePath = document.getElementById('red-thread-core-path');
+  const glowPath = document.getElementById('red-thread-glow-path');
+  const spark = document.getElementById('thread-leading-spark');
+  if (spark) spark.classList.remove('active');
+
+  // 1. Spawn magical starry particles and floating hearts along the thread line
+  spawnThreadDismantleParticles(corePath);
+
+  // 2. Dissolve the thread container with sparkling ethereal stardust and permanently hide it
+  if (container) {
+    container.classList.add('thread-dismantling');
+    setTimeout(() => {
+      container.classList.add('thread-dismantled');
+      container.style.display = 'none';
+      if (glowPath && corePath) {
+        glowPath.style.strokeDashoffset = '999999';
+        corePath.style.strokeDashoffset = '999999';
+      }
+    }, 850);
+  }
+}
+
+function resetRedThreadOfFate() {
+  isThreadDismantled = false;
+  const container = document.getElementById('red-thread-container');
+  if (container) {
+    container.classList.remove('thread-dismantling', 'thread-dismantled');
+    container.style.display = 'block';
+    container.style.opacity = '1';
+    container.style.filter = 'none';
+  }
+  const spark = document.getElementById('thread-leading-spark');
+  if (spark) spark.classList.remove('active');
+  if (typeof globalRedThreadUpdate === 'function') {
+    globalRedThreadUpdate();
+  }
+}
+
+function spawnThreadDismantleParticles(corePath) {
+  if (!corePath) return;
+
+  const scrollY = window.pageYOffset || document.documentElement.scrollTop;
+  const viewTop = scrollY - 60;
+  const viewBottom = scrollY + window.innerHeight + 60;
+  const totalLen = corePath.getTotalLength();
+
+  const overlay = document.createElement('div');
+  overlay.className = 'thread-dismantle-overlay';
+  document.body.appendChild(overlay);
+
+  const starSymbols = ['✦', '✨', '★', '⭐', '💫'];
+  const heartSymbols = ['💖', '💕', '❤️', '🌸', '💘', '💗'];
+  const SAMPLES = 70;
+
+  for (let i = 0; i <= SAMPLES; i++) {
+    const len = (i / SAMPLES) * totalLen;
+    const pt = corePath.getPointAtLength(len);
+
+    if (pt.y >= viewTop && pt.y <= viewBottom) {
+      const pCount = Math.random() < 0.75 ? 2 : 1;
+      for (let j = 0; j < pCount; j++) {
+        const p = document.createElement('div');
+        const rand = Math.random();
+
+        if (rand < 0.45) {
+          p.className = 'thread-dismantle-particle star-particle';
+          p.textContent = starSymbols[Math.floor(Math.random() * starSymbols.length)];
+        } else if (rand < 0.90) {
+          p.className = 'thread-dismantle-particle heart-particle';
+          p.textContent = heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
+        } else {
+          p.className = 'thread-dismantle-particle orb-particle';
+        }
+
+        const angle = Math.random() * Math.PI * 2;
+        const dist = 25 + Math.random() * 95;
+        const dx = Math.cos(angle) * dist;
+        const dyPeak = -25 - Math.random() * 50;
+        const dxEnd = dx * (1.25 + Math.random() * 0.4);
+        const dyEnd = dyPeak - (40 + Math.random() * 75);
+        const rot = `${(Math.random() - 0.5) * 360}deg`;
+        const delay = Math.random() * 280;
+
+        p.style.left = `${pt.x + (Math.random() - 0.5) * 16}px`;
+        p.style.top = `${pt.y + (Math.random() - 0.5) * 16}px`;
+        p.style.setProperty('--dx', `${dx}px`);
+        p.style.setProperty('--dy-peak', `${dyPeak}px`);
+        p.style.setProperty('--dx-end', `${dxEnd}px`);
+        p.style.setProperty('--dy-end', `${dyEnd}px`);
+        p.style.setProperty('--rot', rot);
+        p.style.animationDelay = `${delay}ms`;
+
+        overlay.appendChild(p);
+      }
+    }
+  }
+
+  // Romantic stardust & heart confetti explosion
+  if (typeof confetti === 'function') {
+    confetti({
+      particleCount: 50,
+      spread: 120,
+      startVelocity: 30,
+      ticks: 220,
+      gravity: 0.6,
+      origin: { x: 0.5, y: 0.55 },
+      colors: ['#FF2A55', '#FF758F', '#FFD166', '#FFFFFF', '#FFCCD5']
+    });
+  }
+
+  // Play celestial wind chime
+  playThreadDismantleChime();
+
+  setTimeout(() => {
+    if (overlay.parentNode) {
+      overlay.parentNode.removeChild(overlay);
+    }
+  }, 2200);
+}
+
+function playThreadDismantleChime() {
+  try {
+    if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    if (audioCtx.state === 'suspended') audioCtx.resume();
+
+    const now = audioCtx.currentTime;
+    const freqs = [1046.50, 1318.51, 1567.98, 1975.53, 2349.32, 2637.02];
+    freqs.forEach((freq, idx) => {
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(freq, now + idx * 0.055);
+
+      gain.gain.setValueAtTime(0.045, now + idx * 0.055);
+      gain.gain.exponentialRampToValueAtTime(0.0005, now + idx * 0.055 + 0.5);
+
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+      osc.start(now + idx * 0.055);
+      osc.stop(now + idx * 0.055 + 0.5);
+    });
+  } catch (e) {
+    // Ignore audio errors if autoplay policy restricts
+  }
+}
+
 function initRedThreadOfFate() {
   const container = document.getElementById('red-thread-container');
   const svg = document.getElementById('red-thread-svg');
@@ -2965,6 +3125,7 @@ function initRedThreadOfFate() {
   let waypoints = [];
   let threadStartY = 600;
   let threadEndY = 10000;
+  let lengthLookup = [];
 
   function buildThreadPath() {
     const docWidth = document.documentElement.clientWidth || window.innerWidth;
@@ -3067,45 +3228,77 @@ function initRedThreadOfFate() {
     glowPath.style.strokeDashoffset = `${pathTotalLength}`;
     corePath.style.strokeDashoffset = `${pathTotalLength}`;
 
+    // Pre-calculate fine monotonic lookup table of (y -> length) so thread tip stays strictly at 50%-65% of screen
+    lengthLookup = [];
+    const SAMPLES = 450;
+    let runningMaxY = threadStartY;
+    for (let i = 0; i <= SAMPLES; i++) {
+      const len = (i / SAMPLES) * pathTotalLength;
+      const pt = corePath.getPointAtLength(len);
+      if (pt.y > runningMaxY) {
+        runningMaxY = pt.y;
+      }
+      lengthLookup.push({ len, y: runningMaxY, pt });
+    }
+
     updateThreadOnScroll();
   }
 
   let ticking = false;
 
   function updateThreadOnScroll() {
-    if (pathTotalLength <= 0) return;
+    if (pathTotalLength <= 0 || isThreadDismantled) return;
 
     const scrollY = window.pageYOffset || document.documentElement.scrollTop;
-    const docHeight = Math.max(
-      document.body.scrollHeight,
-      document.documentElement.scrollHeight,
-      document.body.offsetHeight,
-      document.documentElement.offsetHeight
-    );
-    const maxScroll = Math.max(1, docHeight - window.innerHeight);
-    const scrollFraction = Math.min(1, Math.max(0, scrollY / maxScroll));
 
-    // Paced deliberately to the user's reading flow (approx 35% of viewport height at start, reaching the wax seal as user scrolls to the letter)
-    const viewportRatio = 0.35 + (0.55 * scrollFraction);
-    const visibleY = scrollY + (window.innerHeight * viewportRatio);
-    const startY = threadStartY;
-    const endY = threadEndY;
-
-    let progress = 0;
-    if (visibleY > startY) {
-      progress = Math.min(1, Math.max(0, (visibleY - startY) / (endY - startY)));
-    }
-
-    const currentLength = pathTotalLength * progress;
-    const offset = Math.max(0, pathTotalLength - currentLength);
-    glowPath.style.strokeDashoffset = offset;
-    corePath.style.strokeDashoffset = offset;
+    // Constrain thread tip strictly to 50% - 65% of screen height (never going below it)
+    const targetScreenRatio = 0.58; // Locked at 58% of viewport
+    const targetY = scrollY + (window.innerHeight * targetScreenRatio);
 
     const sealEl = document.getElementById('wax-seal');
     const sealWrapper = document.getElementById('wax-seal-wrapper');
 
+    if (targetY < threadStartY) {
+      glowPath.style.strokeDashoffset = pathTotalLength;
+      corePath.style.strokeDashoffset = pathTotalLength;
+      spark.classList.remove('active');
+      waypoints.forEach(wp => {
+        if (wp.el) wp.el.classList.remove('thread-illuminated');
+      });
+      if (sealEl) sealEl.classList.remove('wax-seal-thread-ignited');
+      if (sealWrapper) sealWrapper.classList.remove('thread-ignited');
+      return;
+    }
+
+    let currentLength = 0;
+    let isAtSeal = false;
+
+    if (targetY >= threadEndY) {
+      currentLength = pathTotalLength;
+      isAtSeal = true;
+    } else if (lengthLookup.length > 1) {
+      let low = 0;
+      let high = lengthLookup.length - 1;
+      while (low < high - 1) {
+        const mid = (low + high) >> 1;
+        if (lengthLookup[mid].y <= targetY) {
+          low = mid;
+        } else {
+          high = mid;
+        }
+      }
+      const s1 = lengthLookup[low];
+      const s2 = lengthLookup[high];
+      const t = (s2.y > s1.y) ? Math.min(1, Math.max(0, (targetY - s1.y) / (s2.y - s1.y))) : 0;
+      currentLength = s1.len + t * (s2.len - s1.len);
+    }
+
+    const offset = Math.max(0, pathTotalLength - currentLength);
+    glowPath.style.strokeDashoffset = offset;
+    corePath.style.strokeDashoffset = offset;
+
     // Position guiding comet spark at current thread tip
-    if (currentLength > 20 && progress > 0.01) {
+    if (currentLength > 20) {
       spark.classList.add('active');
       const pt = corePath.getPointAtLength(currentLength);
       spark.style.transform = `translate3d(${pt.x}px, ${pt.y}px, 0)`;
@@ -3121,9 +3314,7 @@ function initRedThreadOfFate() {
         }
       });
 
-      // Ignite final love letter wax seal with radiant glow when thread tip reaches it
-      const pFinal = waypoints[waypoints.length - 1];
-      const isAtSeal = progress >= 0.94 || (pFinal && pFinal.pt && pt.y >= pFinal.pt.y - 50);
+      // Ignite final love letter wax seal with radiant glow when thread reaches it
       if (isAtSeal) {
         if (sealEl) sealEl.classList.add('wax-seal-thread-ignited');
         if (sealWrapper) sealWrapper.classList.add('thread-ignited');
@@ -3140,6 +3331,8 @@ function initRedThreadOfFate() {
       if (sealWrapper) sealWrapper.classList.remove('thread-ignited');
     }
   }
+
+  globalRedThreadUpdate = updateThreadOnScroll;
 
   window.addEventListener('scroll', () => {
     if (!ticking) {
