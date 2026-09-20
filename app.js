@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initRedThreadOfFate();
 });
 
-const ASSET_CACHE_KEY = '20260920_v28';
+const ASSET_CACHE_KEY = '20260920_v29';
 
 function getMediaUrl(url) {
   if (!url) return '';
@@ -3076,9 +3076,18 @@ function initRedThreadOfFate() {
     if (pathTotalLength <= 0) return;
 
     const scrollY = window.pageYOffset || document.documentElement.scrollTop;
+    const docHeight = Math.max(
+      document.body.scrollHeight,
+      document.documentElement.scrollHeight,
+      document.body.offsetHeight,
+      document.documentElement.offsetHeight
+    );
+    const maxScroll = Math.max(1, docHeight - window.innerHeight);
+    const scrollFraction = Math.min(1, Math.max(0, scrollY / maxScroll));
 
-    // Position thread tip so it stays naturally in the user's visible viewport
-    const visibleY = scrollY + (window.innerHeight * 0.72);
+    // Paced deliberately to the user's reading flow (approx 35% of viewport height at start, reaching the wax seal as user scrolls to the letter)
+    const viewportRatio = 0.35 + (0.55 * scrollFraction);
+    const visibleY = scrollY + (window.innerHeight * viewportRatio);
     const startY = threadStartY;
     const endY = threadEndY;
 
@@ -3091,6 +3100,9 @@ function initRedThreadOfFate() {
     const offset = Math.max(0, pathTotalLength - currentLength);
     glowPath.style.strokeDashoffset = offset;
     corePath.style.strokeDashoffset = offset;
+
+    const sealEl = document.getElementById('wax-seal');
+    const sealWrapper = document.getElementById('wax-seal-wrapper');
 
     // Position guiding comet spark at current thread tip
     if (currentLength > 20 && progress > 0.01) {
@@ -3108,11 +3120,24 @@ function initRedThreadOfFate() {
           }
         }
       });
+
+      // Ignite final love letter wax seal with radiant glow when thread tip reaches it
+      const pFinal = waypoints[waypoints.length - 1];
+      const isAtSeal = progress >= 0.94 || (pFinal && pFinal.pt && pt.y >= pFinal.pt.y - 50);
+      if (isAtSeal) {
+        if (sealEl) sealEl.classList.add('wax-seal-thread-ignited');
+        if (sealWrapper) sealWrapper.classList.add('thread-ignited');
+      } else {
+        if (sealEl) sealEl.classList.remove('wax-seal-thread-ignited');
+        if (sealWrapper) sealWrapper.classList.remove('thread-ignited');
+      }
     } else {
       spark.classList.remove('active');
       waypoints.forEach(wp => {
         if (wp.el) wp.el.classList.remove('thread-illuminated');
       });
+      if (sealEl) sealEl.classList.remove('wax-seal-thread-ignited');
+      if (sealWrapper) sealWrapper.classList.remove('thread-ignited');
     }
   }
 

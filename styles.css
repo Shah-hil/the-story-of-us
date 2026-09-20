@@ -1033,7 +1033,7 @@ body.book-theme::before {
   width: 100%;
   height: 100%;
   pointer-events: none;
-  z-index: 6; /* Behind all cards, photos, and book content */
+  z-index: 20; /* Weaves over book paper, parchment, and letter; under photos */
   overflow: visible;
 }
 
@@ -1074,7 +1074,7 @@ body.book-theme::before {
   margin-left: -8px;
   margin-top: -8px;
   pointer-events: none;
-  z-index: 7;
+  z-index: 22; /* Traverses along thread above paper, under photos */
   opacity: 0;
   transform: translate3d(0, 0, 0);
   transition: opacity 0.4s ease;
@@ -1138,18 +1138,76 @@ body.book-theme::before {
   50% { transform: translateY(-4px); opacity: 0.8; }
 }
 
-/* Ensure all cards, polaroids, pages, and content sit above the red thread */
-.hero-presentation-card,
+/* Layering: The red thread weaves OVER parchment / book pages and letter paper,
+   but weaves UNDER all polaroid photos, films, and media, terminating INTO the glowing wax seal */
 .storybook-folio,
-.polaroid-card,
-.film-card,
-.filmstrip-item,
 .continuous-paper-roll-wrapper,
+.authentic-paper-strip-body,
 .envelope-wrapper,
+.parchment-envelope,
+.letter-sheet-container,
+.hero-presentation-card,
 .lifetime-glass-card,
 .parchment-section-header {
+  position: relative;
+  z-index: auto; /* Stays below thread z-index: 20 so thread draws across paper */
+}
+
+/* Photos, Polaroids, Filmstrip Media sit ABOVE the thread (z-index: 25) */
+.folio-polaroid-frame,
+.polaroid-photo-box,
+.polaroid-photo-box img,
+.korean-photobooth-box,
+.photobooth-video-wrapper,
+.polaroid-card,
+.polaroid-front,
+.polaroid-back,
+.polaroid-img-wrapper,
+.polaroid-tape,
+.film-card,
+.filmstrip-item,
+.film-media-box,
+.photo-frame-outer {
   position: relative !important;
-  z-index: 10 !important;
+  z-index: 25 !important;
+}
+
+/* Wax Seal at the final love letter sits proud above thread and blooms with radiant light */
+.wax-seal-wrapper,
+.wax-seal {
+  position: relative !important;
+  z-index: 30 !important;
+}
+
+/* Radiant Red Thread Ignited Wax Seal */
+.wax-seal-wrapper.thread-ignited .wax-seal-aura {
+  width: 200px !important;
+  height: 200px !important;
+  background: radial-gradient(circle, rgba(255, 235, 140, 0.85) 0%, rgba(255, 42, 85, 0.6) 45%, rgba(163, 35, 56, 0.25) 70%, transparent 85%) !important;
+  filter: blur(20px) !important;
+  animation: sealRadianceGlowPulse 1.8s infinite alternate ease-in-out !important;
+}
+
+.wax-seal.wax-seal-thread-ignited {
+  box-shadow: 0 0 28px rgba(255, 42, 85, 0.95), 0 0 55px rgba(255, 215, 120, 0.9), 0 0 90px rgba(255, 60, 100, 0.65) !important;
+  filter: drop-shadow(0 0 18px #FF2A55) drop-shadow(0 0 30px #FFD166) !important;
+  animation: sealIgnitedRadiance 2.2s infinite alternate ease-in-out !important;
+}
+
+@keyframes sealRadianceGlowPulse {
+  0% { transform: scale(0.95); opacity: 0.75; }
+  100% { transform: scale(1.3); opacity: 1; }
+}
+
+@keyframes sealIgnitedRadiance {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 22px rgba(255, 42, 85, 0.9), 0 0 45px rgba(255, 215, 120, 0.8);
+  }
+  100% {
+    transform: scale(1.06);
+    box-shadow: 0 0 38px rgba(255, 42, 85, 1), 0 0 70px rgba(255, 225, 130, 0.95), 0 0 100px rgba(255, 75, 110, 0.75);
+  }
 }
 
 /* Delicate subtle shine for text / stamps crossed by the red thread */
@@ -1321,7 +1379,6 @@ body.book-theme::before {
 .storybook-folio-wrapper {
   position: relative;
   width: 100%;
-  perspective: 2500px;
 }
 
 .storybook-folio {
@@ -1338,7 +1395,6 @@ body.book-theme::before {
   display: grid;
   grid-template-columns: 1fr 20px 1fr;
   overflow: hidden;
-  transform-style: preserve-3d;
   transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.3, 1);
 }
 
@@ -1371,6 +1427,7 @@ body.book-theme::before {
   top: 0;
   bottom: 0;
   height: 100%;
+  perspective: 2500px;
   transform-style: preserve-3d;
   pointer-events: none;
   z-index: 50;
@@ -4239,7 +4296,6 @@ body.eternity-fs-active {
   max-width: 760px;
   margin: 0 auto;
   position: relative;
-  perspective: 1200px;
 }
 
 .parchment-envelope {
@@ -4252,6 +4308,7 @@ body.eternity-fs-active {
   cursor: pointer;
   position: relative;
   overflow: hidden;
+  perspective: 1200px;
   transition: transform 0.4s ease, opacity 0.5s ease, filter 0.5s ease;
 }
 
