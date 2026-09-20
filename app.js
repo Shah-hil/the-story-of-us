@@ -3,7 +3,26 @@
 // Cover Gate Unwrap, 18 Chapters of The Story of Us, Korean Photobooth & 3D Flips
 // =========================================================================
 
+// ALWAYS open from the very start (closed book at top of page, no saved scroll cache)
+if ('scrollRestoration' in history) {
+  history.scrollRestoration = 'manual';
+}
+if (window.location.hash) {
+  history.replaceState(null, '', window.location.pathname + window.location.search);
+}
+window.scrollTo(0, 0);
+
+window.addEventListener('pageshow', () => {
+  window.scrollTo(0, 0);
+});
+
+window.addEventListener('load', () => {
+  window.scrollTo(0, 0);
+  setTimeout(() => window.scrollTo(0, 0), 20);
+});
+
 document.addEventListener('DOMContentLoaded', () => {
+  window.scrollTo(0, 0);
   initPresentationHero();
   initStardust();
   initFloatingPetalsCanvas();
@@ -20,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initNavScroll();
 });
 
-const ASSET_CACHE_KEY = '20260920_v17';
+const ASSET_CACHE_KEY = '20260920_v26';
 
 function getMediaUrl(url) {
   if (!url) return '';
@@ -45,11 +64,30 @@ function initPresentationHero() {
 
   if (!heroTrack || !heroCard) return;
 
+  // Explicitly reset elements to pristine closed book state
+  heroCard.style.transform = 'scale(1)';
+  heroCard.style.borderRadius = '0px';
+  heroCard.style.borderColor = 'transparent';
+  heroCard.style.boxShadow = 'none';
+  if (bookCover) bookCover.style.transform = 'rotateY(0deg)';
+  if (bookRibbon) {
+    bookRibbon.style.transform = 'none';
+    bookRibbon.style.opacity = '1';
+  }
+  if (heroPrompt) heroPrompt.style.opacity = '1';
+  if (mainNav) {
+    mainNav.style.opacity = '0';
+    mainNav.style.transform = 'translateY(-25px)';
+  }
+
   let hasStartedMusic = false;
 
   // 1. GSAP ScrollTrigger implementation (matching lxlcreative.co.uk)
   if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
     gsap.registerPlugin(ScrollTrigger);
+    if (typeof ScrollTrigger.clearScrollMemory === 'function') {
+      ScrollTrigger.clearScrollMemory();
+    }
 
     const isDesktop = window.innerWidth > 768;
     const targetScale = isDesktop ? 0.72 : 0.88;
@@ -1489,13 +1527,39 @@ function initFullscreenLifetimeMode() {
   const openModal = () => {
     if (modal) {
       modal.classList.remove('hidden');
+      document.body.classList.add('eternity-fs-active');
       playScrollChimeSound();
       triggerScrollStardust();
+
+      // Trigger browser native fullscreen if available
+      const docEl = document.documentElement;
+      const requestFs = docEl.requestFullscreen || docEl.webkitRequestFullscreen || docEl.mozRequestFullScreen || docEl.msRequestFullscreen;
+      if (requestFs) {
+        try {
+          const p = requestFs.call(docEl);
+          if (p && p.catch) p.catch(() => {});
+        } catch (e) {}
+      }
     }
   };
 
   const closeModal = () => {
-    if (modal) modal.classList.add('hidden');
+    if (modal) {
+      modal.classList.add('hidden');
+      document.body.classList.remove('eternity-fs-active');
+
+      // Exit native fullscreen if active
+      const isFs = document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement;
+      if (isFs) {
+        const exitFs = document.exitFullscreen || document.webkitExitFullscreen || document.mozCancelFullScreen || document.msExitFullscreen;
+        if (exitFs) {
+          try {
+            const p = exitFs.call(document);
+            if (p && p.catch) p.catch(() => {});
+          } catch (e) {}
+        }
+      }
+    }
   };
 
   if (openBtn) openBtn.addEventListener('click', openModal);

@@ -24,8 +24,19 @@
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
 
+  <script>
+    // Enforce opening from the very start (closed book cover) on every reload or visit
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual';
+    }
+    if (window.location.hash) {
+      history.replaceState(null, '', window.location.pathname + window.location.search);
+    }
+    window.scrollTo(0, 0);
+  </script>
+
   <!-- Custom Styles with cache-busting -->
-  <link rel="stylesheet" href="styles.css?v=20260920_v25">
+  <link rel="stylesheet" href="styles.css?v=20260920_v26">
 </head>
 <body class="book-theme">
 
@@ -779,13 +790,13 @@
   </footer>
 
   <!-- Include Data Configuration Files -->
-  <script src="storyData.js?v=20260920_v25"></script>
-  <script src="memoriesData.js?v=20260920_v25"></script>
-  <script src="scrollData.js?v=20260920_v25"></script>
-  <script src="mediaData.js?v=20260920_v25"></script>
-  <script src="lifetimeData.js?v=20260920_v25"></script>
+  <script src="storyData.js?v=20260920_v26"></script>
+  <script src="memoriesData.js?v=20260920_v26"></script>
+  <script src="scrollData.js?v=20260920_v26"></script>
+  <script src="mediaData.js?v=20260920_v26"></script>
+  <script src="lifetimeData.js?v=20260920_v26"></script>
 
   <!-- Core App Controller -->
-  <script src="app.js?v=20260920_v25"></script>
+  <script src="app.js?v=20260920_v26"></script>
 </body>
 </html>

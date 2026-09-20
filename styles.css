@@ -3032,12 +3032,19 @@ body.book-theme::before {
 /* -------------------------------------------------------------------------
    FULL-SCREEN IMMERSIVE ETERNITY LOADING SCREEN MODAL
    ------------------------------------------------------------------------- */
+body.eternity-fs-active {
+  overflow: hidden !important;
+}
+
 .fullscreen-eternity-modal {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
   z-index: 10000;
   display: flex;
   align-items: center;
@@ -6641,6 +6648,153 @@ body.book-theme::before {
     font-size: 0.72rem !important;
     padding: 5px 9px !important;
     gap: 4px !important;
+  }
+
+  /* 16. Full-Screen Eternity Timer Modal on Mobile (True Edge-to-Edge Fullscreen Experience) */
+  .fullscreen-eternity-modal {
+    width: 100vw !important;
+    height: 100vh !important;
+    height: 100dvh !important;
+    z-index: 100000 !important;
+  }
+
+  .fullscreen-eternity-modal .eternity-modal-backdrop {
+    background: radial-gradient(circle at 50% 25%, #2B0A15 0%, #0E0207 100%) !important;
+  }
+
+  .fullscreen-eternity-modal .eternity-modal-content {
+    position: fixed !important;
+    inset: 0 !important;
+    width: 100vw !important;
+    max-width: 100vw !important;
+    height: 100vh !important;
+    height: 100dvh !important;
+    max-height: 100dvh !important;
+    border-radius: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: calc(env(safe-area-inset-top, 24px) + 20px) 16px calc(env(safe-area-inset-bottom, 20px) + 16px) 16px !important;
+    margin: 0 !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    background: radial-gradient(circle at 50% 20%, rgba(45, 10, 20, 0.98) 0%, rgba(14, 3, 7, 0.99) 100%) !important;
+  }
+
+  .fullscreen-eternity-modal .eternity-close-btn {
+    position: absolute !important;
+    top: calc(env(safe-area-inset-top, 12px) + 10px) !important;
+    right: 14px !important;
+    z-index: 20 !important;
+    background: rgba(230, 184, 92, 0.2) !important;
+    border: 1px solid rgba(230, 184, 92, 0.55) !important;
+    color: #FAF2E3 !important;
+    padding: 6px 12px !important;
+    border-radius: 20px !important;
+    font-size: 0.78rem !important;
+    backdrop-filter: blur(12px) !important;
+  }
+
+  .fullscreen-eternity-modal .fs-eternity-header {
+    margin-top: 26px !important;
+    margin-bottom: 12px !important;
+    text-align: center !important;
+  }
+
+  .fullscreen-eternity-modal .fs-eternity-flourish {
+    font-size: 1.2rem !important;
+    margin-bottom: 4px !important;
+  }
+
+  .fullscreen-eternity-modal .fs-anniversary-tag {
+    font-size: 0.65rem !important;
+    letter-spacing: 1px !important;
+    margin-bottom: 4px !important;
+  }
+
+  .fullscreen-eternity-modal .fs-eternity-title {
+    font-size: clamp(1.35rem, 5.5vw, 1.8rem) !important;
+    margin-bottom: 4px !important;
+    line-height: 1.2 !important;
+  }
+
+  .fullscreen-eternity-modal .fs-eternity-subtitle {
+    font-size: 0.85rem !important;
+    line-height: 1.3 !important;
+    color: rgba(250, 242, 227, 0.85) !important;
+    padding: 0 8px !important;
+  }
+
+  .fullscreen-eternity-modal .fs-timer-row {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 8px !important;
+    width: 100% !important;
+    max-width: 380px !important;
+    margin: 8px auto 14px auto !important;
+  }
+
+  .fullscreen-eternity-modal .fs-timer-colon {
+    display: none !important;
+  }
+
+  .fullscreen-eternity-modal .fs-timer-card {
+    min-width: 0 !important;
+    padding: 10px 4px !important;
+    background: rgba(255, 255, 255, 0.08) !important;
+    border: 1.5px solid rgba(230, 184, 92, 0.45) !important;
+    border-radius: 12px !important;
+    text-align: center !important;
+  }
+
+  .fullscreen-eternity-modal .fs-num {
+    font-size: clamp(1.4rem, 6vw, 1.95rem) !important;
+    font-weight: 700 !important;
+    line-height: 1.1 !important;
+  }
+
+  .fullscreen-eternity-modal .fs-label {
+    font-size: 0.62rem !important;
+    letter-spacing: 1px !important;
+    margin-top: 2px !important;
+  }
+
+  .fullscreen-eternity-modal .fs-progress-container {
+    padding: 12px 14px !important;
+    margin-bottom: 8px !important;
+    border-radius: 14px !important;
+    background: rgba(0, 0, 0, 0.5) !important;
+  }
+
+  .fullscreen-eternity-modal .fs-progress-meta {
+    margin-bottom: 8px !important;
+  }
+
+  .fullscreen-eternity-modal .fs-loading-msg {
+    font-size: 0.82rem !important;
+  }
+
+  .fullscreen-eternity-modal .fs-percent-text {
+    font-size: 1.3rem !important;
+  }
+
+  .fullscreen-eternity-modal .fs-progress-track {
+    height: 18px !important;
+    margin-bottom: 8px !important;
+  }
+
+  .fullscreen-eternity-modal .fs-milestone-preview {
+    font-size: 0.78rem !important;
+    line-height: 1.35 !important;
+  }
+
+  .fullscreen-eternity-modal .fs-modal-footer-note {
+    font-size: 0.72rem !important;
+    opacity: 0.85 !important;
+    text-align: center !important;
+    margin-top: 4px !important;
   }
 }
 

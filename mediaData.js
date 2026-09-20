@@ -129,12 +129,12 @@ const MEDIA_REEL_DATA = [
   {
     id: "media-udaipur-day3",
     type: "photo",
-    title: "Rooftop Views & Sunlit Skies",
+    title: "City Palace — After The Big Pout 🏰",
     date: "February 21, 2026",
-    location: "Udaipur Rooftop",
+    location: "City Palace, Udaipur",
     url: "images/gallery/PXL_20260221_111531294.MP.jpg",
-    caption: "Looking out over the city together. Peaceful, beautiful, and completely unforgettable.",
-    sticker: "🕊️"
+    caption: "At City Palace... where you were angry and pouting the whole day before this picture was taken! Who would have ever thought looking at how sweet and peaceful you look here? 🤍",
+    sticker: "😤"
   },
   {
     id: "media-udaipur-morning",
@@ -206,5 +206,15 @@ const MEDIA_REEL_DATA = [
     url: "images/gallery/PXL_20260508_090848747.MP.jpg",
     caption: "Every single day that passes only makes it clearer: you're my favorite person in the entire world.",
     sticker: "♾️"
+  },
+  {
+    id: "media-graduation-dinner",
+    type: "photo",
+    title: "Graduation Dinner & Your Big Prize 🏆",
+    date: "Graduation Ceremony",
+    location: "Under the Fairy Lights",
+    url: "images/gallery/graduation_dinner_award.jpg",
+    caption: "Dancing under the fairy lights after you won your prize. Standing there cheering for you was one of the proudest, sweetest moments of my life.",
+    sticker: "🏆"
   }
 ];

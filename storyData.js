@@ -293,6 +293,7 @@ const STORY_CHAPTERS = [
     chapterNumber: "15",
     tag: "Proudest Supporter 🏆",
     title: "And then came the award.",
+    photoCaption: "Graduation dinner & celebrating your big award 🏆✨",
     date: "Annual Day / Graduation Dinner",
     location: "Cheering Loudest in the Audience",
     image: "images/chapters/chapter_15.jpg",
