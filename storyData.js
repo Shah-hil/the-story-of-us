@@ -68,8 +68,9 @@ const STORY_CHAPTERS = [
   {
     id: 4,
     chapterNumber: "04",
-    tag: "dumb photo for doing dumb things 😠",
-    title: "dumb photo for doing dumb things.",
+    tag: "Through the Storm 🌧️",
+    title: "I watched you fall for someone else.",
+    photoCaption: "A silly photo of you from a time of questionable decisions 😠",
     date: "Dance Society Days",
     location: "Standing by Your Side",
     image: "images/chapters/chapter_04.jpg",
@@ -82,7 +83,7 @@ const STORY_CHAPTERS = [
       "That period was one of the times I was genuinely angry with you. I wanted you to listen to me. You didn't. You were completely caught up in what you felt for him, and I could see you getting hurt while still walking deeper into it.",
       "But eventually, that chapter began to close. And somehow, we got even closer."
     ],
-    sticker: "😠"
+    sticker: "🌧️"
   },
   {
     id: 5,

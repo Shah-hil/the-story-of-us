@@ -1037,7 +1037,7 @@ function generateLeftPageHtml(index) {
           <div class="polaroid-enlarge-badge"><i class="fa-solid fa-magnifying-glass-plus"></i> Tap to View</div>
         </div>
         <div class="polaroid-handwritten-tag">
-          <span>${ch.sticker || '🌸'} ${ch.tag}</span>
+          <span>${ch.photoCaption ? escapeQuotes(ch.photoCaption) : `${ch.sticker || '🌸'} ${ch.tag}`}</span>
         </div>
         <div class="vintage-postal-stamp">
           <span class="stamp-city">${ch.location ? escapeQuotes(ch.location.split(',')[0].slice(0, 9).toUpperCase()) : 'KEEPSAKE'}</span>
@@ -2207,28 +2207,101 @@ function closeLightbox() {
 }
 
 /* -------------------------------------------------------------------------
-   9. STICKY NAV SCROLL ACTIVE HIGHLIGHT
+   9. STICKY NAV SCROLL ACTIVE HIGHLIGHT & SMOOTH ANCHOR CLICK
    ------------------------------------------------------------------------- */
 function initNavScroll() {
-  const sections = document.querySelectorAll('section[id]');
   const navLinks = document.querySelectorAll('.nav-link');
+  const sectionIds = ['our-story', 'lifetime-loader', 'memories-vault', 'reasons-scroll', 'media-reel', 'birthday-letter'];
+  const sections = sectionIds.map(id => document.getElementById(id)).filter(Boolean);
 
-  window.addEventListener('scroll', () => {
-    let current = '';
-    sections.forEach(section => {
-      const sectionTop = section.offsetTop - 120;
-      if (window.pageYOffset >= sectionTop) {
-        current = section.getAttribute('id');
-      }
-    });
+  let isManualNavClick = false;
+  let manualNavTimeout = null;
 
-    navLinks.forEach(link => {
-      link.classList.remove('active');
-      if (link.getAttribute('href') === `#${current}`) {
-        link.classList.add('active');
+  function updateActiveNav() {
+    if (isManualNavClick) return;
+
+    const scrollY = window.pageYOffset || document.documentElement.scrollTop;
+    const windowH = window.innerHeight;
+    let currentId = '';
+
+    // If near bottom of the page, activate the last section
+    if (scrollY + windowH >= document.documentElement.scrollHeight - 160) {
+      currentId = 'birthday-letter';
+    } else {
+      sections.forEach(section => {
+        const rect = section.getBoundingClientRect();
+        if (rect.top <= 260 && rect.bottom >= 100) {
+          currentId = section.getAttribute('id');
+        }
+      });
+
+      // Fallback check from bottom to top
+      if (!currentId) {
+        for (let i = sections.length - 1; i >= 0; i--) {
+          const rect = sections[i].getBoundingClientRect();
+          if (rect.top <= 380) {
+            currentId = sections[i].getAttribute('id');
+            break;
+          }
+        }
       }
+    }
+
+    if (!currentId && sections[0]) {
+      const firstRect = sections[0].getBoundingClientRect();
+      if (firstRect.top <= 550) {
+        currentId = sections[0].getAttribute('id');
+      }
+    }
+
+    if (currentId) {
+      navLinks.forEach(link => {
+        const isMatch = (link.getAttribute('href') === `#${currentId}`);
+        link.classList.toggle('active', isMatch);
+        if (isMatch) {
+          link.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+        }
+      });
+    }
+  }
+
+  window.addEventListener('scroll', updateActiveNav, { passive: true });
+  window.addEventListener('resize', updateActiveNav, { passive: true });
+
+  // Handle smooth click for all nav links with instant active feedback
+  navLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      const href = link.getAttribute('href');
+      if (!href || !href.startsWith('#')) return;
+      const targetSec = document.querySelector(href);
+      if (!targetSec) return;
+
+      e.preventDefault();
+
+      // Immediately highlight clicked link
+      navLinks.forEach(l => l.classList.remove('active'));
+      link.classList.add('active');
+      link.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+
+      isManualNavClick = true;
+      clearTimeout(manualNavTimeout);
+
+      const navHeight = 75;
+      const targetTop = targetSec.getBoundingClientRect().top + (window.pageYOffset || document.documentElement.scrollTop) - navHeight;
+
+      window.scrollTo({
+        top: targetTop,
+        behavior: 'smooth'
+      });
+
+      manualNavTimeout = setTimeout(() => {
+        isManualNavClick = false;
+        updateActiveNav();
+      }, 900);
     });
   });
+
+  updateActiveNav();
 }
 
 /* -------------------------------------------------------------------------
@@ -2362,16 +2435,57 @@ function initReasonsScroll() {
   }
 
   updateScrollCounter();
+
+  // Floating quick action pill handlers
+  const floatingPill = document.getElementById('scroll-floating-pill');
+  const floatTopBtn = document.getElementById('floating-scroll-top-btn');
+  const floatRollupBtn = document.getElementById('floating-scroll-rollup-btn');
+
+  if (floatTopBtn) {
+    floatTopBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      scrollToScrollTop();
+    });
+  }
+
+  if (floatRollupBtn) {
+    floatRollupBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      rollUpPaperScroll();
+    });
+  }
+
+  function updateFloatingScrollPill() {
+    if (!floatingPill) return;
+    if (!isScrollUnrolled) {
+      floatingPill.classList.remove('active');
+      return;
+    }
+
+    const stripContainer = document.getElementById('scroll-strip-container');
+    const bottomSpool = document.getElementById('scroll-bottom-spool');
+    if (!stripContainer) {
+      floatingPill.classList.remove('active');
+      return;
+    }
+
+    const rect = stripContainer.getBoundingClientRect();
+    const bottomRect = bottomSpool ? bottomSpool.getBoundingClientRect() : { top: 99999 };
+
+    // Show floating pill when user is past the first 250px of the list and before bottom spool
+    const isInsideList = (rect.top < -200) && (bottomRect.top > window.innerHeight - 80);
+    floatingPill.classList.toggle('active', isInsideList);
+  }
+
+  window.addEventListener('scroll', updateFloatingScrollPill, { passive: true });
 }
 
 function unrollPaperScroll(options = {}) {
   if (isScrollUnrolled) return;
   isScrollUnrolled = true;
-  const isAuto = options.autoTriggered === true;
 
   const rolledStage = document.getElementById('scroll-rolled-stage');
   const unrolledStage = document.getElementById('scroll-unrolled-stage');
-  const reasonsSection = document.getElementById('reasons-scroll');
 
   // Play crisp paper unrolling sound & celestial chimes
   playScrollUnrollSound();
@@ -2390,15 +2504,7 @@ function unrollPaperScroll(options = {}) {
       unrolledStage.classList.remove('hidden-scroll', 'rolling-up');
       unrolledStage.classList.add('unfurling');
     }
-
-    if (!isAuto && reasonsSection) {
-      const targetY = reasonsSection.offsetTop - 60;
-      window.scrollTo({
-        top: targetY,
-        behavior: 'smooth'
-      });
-    }
-  }, 260);
+  }, 240);
 }
 
 function rollUpPaperScroll() {
@@ -2407,7 +2513,11 @@ function rollUpPaperScroll() {
 
   const rolledStage = document.getElementById('scroll-rolled-stage');
   const unrolledStage = document.getElementById('scroll-unrolled-stage');
-  const reasonsSection = document.getElementById('reasons-scroll');
+  const floatingPill = document.getElementById('scroll-floating-pill');
+
+  if (floatingPill) {
+    floatingPill.classList.remove('active');
+  }
 
   playScrollChimeSound();
 
@@ -2415,14 +2525,6 @@ function rollUpPaperScroll() {
   if (unrolledStage) {
     unrolledStage.classList.remove('unfurling');
     unrolledStage.classList.add('rolling-up');
-  }
-
-  if (reasonsSection) {
-    const targetY = reasonsSection.offsetTop - 60;
-    window.scrollTo({
-      top: targetY,
-      behavior: 'smooth'
-    });
   }
 
   setTimeout(() => {
@@ -2436,9 +2538,16 @@ function rollUpPaperScroll() {
       rolledStage.classList.add('rolling-in');
       setTimeout(() => {
         rolledStage.classList.remove('rolling-in');
-      }, 600);
+      }, 500);
     }
-  }, 380);
+  }, 320);
+}
+
+function scrollToScrollTop() {
+  const panel = document.querySelector('.scroll-control-panel') || document.getElementById('reasons-scroll');
+  if (panel) {
+    panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
 }
 
 function renderReasonsScroll(query = '') {
@@ -2472,6 +2581,10 @@ function renderReasonsScroll(query = '') {
       html += `
         <div class="paper-crease-divider">
           <span class="paper-crease-tag">Fold Line № ${foldNum} • From Her Hands</span>
+          <div class="fold-inline-actions">
+            <button class="fold-quick-btn" onclick="scrollToScrollTop()"><i class="fa-solid fa-arrow-up"></i> Top</button>
+            <button class="fold-quick-btn" onclick="rollUpPaperScroll()"><i class="fa-solid fa-scroll"></i> Roll Up</button>
+          </div>
         </div>
       `;
     }
