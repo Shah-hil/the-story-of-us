@@ -2378,24 +2378,27 @@ function unrollPaperScroll(options = {}) {
   triggerScrollStardust();
 
   if (rolledStage) {
+    rolledStage.classList.remove('rolling-in');
     rolledStage.classList.add('unrolling-out');
   }
 
   setTimeout(() => {
-    if (rolledStage) rolledStage.classList.add('hidden-rolled');
+    if (rolledStage) {
+      rolledStage.classList.add('hidden-rolled');
+    }
     if (unrolledStage) {
-      unrolledStage.classList.remove('hidden-scroll');
+      unrolledStage.classList.remove('hidden-scroll', 'rolling-up');
       unrolledStage.classList.add('unfurling');
     }
 
-    // Only force smooth auto-scroll when user explicitly clicked button, avoiding scroll jump during natural scroll
     if (!isAuto && reasonsSection) {
+      const targetY = reasonsSection.offsetTop - 60;
       window.scrollTo({
-        top: reasonsSection.offsetTop - 70,
+        top: targetY,
         behavior: 'smooth'
       });
     }
-  }, 350);
+  }, 260);
 }
 
 function rollUpPaperScroll() {
@@ -2408,24 +2411,34 @@ function rollUpPaperScroll() {
 
   playScrollChimeSound();
 
+  // Play smooth roll-up exit animation on the unrolled stage
   if (unrolledStage) {
-    unrolledStage.classList.add('hidden-scroll');
     unrolledStage.classList.remove('unfurling');
-  }
-
-  if (rolledStage) {
-    rolledStage.classList.remove('hidden-rolled');
-    setTimeout(() => {
-      rolledStage.classList.remove('unrolling-out');
-    }, 50);
+    unrolledStage.classList.add('rolling-up');
   }
 
   if (reasonsSection) {
+    const targetY = reasonsSection.offsetTop - 60;
     window.scrollTo({
-      top: reasonsSection.offsetTop - 70,
+      top: targetY,
       behavior: 'smooth'
     });
   }
+
+  setTimeout(() => {
+    if (unrolledStage) {
+      unrolledStage.classList.add('hidden-scroll');
+      unrolledStage.classList.remove('rolling-up');
+    }
+
+    if (rolledStage) {
+      rolledStage.classList.remove('hidden-rolled', 'unrolling-out');
+      rolledStage.classList.add('rolling-in');
+      setTimeout(() => {
+        rolledStage.classList.remove('rolling-in');
+      }, 600);
+    }
+  }, 380);
 }
 
 function renderReasonsScroll(query = '') {
