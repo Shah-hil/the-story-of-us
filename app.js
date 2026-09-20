@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initRedThreadOfFate();
 });
 
-const ASSET_CACHE_KEY = '20260920_v30';
+const ASSET_CACHE_KEY = '20260920_v31';
 
 function getMediaUrl(url) {
   if (!url) return '';
@@ -928,6 +928,12 @@ function displayChapter(index, autoScroll = false) {
       }
     }
   }
+
+  setTimeout(() => {
+    if (typeof globalRebuildThread === 'function') {
+      globalRebuildThread();
+    }
+  }, 250);
 }
 
 function togglePhotoboothPlayback(videoElem) {
@@ -1562,6 +1568,12 @@ function initFullscreenLifetimeMode() {
           } catch (e) {}
         }
       }
+
+      setTimeout(() => {
+        if (typeof globalRebuildThread === 'function') {
+          globalRebuildThread();
+        }
+      }, 250);
     }
   };
 
@@ -3128,6 +3140,8 @@ function initRedThreadOfFate() {
   let lengthLookup = [];
 
   function buildThreadPath() {
+    if (document.body.classList.contains('eternity-fs-active')) return;
+
     const docWidth = document.documentElement.clientWidth || window.innerWidth;
     const docHeight = Math.max(
       document.body.scrollHeight,
@@ -3161,8 +3175,17 @@ function initRedThreadOfFate() {
       };
     }
 
-    // Measure milestone coordinates
-    const p0 = getAnchorCenter(ribbonEl, 0.5, 600);
+    // Static origin calculation for p0: #hero-card is inside sticky container,
+    // so we use the static offset of #hero-track to prevent scroll corruption
+    const heroTrack = document.getElementById('hero-track');
+    const heroTrackTop = heroTrack ? heroTrack.offsetTop : 0;
+    const p0 = {
+      x: docWidth * 0.5,
+      y: heroTrackTop + Math.min(Math.round(window.innerHeight * 0.62), 560),
+      el: ribbonEl
+    };
+
+    // Measure remaining milestone coordinates (these are normal static page sections)
     const p1 = getAnchorCenter(storyHeader, 0.45, 3300);
     const p2 = getAnchorCenter(lifetimeAnchor, 0.52, 4500);
     const p3 = getAnchorCenter(memoriesHeader, 0.48, 5600);
@@ -3231,7 +3254,7 @@ function initRedThreadOfFate() {
     // Pre-calculate fine monotonic lookup table of (y -> length) so thread tip stays strictly at 50%-65% of screen
     lengthLookup = [];
     const SAMPLES = 450;
-    let runningMaxY = threadStartY;
+    let runningMaxY = -Infinity;
     for (let i = 0; i <= SAMPLES; i++) {
       const len = (i / SAMPLES) * pathTotalLength;
       const pt = corePath.getPointAtLength(len);
@@ -3243,6 +3266,8 @@ function initRedThreadOfFate() {
 
     updateThreadOnScroll();
   }
+
+  globalRebuildThread = buildThreadPath;
 
   let ticking = false;
 
