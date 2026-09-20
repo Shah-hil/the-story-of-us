@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initRedThreadOfFate();
 });
 
-const ASSET_CACHE_KEY = '20260920_v32';
+const ASSET_CACHE_KEY = '20260920_v33';
 
 function getMediaUrl(url) {
   if (!url) return '';
@@ -2621,6 +2621,8 @@ function unrollPaperScroll(options = {}) {
       setTimeout(globalRebuildThread, 150);
       setTimeout(globalRebuildThread, 450);
       setTimeout(globalRebuildThread, 800);
+      setTimeout(globalRebuildThread, 1200);
+      setTimeout(globalRebuildThread, 2000);
     }
   }, 240);
 }
@@ -2662,6 +2664,7 @@ function rollUpPaperScroll() {
     if (typeof globalRebuildThread === 'function') {
       setTimeout(globalRebuildThread, 150);
       setTimeout(globalRebuildThread, 450);
+      setTimeout(globalRebuildThread, 1200);
     }
   }, 320);
 }
@@ -3420,16 +3423,17 @@ function initRedThreadOfFate() {
     let roTimer = null;
     const ro = new ResizeObserver(() => {
       const curH = document.body.scrollHeight;
-      if (Math.abs(curH - lastHeight) > 60) {
+      if (Math.abs(curH - lastHeight) > 30) {
         lastHeight = curH;
         clearTimeout(roTimer);
         roTimer = setTimeout(() => {
           buildThreadPath();
-        }, 120);
+        }, 80);
       }
     });
     ro.observe(document.body);
   }
 
   setTimeout(buildThreadPath, 250);
+  setTimeout(buildThreadPath, 800);
 }

@@ -1365,6 +1365,10 @@ body.book-theme::before {
   margin-bottom: 95px;
 }
 
+.book-section:last-child {
+  margin-bottom: 0;
+}
+
 /* Chapter Ribbon Jump Navigator */
 .chapter-ribbon-bar {
   background: linear-gradient(135deg, rgba(42, 11, 21, 0.95) 0%, rgba(28, 7, 14, 0.95) 100%);
@@ -4839,10 +4843,11 @@ body.eternity-fs-active {
   background: #1C070E;
   color: #D9C5B2;
   border-top: 2px solid var(--gold-leaf);
-  padding: 55px 24px;
+  padding: 40px 24px;
   text-align: center;
   position: relative;
   z-index: 10;
+  overflow: hidden;
 }
 
 .footer-content {
